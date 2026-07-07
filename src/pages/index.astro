@@ -7,52 +7,100 @@ import { organizationSchema, websiteSchema } from '../lib/seo';
 
 const heroCta: LeadCtaConfig = {
   type: 'diagnostic',
-  label: 'Começar diagnóstico inicial',
+  label: 'Quero ser cliente VR',
   href: '/diagnostico-inicial/',
   position: 'home_hero',
 };
 
+const ticker = [
+  { label: 'Taxa Selic', value: '14,25%', unit: 'a.a.' },
+  { label: 'IPCA', value: '0,58%', unit: 'mês' },
+  { label: 'Juros Veículos', value: '26,31%', unit: 'a.a.' },
+  { label: 'CDI', value: '14,15%', unit: 'a.a.' },
+  { label: 'Consignado', value: '6,81%', unit: 'a.a.' },
+  { label: 'Pessoal', value: '33,42%', unit: 'a.a.' },
+];
+
+const stats = [
+  { value: '9K+', label: 'Avaliações', detail: 'A satisfação dos nossos clientes é a nossa maior conquista.' },
+  { value: '9K+', label: 'Clientes', detail: 'Atuação estratégica que garante resultados eficazes.' },
+  { value: 'R$ 250M+', label: 'Nossa tutela', detail: 'Patrimônio protegido contra abusividades bancárias.' },
+  { value: '9K+', label: 'Vidas impactadas', detail: 'Pessoas e empresas que recuperaram o controle financeiro.' },
+];
+
 const pillars = [
   {
-    tag: 'Conteúdo',
-    title: 'Por intenção, não por acaso',
-    text: 'Cada rota responde uma dúvida real. Slugs estáveis, schema e links internos desde o primeiro build.',
+    tag: 'Experiência',
+    title: 'Experiência e especialização',
+    text: 'Referência em Direito Bancário com equipe especializada e mais de 9 mil clientes atendidos em todo o Brasil.',
   },
   {
-    tag: 'Conversão',
-    title: 'CTA que respeita o problema',
-    text: 'WhatsApp, formulário, checklist e diagnóstico mudam conforme a urgência e o cluster do visitante.',
+    tag: 'Atendimento',
+    title: 'Atendimento personalizado',
+    text: 'Cada caso recebe análise individual. WhatsApp, formulário e diagnóstico mudam conforme a urgência e o cluster do visitante.',
   },
   {
-    tag: 'Dados',
-    title: 'Tracking antes do tráfego',
-    text: 'dataLayer pronto para article_view, hub_view, cta_click, whatsapp_click e generate_lead.',
+    tag: 'Resultado',
+    title: 'Compromisso com resultados',
+    text: 'Nossa atuação estratégica garante a proteção do seu patrimônio contra abusividades bancárias.',
   },
 ];
 ---
 
 <BaseLayout
-  title="VR Advogados — Direito Bancário"
-  description="Orientação jurídica sob medida para problemas bancários: busca e apreensão, juros abusivos, dívidas PJ, superendividamento, cobranças indevidas e fraudes."
+  title="VR Advogados — Referência em Direito Bancário"
+  description="O maior escritório do Brasil na defesa contra abusos bancários. Guias, checklists e diagnóstico inicial para proteger seu patrimônio."
   canonicalPath="/"
   pageType="home"
   jsonLd={[organizationSchema(), websiteSchema()]}
 >
-  <section class="relative overflow-hidden border-b border-[rgba(201,168,108,0.10)]">
-    <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-navy-800/60 via-navy-950 to-navy-950" aria-hidden="true"></div>
-    <div class="absolute -top-40 left-1/2 h-[36rem] w-[36rem] -translate-x-1/2 rounded-full bg-bronze-500/5 blur-3xl" aria-hidden="true"></div>
+  <!-- ═══ Running Ticker ═══ -->
+  <div class="overflow-hidden border-b border-[rgba(201,168,108,0.10)] bg-navy-900/60 py-2.5">
+    <div class="flex overflow-hidden">
+      <div class="ticker-track shrink-0 select-none text-xs font-medium uppercase tracking-[0.15em] text-stone-400">
+        {[
+          ...ticker,
+          ...ticker,
+        ].map((item) => (
+          <span class="inline-flex items-center gap-2 whitespace-nowrap">
+            <span class="text-[10px] text-bronze-400">●</span>
+            {item.label}
+            <strong class="font-semibold text-cream-50">{item.value}</strong>
+            <span class="text-stone-500">{item.unit}</span>
+          </span>
+        ))}
+      </div>
+    </div>
+  </div>
 
-    <div class="relative mx-auto grid max-w-6xl gap-12 px-5 py-24 lg:grid-cols-[1.1fr_0.9fr] lg:items-center lg:py-32">
+  <!-- ═══ Hero ═══ -->
+  <section class="relative overflow-hidden border-b border-[rgba(201,168,108,0.10)] grain-overlay">
+    <!-- Video background -->
+    <video
+      class="video-backdrop"
+      src="/assets/video/valdecir-institucional.mp4"
+      autoplay
+      muted
+      loop
+      playsinline
+      preload="auto"
+    ></video>
+
+    <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-navy-800/40 via-navy-950/80 to-navy-950" aria-hidden="true"></div>
+    <div class="absolute -top-40 left-1/2 h-[36rem] w-[36rem] -translate-x-1/2 rounded-full bg-bronze-500/8 blur-3xl" aria-hidden="true"></div>
+    <div class="absolute top-20 right-0 h-64 w-64 rounded-full bg-bronze-500/5 blur-2xl" aria-hidden="true"></div>
+
+    <div class="relative z-10 mx-auto grid max-w-6xl gap-12 px-5 py-24 lg:grid-cols-[1.1fr_0.9fr] lg:items-center lg:py-32">
       <div>
         <p class="mb-6 inline-flex items-center gap-2 rounded-full border border-bronze-500/20 bg-bronze-500/10 px-4 py-2 text-xs font-semibold uppercase tracking-[0.18em] text-bronze-400">
-          <span class="h-1.5 w-1.5 rounded-full bg-bronze-400"></span>
-          Escritório especializado em direito bancário
+          <span class="h-1.5 w-1.5 animate-pulse rounded-full bg-bronze-400"></span>
+          O maior escritório do Brasil na defesa contra abusos bancários
         </p>
         <h1 class="max-w-3xl font-serif text-5xl font-semibold tracking-tight text-cream-50 md:text-7xl">
-          Defesa técnica para quem está na contramão do <span class="text-gradient">banco</span>.
+          Conteúdo jurídico para proteger seu patrimônio do <span class="text-gradient">banco</span>.
         </h1>
         <p class="mt-7 max-w-2xl text-lg leading-8 text-stone-400">
-          Conteúdo informativo, checklists e diagnóstico inicial para transformar dúvida em próximo passo seguro — sem promessa de resultado e sem firula institucional.
+          Presente em todo o Brasil, a VR Advogados é referência em Direito Bancário. Guias, checklists e diagnóstico inicial para transformar dúvida em próximo passo seguro — sem promessa de resultado e sem firula institucional.
         </p>
         <div class="mt-9 flex flex-wrap items-center gap-4">
           <LeadCtaButton cta={heroCta} pageType="home" />
@@ -65,13 +113,13 @@ const pillars = [
         </div>
       </div>
 
-      <div class="relative rounded-3xl border border-[rgba(201,168,108,0.15)] bg-navy-900/60 p-8 shadow-2xl shadow-black/30 backdrop-blur glow-bronze">
+      <div class="relative rounded-3xl border border-[rgba(201,168,108,0.15)] bg-navy-900/60 p-8 shadow-2xl shadow-black/30 backdrop-blur glow-bronze stat-pulse">
         <div class="flex items-center justify-between">
           <p class="text-xs font-semibold uppercase tracking-[0.18em] text-stone-500">Foco do escritório</p>
           <span class="rounded-full border border-emerald-500/25 bg-emerald-500/10 px-2.5 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-emerald-300">Ativo</span>
         </div>
-        <p class="mt-5 font-serif text-3xl font-medium tracking-tight text-cream-50">qualified_leads / eligible_sessions</p>
-        <p class="mt-4 leading-7 text-stone-400">Pageview sem lead é só vaidade. O site nasce medindo CTA, diagnóstico, WhatsApp e cluster — para que cada decisão de marketing seja informada.</p>
+        <p class="mt-5 font-serif text-3xl font-medium tracking-tight text-cream-50">+ de 9 mil clientes atendidos</p>
+        <p class="mt-4 leading-7 text-stone-400">Nossa atuação estratégica garante resultados eficazes e a proteção dos seus direitos. Cada lead capturado é medido por cluster, CTA e origem.</p>
         <div class="mt-7 grid grid-cols-2 gap-3">
           <div class="rounded-xl border border-[rgba(201,168,108,0.10)] bg-navy-950/60 p-4">
             <p class="text-2xl font-semibold text-cream-50">5</p>
@@ -86,6 +134,20 @@ const pillars = [
     </div>
   </section>
 
+  <!-- ═══ Stats ═══ -->
+  <section class="bg-navy-900/50 border-b border-[rgba(201,168,108,0.10)]">
+    <div class="mx-auto grid max-w-6xl px-5 py-14 gap-8 sm:grid-cols-2 lg:grid-cols-4">
+      {stats.map((stat) => (
+        <div class="text-center card-lift rounded-2xl border border-transparent bg-navy-950/30 p-6">
+          <p class="font-serif text-4xl font-bold text-cream-50">{stat.value}</p>
+          <p class="mt-2 text-xs font-semibold uppercase tracking-[0.2em] text-bronze-400">{stat.label}</p>
+          <p class="mt-3 text-sm leading-6 text-stone-500">{stat.detail}</p>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- ═══ Áreas de atuação ═══ -->
   <section id="problemas" class="mx-auto max-w-6xl px-5 py-24">
     <div class="flex flex-col justify-between gap-6 lg:flex-row lg:items-end">
       <div class="max-w-2xl">
@@ -100,15 +162,18 @@ const pillars = [
     </div>
   </section>
 
+  <hr class="section-divider" />
+
+  <!-- ═══ Como trabalhamos ═══ -->
   <section class="border-y border-[rgba(201,168,108,0.10)] bg-navy-900/30 py-24">
     <div class="mx-auto max-w-6xl px-5">
       <div class="max-w-2xl">
-        <p class="text-xs font-semibold uppercase tracking-[0.2em] text-bronze-400">Como trabalhamos</p>
-        <h2 class="mt-4 font-serif text-3xl font-semibold tracking-tight text-cream-50 md:text-4xl">Site pensado como ferramenta de decisão.</h2>
+        <p class="text-xs font-semibold uppercase tracking-[0.2em] text-bronze-400">Porque nos escolher</p>
+        <h2 class="mt-4 font-serif text-3xl font-semibold tracking-tight text-cream-50 md:text-4xl">Experiência, especialização e compromisso com resultados.</h2>
       </div>
       <div class="mt-12 grid gap-6 md:grid-cols-3">
         {pillars.map((pillar) => (
-          <div class="rounded-2xl border border-[rgba(201,168,108,0.10)] bg-navy-950/40 p-7 transition hover:border-bronze-500/20 hover:bg-navy-950/60">
+          <div class="rounded-2xl border border-[rgba(201,168,108,0.10)] bg-navy-950/40 p-7 transition card-lift">
             <p class="text-xs font-semibold uppercase tracking-[0.18em] text-stone-500">{pillar.tag}</p>
             <h3 class="mt-4 font-serif text-xl font-medium tracking-tight text-cream-50">{pillar.title}</h3>
             <p class="mt-3 text-sm leading-7 text-stone-400">{pillar.text}</p>
@@ -118,14 +183,25 @@ const pillars = [
     </div>
   </section>
 
+  <hr class="section-divider" />
+
+  <!-- ═══ CTA Final ═══ -->
   <section class="mx-auto max-w-6xl px-5 py-24">
-    <div class="relative overflow-hidden rounded-[2rem] border border-[rgba(201,168,108,0.15)] bg-gradient-to-br from-navy-800 to-navy-900 p-8 md:p-14">
+    <div class="relative overflow-hidden rounded-[2rem] border border-[rgba(201,168,108,0.15)] bg-gradient-to-br from-navy-800 to-navy-900 p-8 md:p-14 stat-pulse">
       <div class="absolute -right-20 -top-20 h-80 w-80 rounded-full bg-bronze-500/10 blur-3xl" aria-hidden="true"></div>
+      <div class="absolute -left-20 -bottom-20 h-60 w-60 rounded-full bg-gold-300/5 blur-3xl" aria-hidden="true"></div>
       <div class="relative max-w-3xl">
-        <h2 class="font-serif text-3xl font-semibold tracking-tight text-cream-50 md:text-4xl">Conteúdo informativo com padrão de escritório.</h2>
-        <p class="mt-5 text-lg leading-8 text-stone-300">Se você tem contrato, cobrança ou negativação para avaliar, organize documentos e peça uma análise inicial. Resposta sem promessa, direcionamento sem automação.</p>
-        <div class="mt-8">
+        <p class="text-xs font-semibold uppercase tracking-[0.2em] text-bronze-400">Próximo passo</p>
+        <h2 class="mt-3 font-serif text-3xl font-semibold tracking-tight text-cream-50 md:text-4xl">Excelência e segurança em serviços financeiros.</h2>
+        <p class="mt-5 text-lg leading-8 text-stone-300">Cobertura completa em todas as áreas do Direito Bancário, com equipe 100% dedicada a oferecer segurança, transparência e competência. Se você tem contrato, cobrança ou negativação para avaliar, organize documentos e peça uma análise inicial.</p>
+        <div class="mt-8 flex flex-wrap items-center gap-4">
           <LeadCtaButton cta={heroCta} pageType="home" />
+          <a class="inline-flex items-center gap-2 rounded-full px-6 py-3 text-sm font-semibold text-bronze-400 transition hover:text-gold-300" href="/sobre-o-blog/">
+            Conhecer o blog
+            <svg class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M5 12h14M12 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+          </a>
         </div>
       </div>
     </div>

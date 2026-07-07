@@ -42,7 +42,7 @@ export const CLUSTERS = [
     title: 'Busca e apreensão de veículo',
     shortTitle: 'Busca e apreensão',
     summary:
-      'Guias urgentes para quem atrasou parcelas, recebeu visita de oficial de justiça ou precisa entender próximos passos antes de falar com o banco.',
+      'Orientação para quem teve o veículo apreendido ou recebeu visita de oficial de justiça. Saiba seus direitos antes de falar com o banco.',
     primaryCta: {
       type: 'whatsapp',
       label: 'Falar sobre busca e apreensão',
@@ -57,7 +57,7 @@ export const CLUSTERS = [
     title: 'Juros abusivos e revisão de contrato',
     shortTitle: 'Juros abusivos',
     summary:
-      'Conteúdo para comparar contrato, taxa média, tarifas e sinais de desequilíbrio financeiro sem prometer redução automática de dívida.',
+      'Identifique juros abusivos, tarifas indevidas e seguros embutidos no seu financiamento. Proteja seu patrimônio com informação.',
     primaryCta: {
       type: 'diagnostic',
       label: 'Solicitar análise inicial do contrato',
@@ -72,7 +72,7 @@ export const CLUSTERS = [
     title: 'Dívidas bancárias PJ',
     shortTitle: 'Dívidas PJ',
     summary:
-      'Orientação para empresas com execução bancária, capital de giro caro, CCB, avalista e bloqueios judiciais com foco em documentação e estratégia.',
+      'Defesa para empresas contra execuções bancárias, bloqueios judiciais e capital de giro abusivo. Recupere o controle financeiro do seu negócio.',
     primaryCta: {
       type: 'form',
       label: 'Organizar caso PJ',
@@ -87,7 +87,7 @@ export const CLUSTERS = [
     title: 'Superendividamento',
     shortTitle: 'Superendividamento',
     summary:
-      'Guias sobre mínimo existencial, renegociação, quais dívidas entram e como preparar informações para uma avaliação individual.',
+      'Mínimo existencial, renegociação e quais dívidas entram na lei do superendividamento. Recupere o controle financeiro com orientação especializada.',
     primaryCta: {
       type: 'diagnostic',
       label: 'Entender documentos necessários',
@@ -101,7 +101,7 @@ export const CLUSTERS = [
     title: 'Cobranças indevidas e fraudes bancárias',
     shortTitle: 'Cobranças e fraudes',
     summary:
-      'Próximos passos para negativação indevida, cobrança bancária questionável, empréstimo não contratado e golpes envolvendo Pix.',
+      'Negativação indevida, cobrança bancária questionável, empréstimo não contratado e golpes do Pix. Defesa contra abusividades e fraudes bancárias.',
     primaryCta: {
       type: 'diagnostic',
       label: 'Relatar cobrança ou fraude',
