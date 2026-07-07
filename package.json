@@ -21,6 +21,8 @@
     "typescript": "latest"
   },
   "devDependencies": {
-    "vitest": "latest"
+    "@cloudflare/workers-types": "^4.20260702.1",
+    "vitest": "latest",
+    "wrangler": "^4.107.0"
   }
 }

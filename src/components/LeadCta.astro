@@ -12,6 +12,7 @@ interface Props {
 
 const { cta, cluster, pageType, intent, articleSlug, class: className = '' } = Astro.props;
 const isExternal = cta.href.startsWith('http');
+const isWhatsApp = cta.type === 'whatsapp';
 ---
 
 <a
@@ -19,7 +20,10 @@ const isExternal = cta.href.startsWith('http');
   target={isExternal ? '_blank' : undefined}
   rel={isExternal ? 'noopener noreferrer' : undefined}
   class:list={[
-    'inline-flex items-center justify-center rounded-full bg-blue-700 px-5 py-3 text-sm font-extrabold text-white shadow-sm transition hover:bg-blue-800 focus-visible:outline-amber-500',
+    'group inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-sm font-semibold transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-bronze-400/50',
+    isWhatsApp
+      ? 'bg-bronze-500 text-navy-950 shadow-lg shadow-bronze-500/15 hover:bg-gold-300'
+      : 'border border-bronze-500/40 bg-bronze-500/10 text-bronze-400 hover:bg-bronze-500/20 hover:text-gold-300',
     className,
   ]}
   data-track-cta
@@ -31,4 +35,9 @@ const isExternal = cta.href.startsWith('http');
   data-article-slug={articleSlug}
 >
   {cta.label}
+  {isExternal && (
+    <svg class="h-4 w-4 opacity-70 transition group-hover:translate-x-0.5 group-hover:opacity-100" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
+      <path d="M7 17L17 7M17 7H7M17 7V17" stroke-linecap="round" stroke-linejoin="round" />
+    </svg>
+  )}
 </a>

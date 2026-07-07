@@ -3,14 +3,20 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 ---
 
 <BaseLayout
-  title="Privacidade | Blog VR Advogados"
+  title="Privacidade | VR Advogados"
   description="Resumo de privacidade e finalidade de coleta de dados no blog.vradvogados.com.br."
   canonicalPath="/privacidade/"
   pageType="privacy"
 >
+  <section class="relative overflow-hidden border-b border-[rgba(201,168,108,0.10)] bg-navy-900/40">
+    <div class="mx-auto max-w-3xl px-5 py-20">
+      <p class="text-xs font-semibold uppercase tracking-[0.2em] text-bronze-400">LGPD</p>
+      <h1 class="mt-4 font-serif text-4xl font-semibold tracking-tight text-cream-50 md:text-6xl">Privacidade</h1>
+    </div>
+  </section>
+
   <section class="mx-auto max-w-3xl px-5 py-16">
-    <h1 class="text-4xl font-black tracking-tight text-slate-950">Privacidade</h1>
-    <div class="prose-vr mt-8 rounded-3xl bg-white p-8 shadow-sm">
+    <div class="prose-vr rounded-3xl border border-[rgba(201,168,108,0.10)] bg-navy-900/40 p-8 shadow-xl shadow-black/10">
       <p>Coletamos dados enviados voluntariamente em formulários para contato, triagem e análise inicial do problema informado.</p>
       <p>Não colete documentos sensíveis no MVP sem política clara. Formulários devem usar consentimento explícito, Turnstile e validação server-side.</p>
       <p>Solicitações de remoção ou correção de dados devem ser encaminhadas pelos canais oficiais da VR Advogados.</p>

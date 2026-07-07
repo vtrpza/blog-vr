@@ -41,7 +41,9 @@ const viewEvent = pageType === 'home' ? 'page_view' : `${pageType}_view`;
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonicalUrl} />
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="theme-color" content="#0b5cff" />
+    <meta name="theme-color" content="#05070a" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <script is:inline define:vars={{ pageType, cluster, intent, viewEvent, requiredEvents: REQUIRED_TRACKING_EVENTS }}>
       window.dataLayer = window.dataLayer || [];
       window.__BLOG_VR_REQUIRED_EVENTS__ = requiredEvents;
@@ -54,13 +56,16 @@ const viewEvent = pageType === 'home' ? 'page_view' : `${pageType}_view`;
     <main id="conteudo">
       <slot />
     </main>
-    <footer class="border-t border-slate-200 bg-white py-10 text-sm text-slate-600">
-      <div class="mx-auto flex max-w-6xl flex-col gap-4 px-5 md:flex-row md:items-center md:justify-between">
-        <p>© {new Date().getFullYear()} VR Advogados. Conteúdo informativo.</p>
-        <nav class="flex flex-wrap gap-4" aria-label="Rodapé">
-          <a class="hover:text-blue-700" href="/sobre-o-blog/">Sobre o blog</a>
-          <a class="hover:text-blue-700" href="/privacidade/">Privacidade</a>
-          <a class="hover:text-blue-700" href="/diagnostico-inicial/">Diagnóstico inicial</a>
+    <footer class="border-t border-[rgba(201,168,108,0.12)] bg-navy-900/40 py-14 text-sm text-stone-500">
+      <div class="mx-auto flex max-w-6xl flex-col gap-6 px-5 md:flex-row md:items-center md:justify-between">
+        <div>
+          <p class="font-serif text-lg font-semibold text-cream-50">VR Advogados</p>
+          <p class="mt-1">© {new Date().getFullYear()} Conteúdo informativo.</p>
+        </div>
+        <nav class="flex flex-wrap gap-5" aria-label="Rodapé">
+          <a class="transition hover:text-cream-50" href="/sobre-o-blog/">Sobre o blog</a>
+          <a class="transition hover:text-cream-50" href="/privacidade/">Privacidade</a>
+          <a class="transition hover:text-cream-50" href="/diagnostico-inicial/">Diagnóstico inicial</a>
         </nav>
       </div>
     </footer>

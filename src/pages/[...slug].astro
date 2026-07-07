@@ -88,16 +88,21 @@ const jsonLd = article
   intent={article?.intent}
   jsonLd={jsonLd}
 >
-  <section class="bg-white">
-    <div class="mx-auto max-w-5xl px-5 py-14">
-      <a class="text-sm font-bold text-blue-700 hover:text-blue-900" href={cluster.hubRoute}>← {cluster.shortTitle}</a>
-      <p class="mt-6 text-xs font-black uppercase tracking-[0.25em] text-blue-700">
+  <section class="relative overflow-hidden border-b border-[rgba(201,168,108,0.10)] bg-navy-900/40">
+    <div class="mx-auto max-w-5xl px-5 py-20">
+      <a class="inline-flex items-center gap-1 text-sm font-medium text-stone-500 transition hover:text-cream-50" href={cluster.hubRoute}>
+        <svg class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M15 19l-7-7 7-7" stroke-linecap="round" stroke-linejoin="round" />
+        </svg>
+        {cluster.shortTitle}
+      </a>
+      <p class="mt-8 text-xs font-semibold uppercase tracking-[0.2em] text-bronze-400">
         {article ? 'Guia informativo' : checklist ? 'Checklist' : 'Hub de conteúdo'}
       </p>
-      <h1 class="mt-3 max-w-4xl text-4xl font-black tracking-tight text-slate-950 md:text-6xl">
+      <h1 class="mt-4 max-w-4xl font-serif text-4xl font-semibold tracking-tight text-cream-50 md:text-6xl">
         {article ? article.title : checklist ? checklist.title : cluster.title}
       </h1>
-      <p class="mt-6 max-w-3xl text-lg leading-8 text-slate-600">{description}</p>
+      <p class="mt-6 max-w-3xl text-lg leading-8 text-stone-400">{description}</p>
       <div class="mt-8">
         <LeadCtaButton cta={cta} cluster={cluster.slug} pageType={article ? 'article' : checklist ? 'checklist' : 'hub'} intent={article?.intent} articleSlug={article?.slug} />
       </div>
@@ -105,9 +110,9 @@ const jsonLd = article
   </section>
 
   {article && (
-    <article class="prose-vr mx-auto grid max-w-5xl gap-8 px-5 py-12 lg:grid-cols-[minmax(0,1fr)_18rem]">
-      <div class="rounded-3xl bg-white p-7 shadow-sm md:p-10">
-        <p class="rounded-2xl bg-blue-50 p-5 text-lg font-semibold leading-8 text-blue-950">
+    <article class="prose-vr mx-auto grid max-w-5xl gap-8 px-5 py-14 lg:grid-cols-[minmax(0,1fr)_18rem]">
+      <div class="rounded-3xl border border-[rgba(201,168,108,0.10)] bg-navy-900/40 p-7 shadow-xl shadow-black/10 md:p-10">
+        <p class="rounded-2xl border border-bronze-500/15 bg-bronze-500/10 p-5 text-base font-medium leading-7 text-gold-300">
           Resposta curta: este tema exige comparar contrato, fase da cobrança e documentos disponíveis. O caminho seguro é organizar evidências antes de qualquer decisão.
         </p>
 
@@ -154,24 +159,29 @@ const jsonLd = article
         </div>
 
         <h2>Perguntas frequentes</h2>
-        <details class="rounded-2xl border border-slate-200 p-4">
-          <summary class="cursor-pointer font-bold">Este conteúdo substitui consulta jurídica?</summary>
-          <p>Não. Ele organiza informação geral; cada caso depende de documentos, valores e fase da cobrança.</p>
+        <details class="group rounded-2xl border border-[rgba(201,168,108,0.12)] bg-navy-950/50 p-4 transition open:border-bronze-500/25 open:bg-navy-950/70">
+          <summary class="flex cursor-pointer list-none items-center justify-between font-semibold text-cream-50">
+            Este conteúdo substitui consulta jurídica?
+            <svg class="h-4 w-4 text-stone-500 transition group-open:rotate-180" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M19 9l-7 7-7-7" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+          </summary>
+          <p class="mt-3 text-stone-400">Não. Ele organiza informação geral; cada caso depende de documentos, valores e fase da cobrança.</p>
         </details>
 
         <h2>Links internos úteis</h2>
         <ul>
           {clusterArticles.filter((related) => related.slug !== article.slug).slice(0, 4).map((related) => (
-            <li><a class="font-bold text-blue-700" href={related.route}>{related.title}</a></li>
+            <li><a class="font-medium text-bronze-400 transition hover:text-gold-300" href={related.route}>{related.title}</a></li>
           ))}
         </ul>
       </div>
-      <aside class="space-y-5">
+      <aside class="space-y-5 lg:sticky lg:top-28 lg:self-start">
         <Disclaimer />
-        <div class="rounded-3xl border border-slate-200 bg-white p-5 shadow-sm">
-          <h2 class="text-lg font-black">Guias do hub</h2>
-          <ul class="mt-4 space-y-3 text-sm font-semibold text-slate-700">
-            {clusterArticles.slice(0, 6).map((item) => <li><a class="hover:text-blue-700" href={item.route}>{item.title}</a></li>)}
+        <div class="rounded-3xl border border-[rgba(201,168,108,0.10)] bg-navy-900/40 p-6">
+          <h2 class="font-serif text-lg font-medium text-cream-50">Guias do hub</h2>
+          <ul class="mt-4 space-y-3 text-sm">
+            {clusterArticles.slice(0, 6).map((item) => <li><a class="text-stone-400 transition hover:text-cream-50" href={item.route}>{item.title}</a></li>)}
           </ul>
         </div>
       </aside>
@@ -179,14 +189,14 @@ const jsonLd = article
   )}
 
   {checklist && (
-    <section class="mx-auto max-w-5xl px-5 py-12">
-      <div class="rounded-3xl bg-white p-7 shadow-sm md:p-10">
-        <h2 class="text-3xl font-black tracking-tight">Marque o que você já tem</h2>
-        <p class="mt-3 text-slate-600">Funciona sem login. O envio para análise só deve acontecer com consentimento LGPD.</p>
+    <section class="mx-auto max-w-5xl px-5 py-14">
+      <div class="rounded-3xl border border-[rgba(201,168,108,0.10)] bg-navy-900/40 p-7 shadow-xl shadow-black/10 md:p-10">
+        <h2 class="font-serif text-3xl font-semibold tracking-tight text-cream-50">Marque o que você já tem</h2>
+        <p class="mt-3 text-stone-400">Funciona sem login. O envio para análise só deve acontecer com consentimento LGPD.</p>
         <form class="mt-8 space-y-4" data-checklist-form>
           {checklist.items.map((item) => (
-            <label class="flex gap-3 rounded-2xl border border-slate-200 p-4 text-slate-700">
-              <input class="mt-1 h-5 w-5" type="checkbox" name="item" value={item} />
+            <label class="group flex gap-3 rounded-2xl border border-[rgba(201,168,108,0.10)] bg-navy-950/40 p-4 text-stone-300 transition hover:border-bronze-500/25 hover:bg-navy-950/60 has-[:checked]:border-bronze-500/30 has-[:checked]:bg-bronze-500/10">
+              <input class="mt-1 h-5 w-5 rounded border-stone-600 bg-navy-900 text-bronze-500" type="checkbox" name="item" value={item} />
               <span>{item}</span>
             </label>
           ))}
@@ -199,24 +209,24 @@ const jsonLd = article
   )}
 
   {!article && !checklist && (
-    <section class="mx-auto max-w-6xl px-5 py-12">
+    <section class="mx-auto max-w-6xl px-5 py-14">
       <div class="grid gap-6 lg:grid-cols-[0.9fr_1.1fr]">
-        <div class="rounded-3xl bg-white p-7 shadow-sm">
-          <h2 class="text-2xl font-black tracking-tight">Comece por aqui</h2>
-          <p class="mt-4 leading-8 text-slate-600">Leia primeiro os guias de maior urgência, organize documentos e use o CTA adequado para o seu problema.</p>
-          <ul class="mt-6 space-y-3 text-sm text-slate-700">
-            <li>✓ Resposta curta antes de enrolação.</li>
-            <li>✓ Checklist de documentos.</li>
-            <li>✓ CTA contextual por intenção.</li>
-            <li>✓ Schema BreadcrumbList no hub.</li>
+        <div class="rounded-3xl border border-[rgba(201,168,108,0.10)] bg-navy-900/40 p-7 shadow-xl shadow-black/10">
+          <h2 class="font-serif text-2xl font-semibold tracking-tight text-cream-50">Comece por aqui</h2>
+          <p class="mt-4 leading-8 text-stone-400">Leia primeiro os guias de maior urgência, organize documentos e use o CTA adequado para o seu problema.</p>
+          <ul class="mt-6 space-y-3 text-sm text-stone-300">
+            <li class="flex items-start gap-2"><span class="text-bronze-400">✓</span> Resposta curta antes de enrolação.</li>
+            <li class="flex items-start gap-2"><span class="text-bronze-400">✓</span> Checklist de documentos.</li>
+            <li class="flex items-start gap-2"><span class="text-bronze-400">✓</span> CTA contextual por intenção.</li>
+            <li class="flex items-start gap-2"><span class="text-bronze-400">✓</span> Schema BreadcrumbList no hub.</li>
           </ul>
         </div>
         <div class="grid gap-4">
           {clusterArticles.map((item) => (
-            <article class="rounded-3xl border border-slate-200 bg-white p-5 shadow-sm">
-              <p class="text-xs font-black uppercase tracking-[0.2em] text-blue-700">{item.intent}</p>
-              <h3 class="mt-2 text-xl font-black text-slate-950"><a href={item.route}>{item.title}</a></h3>
-              <p class="mt-2 text-sm text-slate-600">Palavra principal: {item.primaryKeyword}</p>
+            <article class="group rounded-3xl border border-[rgba(201,168,108,0.10)] bg-navy-900/40 p-5 shadow-sm transition hover:border-bronze-500/20 hover:bg-navy-900/60">
+              <p class="text-xs font-semibold uppercase tracking-[0.18em] text-stone-500">{item.intent}</p>
+              <h3 class="mt-2 font-serif text-xl font-medium text-cream-50"><a class="transition group-hover:text-gold-300" href={item.route}>{item.title}</a></h3>
+              <p class="mt-2 text-sm text-stone-500">Palavra principal: {item.primaryKeyword}</p>
             </article>
           ))}
         </div>

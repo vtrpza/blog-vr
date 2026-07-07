@@ -1,0 +1,21 @@
+# blog-vradvogados — Cloudflare Pages + D1 + Workers config
+name = "blog-vradvogados"
+compatibility_date = "2025-07-06"
+
+# Pages-specific: Functions directory for on-request handlers
+pages_build_output_dir = "dist"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "blog-vr-db"
+database_id = "" # preencher após `wrangler d1 create blog-vr-db`
+
+[vars]
+PIPEDRIVE_API_BASE = "https://vtrpza.pipedrive.com/api"
+PIPEDRIVE_OWNER_ID = "" # preencher
+PIPEDRIVE_LEAD_LABEL_IDS = "" # preencher
+
+# Secrets (nunca commitar valores reais — configurar via dashboard ou wrangler secret):
+# TURNSTILE_SECRET_KEY
+# PIPEDRIVE_API_TOKEN
+# WEBHOOK_SHARED_SECRET
