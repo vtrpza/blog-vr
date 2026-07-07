@@ -2,7 +2,7 @@
 import { CLUSTERS } from '../lib/taxonomy';
 ---
 
-<header class="sticky top-0 z-50 border-b border-[rgba(7,17,31,0.10)] surface-glass">
+<header class="sticky top-0 z-50 border-b border-[rgba(201,168,108,0.12)] surface-glass">
   <div class="mx-auto flex max-w-6xl items-center justify-between gap-4 px-5 py-4">
     <a class="group flex items-center gap-2 font-semibold tracking-tight text-cream-50" href="/" aria-label="VR Advogados">
       <img
@@ -13,10 +13,10 @@ import { CLUSTERS } from '../lib/taxonomy';
         height="449"
       />
     </a>
-    <a class="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-16 focus:z-50 focus:rounded-lg focus:bg-white focus:px-4 focus:py-2" href="#conteudo">Pular para o conteúdo</a>
+    <a class="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-16 focus:z-50 focus:rounded-lg focus:bg-navy-900 focus:px-4 focus:py-2" href="#conteudo">Pular para o conteúdo</a>
     <nav class="hidden items-center gap-1 text-sm font-medium text-stone-400 lg:flex" aria-label="Principal">
       {CLUSTERS.map((cluster) => (
-        <a class="rounded-lg px-3 py-2 transition hover:bg-bronze-500/15 hover:text-cream-50" href={cluster.hubRoute}>{cluster.shortTitle}</a>
+        <a class="rounded-lg px-3 py-2 transition hover:bg-white/5 hover:text-cream-50" href={cluster.hubRoute}>{cluster.shortTitle}</a>
       ))}
     </nav>
     <a class="inline-flex items-center justify-center rounded-full border border-bronze-500/40 bg-bronze-500/10 px-4 py-2 text-sm font-semibold text-bronze-400 transition hover:bg-bronze-500/20 hover:text-gold-300" href="/diagnostico-inicial/">
