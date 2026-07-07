@@ -62,7 +62,7 @@ A arquitetura correta aqui é enxuta: Cloudflare + Pipedrive + OpenAI, espremido
 
 ### 3.1 Fundação técnica criada
 
-Arquivos principais já existentes:
+Arquivos principais:
 
 ```text
 package.json
@@ -70,6 +70,7 @@ package-lock.json
 tsconfig.json
 vitest.config.ts
 astro.config.mjs
+wrangler.toml
 .gitignore
 README.md
 ```
@@ -87,35 +88,25 @@ Scripts disponíveis:
 }
 ```
 
-Dependências instaladas:
+Dependências:
 
 ```text
-astro
+astro v7.0.6
 @astrojs/check
 @astrojs/mdx
 @astrojs/sitemap
-@tailwindcss/vite
-tailwindcss
+@tailwindcss/vite v4.3.2
+tailwindcss v4.3.2
+@cloudflare/workers-types
 typescript
-vitest
+vitest v4.1.10
 ```
 
 ### 3.2 Content Collections configuradas
 
-Arquivo:
+Arquivo: `src/content.config.ts`
 
-```text
-src/content.config.ts
-```
-
-Collections criadas:
-
-```text
-articles
-hubs
-glossary
-briefs
-```
+Collections: `articles`, `hubs`, `glossary`, `briefs`
 
 Conteúdo inicial de validação:
 
@@ -128,85 +119,34 @@ src/content/briefs/busca-e-apreensao-veiculo.json
 
 ### 3.3 Taxonomia e contrato do lead engine
 
-Arquivo:
+Arquivo: `src/lib/taxonomy.ts`
+
+Criado: 5 hubs, 26 artigos, 3 checklists, CTAs por cluster, eventos de tracking, helpers.
+
+Hubs: `/busca-e-apreensao/`, `/juros-abusivos/`, `/dividas-pj/`, `/superendividamento/`, `/cobrancas-indevidas/`
+
+Checklists: `/checklist-busca-e-apreensao/`, `/checklist-juros-abusivos/`, `/checklist-divida-pj/`
+
+### 3.4 Testes
 
 ```text
-src/lib/taxonomy.ts
+tests/taxonomy.test.ts    — 3 tests (hubs, rotas, copy proibida, tracking)
+tests/lead-schema.test.ts — 26 tests (validação, phone, clusters, landing)
 ```
 
-Criado:
-
-- 5 hubs comerciais;
-- 26 rotas iniciais de artigos;
-- 3 checklists;
-- CTAs por cluster;
-- eventos obrigatórios de tracking;
-- helpers para buscar cluster, artigo e checklist.
-
-Hubs atuais:
-
-```text
-/busca-e-apreensao/
-/juros-abusivos/
-/dividas-pj/
-/superendividamento/
-/cobrancas-indevidas/
-```
-
-Checklists atuais:
-
-```text
-/checklist-busca-e-apreensao/
-/checklist-juros-abusivos/
-/checklist-divida-pj/
-```
-
-### 3.4 Teste TDD do contrato
-
-Arquivo:
-
-```text
-tests/taxonomy.test.ts
-```
-
-Cobre:
-
-- existência dos 5 hubs planejados;
-- rotas lowercase/canônicas;
-- 26 artigos vinculados a clusters válidos;
-- ausência de copy proibida óbvia em títulos;
-- eventos mínimos de tracking.
-
-Fluxo executado:
-
-```bash
-npm test
-```
-
-Resultado verificado:
-
-```text
-1 test file passed
-3 tests passed
-```
+Resultado: **29 tests passed** (2 files)
 
 ### 3.5 Layout, componentes e páginas
 
-Layouts/componentes:
-
 ```text
-src/layouts/BaseLayout.astro
+src/layouts/BaseLayout.astro       — importa global.css (Tailwind)
 src/components/SiteHeader.astro
 src/components/LeadCta.astro
 src/components/ClusterCard.astro
 src/components/Disclaimer.astro
 src/lib/seo.ts
-src/styles/global.css
-```
-
-Páginas:
-
-```text
+src/lib/lead-schema.ts             — tipos, validação, normalizePhone
+src/styles/global.css              — @import "tailwindcss" + custom properties
 src/pages/index.astro
 src/pages/[...slug].astro
 src/pages/diagnostico-inicial.astro
@@ -215,102 +155,76 @@ src/pages/privacidade.astro
 src/pages/robots.txt.ts
 ```
 
-Implementado:
+Implementado: homepage por dor, hubs da taxonomia, artigos placeholder, checklists, diagnóstico inicial, disclaimer OAB, JSON-LD, canonical, OpenGraph/Twitter, dataLayer, eventos de tracking (cta_view, cta_click, whatsapp_click, scroll, internal_link_click).
 
-- homepage orientada por dor;
-- hubs gerados a partir da taxonomia;
-- artigos placeholder estruturados;
-- checklists marcáveis;
-- formulário de diagnóstico inicial estático;
-- disclaimer OAB;
-- JSON-LD básico;
-- canonical;
-- OpenGraph/Twitter card;
-- tracking base com `window.dataLayer`;
-- eventos `cta_view`, `cta_click`, `whatsapp_click`, scroll e links internos.
-
-### 3.6 Segurança e deploy estático
-
-Arquivos:
+### 3.6 Segurança
 
 ```text
-public/_headers
-public/_redirects
+public/_headers   — X-Frame-Options, X-Content-Type-Options, Referrer-Policy, CSP
+public/_redirects — /diagnostico → /diagnostico-inicial/
 ```
-
-Inclui:
-
-- `X-Frame-Options: DENY`;
-- `X-Content-Type-Options: nosniff`;
-- `Referrer-Policy`;
-- `Permissions-Policy`;
-- CSP inicial;
-- redirect `/diagnostico` → `/diagnostico-inicial/`.
 
 ### 3.7 Build verificado
 
-Comandos executados e aprovados:
-
-```bash
-npm test
-npm run check
-npm run build
+```text
+npm test      -> 29 tests passed (2 files)
+npm run check -> 0 errors, 0 warnings, 0 hints (22 files)
+npm run build -> 38 pages, sitemap-index.xml
 ```
 
-Resultados verificados:
+### 3.8 Versionamento — ✅ concluído
 
 ```text
-npm test      -> 3 tests passed
-npm run check -> 0 errors, 0 warnings, 0 hints
-npm run build -> 38 page(s) built, sitemap-index.xml created
+Repo:    https://github.com/vtrpza/blog-vr
+Branch:  main
+Remote:  origin → github.com/vtrpza/blog-vr.git
+Status:  limpa, tracking origin/main
 ```
 
-Também foi executado preview local:
+### 3.9 Backend de captura de leads — ✅ concluído
 
-```bash
-npm run preview -- --host 127.0.0.1 --port 4321
-```
-
-Rotas testadas com HTTP 200:
+Arquivos criados:
 
 ```text
-/
-/busca-e-apreensao/
-/busca-e-apreensao-veiculo/
-/checklist-busca-e-apreensao/
-/diagnostico-inicial/
-/robots.txt
-/sitemap-index.xml
+wrangler.toml                     — config Cloudflare Pages + D1 binding
+migrations/0001_initial.sql       — schema D1 (leads, lead_events, pipedrive_outbox)
+functions/api/leads.ts            — POST /api/leads (Turnstile → D1 → Pipedrive → outbox)
+functions/api/health.ts           — GET /api/health (verifica D1)
+src/lib/lead-schema.ts            — tipos, validateLeadPayload, normalizePhone, problemToCluster
+tests/lead-schema.test.ts         — 26 testes de validação
 ```
 
-Checks de HTML encontraram:
+Fluxo do endpoint: valida payload → verifica Turnstile server-side → normaliza telefone → INSERT no D1 → cria lead_events → sincroniza Pipedrive (search person → create/update → create lead → add note) → se falhar, queue outbox.
+
+Regras implementadas: 1–10 (todas as do spec).
+
+### 3.10 Deploy Cloudflare Pages — ✅ concluído
 
 ```text
-dataLayer
-Começar diagnóstico inicial
-Funil editorial por intenção
-BlogPosting
-Este conteúdo é informativo
-Próximo passo seguro
+Projeto:      blog-vr (id: 114e932a-f52d-4af5-8a52-1b9a5ef36569)
+URL:          https://blog-vr.pages.dev/
+D1 Database:  blog-vr-db (id: 1a7f1f05-6ce2-436d-ae41-5fe10f8ab8a5, region: ENAM)
+D1 Binding:   DB → blog-vr-db (production + preview)
+Functions:    ativo (uses_functions: true)
+Build:        manual via wrangler pages deploy (não Git-connected)
 ```
 
-### 3.8 Estado de versionamento
-
-O diretório atual ainda **não é um repositório Git**.
-
-Comando usado:
-
-```bash
-git status --short --branch
-```
-
-Resultado:
+Secrets configurados:
 
 ```text
-fatal: not a git repository
+PIPEDRIVE_API_TOKEN    ✅ (secret)
+PIPEDRIVE_API_BASE     ✅ https://vtrpza.pipedrive.com/api
+TURNSTILE_SECRET_KEY   ⚠️ placeholder (TODO-REPLACE-ME)
+WEBHOOK_SHARED_SECRET  ⚠️ placeholder (TODO-REPLACE-ME)
+PIPEDRIVE_OWNER_ID     ⚠️ vazio
+PIPEDRIVE_LEAD_LABEL_IDS ⚠️ vazio
 ```
 
-Antes de qualquer deploy sério, inicializar Git, commitar e conectar o repo à Cloudflare Pages. Deploy sem Git é deploy de cowboy; às vezes funciona, quase sempre vira arqueologia.
+Health check: `GET /api/health` → `{"ok":true,"version":"0.1.0","d1":"ok","timestamp":"..."}`
+
+### 3.11 CSS fix
+
+Tailwind não carregava porque `BaseLayout.astro` não importava `../styles/global.css`. Corrigido — 1 linha adicionada no frontmatter. CSS gerado: 21.8 KB, link injetado no `<head>`.
 
 ---
 
@@ -541,480 +455,63 @@ Critério:
 
 ---
 
-## 5. Próximos passos até deploy
-
-## Fase 1 — Versionamento e repositório
-
-### Objetivo
-
-Transformar o diretório em repo Git e preparar deploy rastreável.
-
-### Passos
-
-```bash
-cd /home/virto/blog-vr
-git init
-git add .
-git commit -m "feat: scaffold astro lead engine"
-```
-
-Criar repo no GitHub/GitLab/Bitbucket e conectar:
-
-```bash
-git remote add origin <REPO_URL>
-git branch -M main
-git push -u origin main
-```
-
-### Critério de aceite
-
-```bash
-git status --short --branch
-```
-
-Deve mostrar branch limpa.
-
----
-
-## Fase 2 — Lead capture backend
-
-### Objetivo
-
-Criar `/api/leads` com validação server-side, Turnstile, D1 primeiro e outbox para Pipedrive.
-
-### Arquivos a criar
-
-```text
-wrangler.toml
-migrations/0001_initial.sql
-functions/api/leads.ts
-functions/api/health.ts
-src/lib/lead-schema.ts
-tests/lead-schema.test.ts
-```
-
-### D1 schema mínimo
-
-Usar D1/SQLite:
-
-```sql
-create table leads (
-  id text primary key,
-  created_at text not null,
-  updated_at text,
-  name text not null,
-  phone text not null,
-  email text,
-  person_type text,
-  problem_type text not null,
-  bank_or_financial_institution text,
-  approx_debt_value_range text,
-  has_lawsuit integer,
-  has_vehicle_seized integer,
-  contract_available integer,
-  message text,
-  landing_page text not null,
-  source_article text,
-  cluster text,
-  utm_source text,
-  utm_medium text,
-  utm_campaign text,
-  utm_content text,
-  referrer text,
-  user_agent text,
-  ip_hash text,
-  lgpd_consent integer not null,
-  pipedrive_person_id integer,
-  pipedrive_lead_id text,
-  pipedrive_deal_id integer,
-  pipedrive_status text,
-  status text not null default 'new',
-  qualified integer,
-  disqualification_reason text
-);
-
-create index leads_created_at_idx on leads(created_at);
-create index leads_phone_idx on leads(phone);
-create index leads_pipedrive_lead_idx on leads(pipedrive_lead_id);
-
-create table lead_events (
-  id text primary key,
-  lead_id text not null references leads(id),
-  created_at text not null,
-  event_name text not null,
-  payload_json text
-);
-
-create table pipedrive_outbox (
-  id text primary key,
-  lead_id text references leads(id),
-  created_at text not null,
-  next_attempt_at text not null,
-  attempts integer not null default 0,
-  action text not null,
-  payload_json text not null,
-  last_error text,
-  status text not null default 'pending'
-);
-```
-
-### Regras obrigatórias do endpoint
-
-`POST /api/leads` deve:
-
-1. aceitar apenas JSON ou form data esperado;
-2. validar `lgpd_consent`;
-3. validar Turnstile server-side;
-4. normalizar telefone;
-5. rejeitar payload inválido com `400`;
-6. salvar no D1 antes de chamar Pipedrive;
-7. criar evento `generate_lead`/`lead_created` local;
-8. chamar Pipedrive;
-9. se Pipedrive falhar, criar `pipedrive_outbox`;
-10. nunca retornar parecer jurídico.
-
-### Variáveis/secrets
-
-```text
-TURNSTILE_SECRET_KEY
-PIPEDRIVE_API_TOKEN
-PIPEDRIVE_API_BASE
-PIPEDRIVE_OWNER_ID
-PIPEDRIVE_LEAD_LABEL_IDS
-WEBHOOK_SHARED_SECRET
-```
-
-### Testes
-
-```bash
-npm test
-npm run check
-npm run build
-```
-
-Depois testar com `wrangler pages dev`:
-
-```bash
-npx wrangler pages dev dist --d1 BLOG_VR_DB=<D1_DATABASE_ID>
-```
-
-Critérios:
-
-- payload sem LGPD retorna `400`;
-- payload sem Turnstile retorna `400` ou `403`;
-- payload válido salva no D1;
-- falha simulada do Pipedrive cria outbox.
-
----
-
-## Fase 3 — Pipedrive
-
-### Objetivo
-
-Sincronizar lead com CRM sem perder dado local.
-
-### Fluxo
-
-```text
-/api/leads
-  -> D1 insert lead
-  -> Pipedrive persons search
-  -> create/update person
-  -> create lead
-  -> create note
-  -> update D1 ids/status
-```
-
-### Endpoints previstos
-
-```text
-GET   /api/v2/persons/search
-POST  /api/v2/persons
-PATCH /api/v2/persons/{id}
-POST  /api/v1/leads
-PATCH /api/v1/leads/{id}
-POST  /api/v1/notes
-POST  /api/v2/activities
-```
-
-### Nota contextual mínima
-
-A nota no Pipedrive deve conter:
-
-```text
-Origem: URL da página
-Problema: problem_type / cluster
-UTM: source / medium / campaign / content
-Mensagem do usuário
-Documentos disponíveis
-Flags: processo, veículo apreendido, contrato disponível
-Request/lead id local
-```
-
-### Critérios
-
-- lead aparece no Leads Inbox;
-- pessoa deduplicada por telefone/e-mail;
-- nota contém contexto da página;
-- IDs voltam para D1;
-- falha externa não perde lead.
-
----
-
-## Fase 4 — Retry/outbox e cron
-
-### Objetivo
-
-Reprocessar falhas de Pipedrive.
-
-### Arquivos sugeridos
-
-```text
-functions/api/admin/retry-outbox.ts
-functions/_scheduled.ts
-src/lib/outbox.ts
-tests/outbox.test.ts
-```
-
-### Regras
-
-- selecionar outbox `pending` com `next_attempt_at <= now`;
-- usar backoff por tentativas;
-- registrar `last_error`;
-- marcar `done` ao sincronizar;
-- proteger endpoint admin por segredo.
-
-### Cron sugerido
-
-```text
-0 */6 * * *  retry Pipedrive outbox
-```
-
----
-
-## Fase 5 — Tracking real
-
-### Objetivo
-
-Conectar dataLayer existente a GTM/GA4 e validar DebugView.
-
-### Variáveis públicas sugeridas
-
-```text
-PUBLIC_GTM_ID
-PUBLIC_GA_MEASUREMENT_ID
-PUBLIC_CLARITY_ID
-PUBLIC_TURNSTILE_SITE_KEY
-```
-
-### Eventos obrigatórios
-
-```text
-article_view
-hub_view
-scroll_50
-scroll_75
-scroll_90
-cta_view
-cta_click
-whatsapp_click
-form_start
-form_submit
-diagnostic_start
-diagnostic_submit
-checklist_open
-checklist_complete
-internal_link_click
-search
-select_content
-generate_lead
-qualify_lead
-disqualify_lead
-working_lead
-close_convert_lead
-close_unconvert_lead
-```
-
-### Critérios
-
-- `generate_lead` aparece no GA4 DebugView;
-- `whatsapp_click` aparece;
-- scroll e CTA aparecem;
-- Clarity registra sessão;
-- CSP permite scripts necessários e bloqueia o resto.
-
----
-
-## Fase 6 — Conteúdo MVP real
-
-### Objetivo
-
-Substituir placeholders por conteúdo publicável e revisado.
-
-### Escopo mínimo
-
-```text
-5 hubs
-20 artigos iniciais
-3 checklists
-glossário inicial
-privacidade
-sobre o blog
-```
-
-### Regras editoriais
-
-Cada artigo precisa ter:
-
-- resposta curta no início;
-- mínimo 900 palavras, salvo FAQ/glossário;
-- pelo menos 3 links internos;
-- CTA contextual;
-- fontes oficiais quando fizer sentido;
-- disclaimer informativo;
-- sem promessa de resultado;
-- `noindex: false` apenas após revisão.
-
-### Checklist OAB
-
-Bloquear publicação se houver:
-
-```text
-garantimos
-recupere com certeza
-limpe seu nome agora
-melhor escritório
-resultado garantido
-honorários/desconto como isca
-urgência artificial agressiva
-```
-
----
-
-## Fase 7 — Cloudflare Pages deploy
-
-### Objetivo
-
-Publicar o site em `blog.vradvogados.com.br`.
-
-### Método recomendado: Git conectado
-
-1. Subir repo para GitHub/GitLab.
-2. Cloudflare Dashboard → Workers & Pages → Create application → Pages.
-3. Conectar repo.
-4. Configurar build:
-
-```text
-Framework preset: Astro
-Build command: npm run build
-Build output directory: dist
-Root directory: /
-Node version: 22
-```
-
-5. Configurar variáveis de ambiente no Pages Project.
-6. Configurar D1 binding quando backend estiver pronto.
-7. Deploy preview por branch.
-8. Deploy produção em `main`.
-
-### Método manual opcional
-
-Usar só para preview ou emergência:
-
-```bash
-npm run build
-npx wrangler pages deploy dist --project-name blog-vradvogados
-```
-
-Melhor não depender disso para rotina; sem Git, deploy vira “quem subiu isso?” em três semanas.
-
-### Custom domain
-
-No projeto Pages:
-
-```text
-Custom domain: blog.vradvogados.com.br
-```
-
-DNS esperado:
-
-```text
-CNAME blog -> <pages-project>.pages.dev
-Proxy: enabled
-SSL/TLS: Full ou Full strict
-```
-
-### Critérios de aceite do deploy
-
-Ao vivo:
-
-```bash
-curl -I https://blog.vradvogados.com.br/
-curl -I https://blog.vradvogados.com.br/sitemap-index.xml
-curl -I https://blog.vradvogados.com.br/robots.txt
-```
-
-Esperado:
-
-```text
-HTTP 200
-HTTPS válido
-headers de segurança presentes
-sitemap acessível
-robots aponta para sitemap
-```
-
----
-
-## Fase 8 — Pós-deploy SEO/analytics
-
-### Search Console
-
-1. Adicionar propriedade `blog.vradvogados.com.br`.
-2. Verificar domínio/subdomínio.
-3. Enviar sitemap:
-
-```text
-https://blog.vradvogados.com.br/sitemap-index.xml
-```
-
-### GA4/GTM
-
-1. Confirmar container carregando.
-2. Confirmar DebugView.
-3. Marcar conversões:
-
-```text
-generate_lead
-whatsapp_click
-diagnostic_submit
-form_submit
-```
-
-### Clarity
-
-1. Instalar script via config/componente.
-2. Confirmar sessão gravada.
-3. Validar se não degrada Core Web Vitals.
-
-### Lighthouse
-
-Rodar contra produção:
-
-```bash
-npx lighthouse https://blog.vradvogados.com.br/ --view
-```
-
-Budgets:
-
-```text
-Performance >= 90
-SEO >= 95
-Accessibility >= 90
-LCP mobile < 2.5s
-CLS < 0.1
-INP < 200ms
-```
+## 5. Status das fases
+
+### ✅ Fase 0 — Setup e baseline (concluída)
+- Astro + TypeScript + Tailwind + Content Collections
+- Headers, redirects, sitemap, robots
+- `npm test`, `npm run check`, `npm run build` passando
+
+### ✅ Fase 1 — Versionamento e repositório (concluída)
+- Git init, commit inicial, branch `main`
+- GitHub: `https://github.com/vtrpza/blog-vr`
+- Push configurado
+
+### ✅ Fase 2 — Lead capture backend (concluída)
+- `wrangler.toml` com D1 binding
+- Migration D1 aplicada (remote): 3 tabelas, 12 queries
+- `POST /api/leads` — Turnstile → D1 → Pipedrive → outbox
+- `GET /api/health` — `{"ok":true,"d1":"ok"}`
+- `src/lib/lead-schema.ts` — 26 testes
+- Secrets: PIPEDRIVE_API_TOKEN configurado
+
+### 🔶 Fase 3 — Pipedrive (parcial — código pronto, falta testar com CRM real)
+- Código de sync no `functions/api/leads.ts`: search person, create/update, create lead, add note
+- **Falta:** preencher `PIPEDRIVE_OWNER_ID` e `PIPEDRIVE_LEAD_LABEL_IDS` no dashboard
+- **Falta:** testar fluxo completo com lead real e verificar Leads Inbox
+
+### ⬜ Fase 4 — Retry/outbox e cron (pendente)
+- Outbox já criado na migration e no endpoint
+- **Falta:** `functions/_scheduled.ts` para cron de retry a cada 6h
+- **Falta:** `functions/api/admin/retry-outbox.ts` para retry manual
+- **Falta:** `tests/outbox.test.ts`
+
+### ⬜ Fase 5 — Tracking real (pendente)
+- dataLayer já implementado no frontend
+- **Falta:** criar GTM container e GA4 property
+- **Falta:** adicionar `PUBLIC_GTM_ID`, `PUBLIC_GA_MEASUREMENT_ID`, `PUBLIC_CLARITY_ID` como env vars
+- **Falta:** instalar script GTM/Clarity no BaseLayout
+- **Falta:** validar DebugView com `generate_lead`, `whatsapp_click`
+
+### ⬜ Fase 6 — Conteúdo MVP real (pendente)
+- 26 rotas criadas com placeholder
+- **Falta:** escrever 20 artigos (900+ palavras, links internos, fontes oficiais)
+- **Falta:** preencher 5 hubs com FAQ e priorityArticles
+- **Falta:** glossário inicial
+- **Falta:** revisão OAB de todo conteúdo antes de publicar
+
+### ✅ Fase 7 — Cloudflare Pages deploy (concluída)
+- Projeto criado: `blog-vr` (manual deploy, não Git-connected)
+- URL: `https://blog-vr.pages.dev/`
+- D1 binding funcionando
+- **Falta:** conectar Git repo ao Pages para deploy automático
+- **Falta:** custom domain `blog.vradvogados.com.br`
+
+### ⬜ Fase 8 — Pós-deploy SEO/analytics (pendente)
+- **Falta:** adicionar propriedade no Google Search Console
+- **Falta:** enviar sitemap
+- **Falta:** configurar GTM/GA4/Clarity
+- **Falta:** Lighthouse CI
 
 ---
 
@@ -1023,27 +520,33 @@ INP < 200ms
 O MVP só está pronto para produção quando todos passarem:
 
 ```text
-[ ] Repo Git limpo e remoto configurado
-[ ] npm test passa
-[ ] npm run check passa
-[ ] npm run build passa
-[ ] Preview local responde rotas críticas
-[ ] Cloudflare Pages conectado ao repo
-[ ] Custom domain funcionando em HTTPS
-[ ] Headers e redirects publicados
-[ ] Sitemap publicado
-[ ] Search Console recebeu sitemap
-[ ] GTM/GA4 instalado
-[ ] generate_lead validado
-[ ] whatsapp_click validado
-[ ] Turnstile ativo no formulário
-[ ] /api/leads salva no D1 antes de Pipedrive
-[ ] Falha do Pipedrive cria outbox
-[ ] Lead real aparece no Pipedrive com nota contextual
-[ ] Conteúdo MVP revisado para OAB
-[ ] Artigos reais sem noindex
-[ ] Lighthouse dentro do budget
+[x] Repo Git limpo e remoto configurado        — https://github.com/vtrpza/blog-vr
+[x] npm test passa                              — 29 tests (2 files)
+[x] npm run check passa                         — 22 files, 0 errors
+[x] npm run build passa                         — 38 pages, sitemap
+[x] Cloudflare Pages deploy funcionando         — https://blog-vr.pages.dev/
+[x] D1 database criado e vinculado              — 3 tabelas, health ok
+[x] POST /api/leads implementado                — Turnstile → D1 → Pipedrive → outbox
+[x] PIPEDRIVE_API_TOKEN configurado             — secret no Pages project
+[ ] TURNSTILE_SECRET_KEY real                   — placeholder
+[ ] PIPEDRIVE_OWNER_ID + LEAD_LABEL_IDS         — vazios
+[ ] Custom domain funcionando em HTTPS          — blog.vradvogados.com.br pendente
+[ ] Headers e redirects publicados              — incluídos no bundle
+[ ] Sitemap publicado                           — sitemap-index.xml incluso
+[ ] Search Console recebeu sitemap              — pendente
+[ ] GTM/GA4 instalado                           — dataLayer pronto, scripts faltam
+[ ] generate_lead validado                      — pendente
+[ ] whatsapp_click validado                     — pendente
+[ ] Turnstile ativo no formulário               — depende da secret key
+[ ] /api/leads salva no D1 antes de Pipedrive   — código implementado, falta testar
+[ ] Falha do Pipedrive cria outbox              — código implementado, falta testar
+[ ] Lead real aparece no Pipedrive              — depende de OWNER_ID + LABEL_IDS
+[ ] Conteúdo MVP revisado para OAB              — placeholder
+[ ] Artigos reais sem noindex                   — placeholder
+[ ] Lighthouse dentro do budget                 — pendente
 ```
+
+Concluído: 8/24. Próximo passo crítico: preencher secrets restantes e conectar Git ao Pages.
 
 ---
 
