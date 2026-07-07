@@ -35,7 +35,7 @@ interface Props {
 const {
   src = '/assets/video/hero-bg.mp4',
   poster = '/assets/images/materia-vr.webp',
-} = Astro.props;
+} = Astro.props as Props;
 ---
 
 <div class="absolute inset-0 z-0 hero-video-container" aria-hidden="true">
