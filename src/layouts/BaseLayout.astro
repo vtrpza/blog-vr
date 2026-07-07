@@ -12,6 +12,7 @@ interface Props {
   intent?: string;
   noindex?: boolean;
   jsonLd?: Record<string, unknown> | Array<Record<string, unknown>>;
+  ogImage?: string;
 }
 
 const {
@@ -23,9 +24,13 @@ const {
   intent,
   noindex = false,
   jsonLd = [],
+  ogImage,
 } = Astro.props;
 
 const canonicalUrl = new URL(canonicalPath, Astro.site ?? 'https://blog.vradvogados.com.br').toString();
+const ogImageUrl = ogImage
+  ? new URL(ogImage, Astro.site ?? 'https://blog.vradvogados.com.br').toString()
+  : new URL('/assets/images/og-default.png', Astro.site ?? 'https://blog.vradvogados.com.br').toString();
 const jsonLdItems = Array.isArray(jsonLd) ? jsonLd : [jsonLd];
 const viewEvent = pageType === 'home' ? 'page_view' : `${pageType}_view`;
 ---
@@ -39,10 +44,15 @@ const viewEvent = pageType === 'home' ? 'page_view' : `${pageType}_view`;
     <meta name="description" content={description} />
     {noindex && <meta name="robots" content="noindex, nofollow" />}
     <link rel="canonical" href={canonicalUrl} />
-    <meta property="og:type" content="website" />
+    <meta property="og:type" content={pageType === 'article' ? 'article' : 'website'} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:image" content={ogImageUrl} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content={title} />
+    <meta name="twitter:image" content={ogImageUrl} />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="theme-color" content="#05070a" />
     <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon/favicon-32x32.png" />

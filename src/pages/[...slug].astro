@@ -126,6 +126,7 @@ const updateDate = mdxEntry?.data.updatedAt ? new Date(mdxEntry.data.updatedAt).
   intent={article?.intent}
   noindex={!hasPublishedContent}
   jsonLd={jsonLd}
+  ogImage={mdxEntry?.data.heroImage}
 >
   <!-- ═══ ARTICLE HERO ═══ -->
   {article && (
