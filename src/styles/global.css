@@ -330,3 +330,61 @@ input[type="checkbox"] {
   transform: translateY(-3px);
   box-shadow: 0 12px 40px -12px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(255, 193, 5, 0.20);
 }
+.transition-dark-to-light {
+  position: relative;
+}
+.transition-dark-to-light::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  bottom: auto;
+  height: 8rem;
+  background: linear-gradient(to bottom, var(--surface-base), transparent);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.transition-light-to-dark {
+  position: relative;
+}
+.transition-light-to-dark::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  bottom: auto;
+  height: 8rem;
+  background: linear-gradient(to bottom, #faf8f5, transparent);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.transition-dark-bottom {
+  position: relative;
+}
+.transition-dark-bottom::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 8rem;
+  background: linear-gradient(to top, var(--surface-base), transparent);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.transition-light-bottom {
+  position: relative;
+}
+.transition-light-bottom::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 8rem;
+  background: linear-gradient(to top, #faf8f5, transparent);
+  pointer-events: none;
+  z-index: 1;
+}
+
