@@ -58,14 +58,14 @@ const isUrgent = cluster.slug === 'busca-e-apreensao';
     </div>
 
     <!-- Footer: always at card bottom, aligned with siblings -->
-    <div class="mt-6 flex items-center justify-between">
-      <span class={`inline-flex items-center gap-1.5 text-sm font-semibold transition group-hover:translate-x-0.5 ${isUrgent ? 'text-red-500 group-hover:text-red-400' : 'text-bronze-600 group-hover:text-bronze-400'}`}>
+    <div class="mt-6 flex items-center justify-between gap-3">
+      <span class={`inline-flex shrink-0 items-center gap-1.5 whitespace-nowrap text-sm font-semibold transition group-hover:translate-x-0.5 ${isUrgent ? 'text-red-500 group-hover:text-red-400' : 'text-bronze-600 group-hover:text-bronze-400'}`}>
         Ver guias essenciais
-        <svg class="h-4 w-4 transition group-hover:translate-x-0.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
+        <svg class="h-4 w-4 shrink-0 transition group-hover:translate-x-0.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
           <path d="M5 12h14M12 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round" />
         </svg>
       </span>
-      <div class="flex items-center gap-2">
+      <div class="flex shrink-0 items-center gap-2">
         <span class="rounded-full border border-stone-200 bg-cream-50 px-3 py-1 text-xs font-medium text-stone-500">{articles.length} artigos</span>
         {checklist && <span class="rounded-full border border-emerald-500/20 bg-emerald-500/10 px-3 py-1 text-xs font-medium text-emerald-600">Lista</span>}
       </div>
