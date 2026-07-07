@@ -1,0 +1,19 @@
+{
+  "slug": "busca-e-apreensao",
+  "title": "Busca e apreensão de veículo",
+  "seoTitle": "Busca e apreensão de veículo | Blog VR Advogados",
+  "metaDescription": "Guias informativos sobre busca e apreensão, parcelas atrasadas, oficial de justiça e documentos necessários.",
+  "cluster": "busca-e-apreensao",
+  "summary": "Conteúdo para quem precisa entender urgência, documentos e próximos passos diante de busca e apreensão.",
+  "priorityArticles": [
+    "busca-e-apreensao-veiculo",
+    "oficial-de-justica-busca-e-apreensao-o-que-fazer"
+  ],
+  "faq": [
+    {
+      "question": "O hub substitui consulta jurídica?",
+      "answer": "Não. Ele organiza informação geral e encaminha para análise individual quando necessário."
+    }
+  ],
+  "ctaType": "whatsapp"
+}

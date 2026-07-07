@@ -1,0 +1,18 @@
+---
+import { CLUSTERS } from '../lib/taxonomy';
+---
+
+<header class="sticky top-0 z-50 border-b border-slate-200 bg-white/95 backdrop-blur">
+  <div class="mx-auto flex max-w-6xl items-center justify-between gap-4 px-5 py-4">
+    <a class="font-black tracking-tight text-slate-950" href="/" aria-label="Blog VR Advogados">
+      blog<span class="text-blue-700">.vradvogados</span>
+    </a>
+    <a class="sr-only focus:not-sr-only" href="#conteudo">Pular para o conteúdo</a>
+    <nav class="hidden items-center gap-5 text-sm font-semibold text-slate-700 lg:flex" aria-label="Principal">
+      {CLUSTERS.map((cluster) => <a class="hover:text-blue-700" href={cluster.hubRoute}>{cluster.shortTitle}</a>)}
+    </nav>
+    <a class="rounded-full bg-blue-700 px-4 py-2 text-sm font-extrabold text-white shadow-sm hover:bg-blue-800" href="/diagnostico-inicial/">
+      Diagnóstico inicial
+    </a>
+  </div>
+</header>

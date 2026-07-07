@@ -1,0 +1,1 @@
+Create a blog for the website https://vradvogados.com.br , it must feed itself with great content related to the content of the website. Must scrape, build ideas, bring news. It needs to be an infinite, organic-search enhanced, AI-piloted, brazilian-lawyer-firm blog

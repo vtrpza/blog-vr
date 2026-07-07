@@ -1,0 +1,80 @@
+---
+import ClusterCard from '../components/ClusterCard.astro';
+import LeadCtaButton from '../components/LeadCta.astro';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { CLUSTERS, type LeadCta as LeadCtaConfig } from '../lib/taxonomy';
+import { organizationSchema, websiteSchema } from '../lib/seo';
+
+const heroCta: LeadCtaConfig = {
+  type: 'diagnostic',
+  label: 'Começar diagnóstico inicial',
+  href: '/diagnostico-inicial/',
+  position: 'home_hero',
+};
+---
+
+<BaseLayout
+  title="Blog VR Advogados — orientação bancária por problema"
+  description="Motor de conteúdo da VR Advogados para busca e apreensão, juros abusivos, dívidas PJ, superendividamento, cobranças indevidas e fraudes bancárias."
+  canonicalPath="/"
+  pageType="home"
+  jsonLd={[organizationSchema(), websiteSchema()]}
+>
+  <section class="bg-gradient-to-br from-slate-950 via-blue-950 to-slate-900 text-white">
+    <div class="mx-auto grid max-w-6xl gap-10 px-5 py-20 lg:grid-cols-[1.15fr_0.85fr] lg:items-center">
+      <div>
+        <p class="mb-4 inline-flex rounded-full border border-white/20 px-4 py-2 text-xs font-black uppercase tracking-[0.25em] text-blue-100">
+          Funil editorial por intenção
+        </p>
+        <h1 class="max-w-3xl text-4xl font-black tracking-tight md:text-6xl">
+          Entenda seu problema bancário e organize o próximo passo seguro.
+        </h1>
+        <p class="mt-6 max-w-2xl text-lg leading-8 text-blue-50">
+          Conteúdo informativo, checklists e diagnóstico inicial para transformar busca orgânica em lead qualificado — sem promessa de resultado e sem firula institucional.
+        </p>
+        <div class="mt-8 flex flex-wrap gap-3">
+          <LeadCtaButton cta={heroCta} pageType="home" />
+          <a class="inline-flex items-center justify-center rounded-full border border-white/30 px-5 py-3 text-sm font-extrabold text-white hover:bg-white/10" href="#problemas">
+            Escolher meu problema
+          </a>
+        </div>
+      </div>
+      <div class="rounded-[2rem] border border-white/10 bg-white/10 p-6 shadow-2xl backdrop-blur">
+        <p class="text-sm font-bold uppercase tracking-[0.2em] text-blue-100">Métrica principal</p>
+        <p class="mt-4 text-3xl font-black">qualified_leads / eligible_sessions</p>
+        <p class="mt-4 leading-7 text-blue-50">Pageview sem lead é só fogueira de vaidade. O site nasce medindo CTA, diagnóstico, WhatsApp e cluster.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="problemas" class="mx-auto max-w-6xl px-5 py-16">
+    <div class="max-w-3xl">
+      <p class="text-sm font-black uppercase tracking-[0.25em] text-blue-700">Escolha por dor</p>
+      <h2 class="mt-3 text-3xl font-black tracking-tight text-slate-950 md:text-4xl">Hubs principais em um clique</h2>
+      <p class="mt-4 text-lg leading-8 text-slate-600">Cada hub responde uma intenção comercial forte e leva para guias, checklists ou diagnóstico contextual.</p>
+    </div>
+    <div class="mt-8 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+      {CLUSTERS.map((cluster) => <ClusterCard cluster={cluster} />)}
+    </div>
+  </section>
+
+  <section class="bg-white py-16">
+    <div class="mx-auto grid max-w-6xl gap-8 px-5 md:grid-cols-3">
+      <div class="rounded-3xl bg-slate-50 p-6">
+        <p class="text-sm font-black uppercase tracking-[0.2em] text-blue-700">SEO</p>
+        <h3 class="mt-3 text-xl font-black">Conteúdo por intenção</h3>
+        <p class="mt-3 text-sm leading-7 text-slate-600">Rotas sem data, slugs curtos, schema e links internos desde o primeiro build.</p>
+      </div>
+      <div class="rounded-3xl bg-slate-50 p-6">
+        <p class="text-sm font-black uppercase tracking-[0.2em] text-blue-700">Conversão</p>
+        <h3 class="mt-3 text-xl font-black">CTA contextual</h3>
+        <p class="mt-3 text-sm leading-7 text-slate-600">WhatsApp, formulário, checklist e diagnóstico dependem do problema, não de botão genérico.</p>
+      </div>
+      <div class="rounded-3xl bg-slate-50 p-6">
+        <p class="text-sm font-black uppercase tracking-[0.2em] text-blue-700">Dados</p>
+        <h3 class="mt-3 text-xl font-black">Tracking antes do tráfego</h3>
+        <p class="mt-3 text-sm leading-7 text-slate-600">dataLayer pronto para article_view, hub_view, cta_click, whatsapp_click e generate_lead.</p>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

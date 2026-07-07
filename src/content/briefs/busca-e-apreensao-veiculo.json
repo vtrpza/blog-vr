@@ -1,0 +1,16 @@
+{
+  "theme": "Busca e apreensão de veículo",
+  "cluster": "busca-e-apreensao",
+  "searchIntent": "urgent",
+  "userPain": "Visitante recebeu notificação ou teme perder o veículo financiado.",
+  "mainQuestion": "O que fazer diante de risco de busca e apreensão?",
+  "shortAnswer": "Organizar contrato, notificações e comprovantes antes de solicitar análise individual.",
+  "keywords": ["busca e apreensão veículo", "veículo apreendido"],
+  "internalLinks": ["/busca-e-apreensao/", "/checklist-busca-e-apreensao/"],
+  "recommendedCta": "whatsapp",
+  "requiredDocuments": ["contrato", "comprovantes", "notificações"],
+  "officialSources": ["https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2015/lei/l13105.htm"],
+  "oabRisk": "low",
+  "conversionHypothesis": "Usuários com urgência respondem melhor a checklist curto + WhatsApp contextual.",
+  "status": "idea"
+}

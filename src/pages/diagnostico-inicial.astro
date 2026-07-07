@@ -1,0 +1,106 @@
+---
+import Disclaimer from '../components/Disclaimer.astro';
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Diagnóstico inicial | Blog VR Advogados"
+  description="Formulário informativo para organizar dados mínimos antes de uma análise individual em direito bancário."
+  canonicalPath="/diagnostico-inicial/"
+  pageType="diagnostic"
+>
+  <section class="mx-auto max-w-4xl px-5 py-14">
+    <p class="text-xs font-black uppercase tracking-[0.25em] text-blue-700">Lead capture mínimo</p>
+    <h1 class="mt-3 text-4xl font-black tracking-tight text-slate-950 md:text-6xl">Diagnóstico inicial</h1>
+    <p class="mt-5 text-lg leading-8 text-slate-600">
+      Envie informações básicas para a equipe entender o tipo de problema, documentos disponíveis e urgência. Não há parecer jurídico automático.
+    </p>
+
+    <form class="mt-10 grid gap-5 rounded-3xl bg-white p-6 shadow-sm md:p-8" method="post" action="/api/leads" data-diagnostic-form>
+      <input type="hidden" name="landing_page" value="/diagnostico-inicial/" />
+      <label class="grid gap-2 font-bold text-slate-700">
+        Nome
+        <input class="rounded-xl border border-slate-300 px-4 py-3 font-normal" name="name" required autocomplete="name" />
+      </label>
+      <label class="grid gap-2 font-bold text-slate-700">
+        Telefone
+        <input class="rounded-xl border border-slate-300 px-4 py-3 font-normal" name="phone" required autocomplete="tel" />
+      </label>
+      <label class="grid gap-2 font-bold text-slate-700">
+        E-mail opcional
+        <input class="rounded-xl border border-slate-300 px-4 py-3 font-normal" name="email" type="email" autocomplete="email" />
+      </label>
+      <div class="grid gap-5 md:grid-cols-2">
+        <label class="grid gap-2 font-bold text-slate-700">
+          Tipo de pessoa
+          <select class="rounded-xl border border-slate-300 px-4 py-3 font-normal" name="person_type">
+            <option value="PF">Pessoa física</option>
+            <option value="PJ">Pessoa jurídica</option>
+          </select>
+        </label>
+        <label class="grid gap-2 font-bold text-slate-700">
+          Problema principal
+          <select class="rounded-xl border border-slate-300 px-4 py-3 font-normal" name="problem_type" required>
+            <option value="busca-e-apreensao">Busca e apreensão</option>
+            <option value="juros-abusivos">Juros abusivos/revisional</option>
+            <option value="dividas-pj">Dívida PJ</option>
+            <option value="superendividamento">Superendividamento</option>
+            <option value="cobrancas-fraudes">Cobrança indevida/fraude</option>
+          </select>
+        </label>
+      </div>
+      <label class="grid gap-2 font-bold text-slate-700">
+        Banco ou financeira
+        <input class="rounded-xl border border-slate-300 px-4 py-3 font-normal" name="bank_or_financial_institution" />
+      </label>
+      <label class="grid gap-2 font-bold text-slate-700">
+        Faixa aproximada da dívida
+        <select class="rounded-xl border border-slate-300 px-4 py-3 font-normal" name="approx_debt_value_range">
+          <option value="ate-10k">Até R$10 mil</option>
+          <option value="10k-50k">R$10 mil a R$50 mil</option>
+          <option value="50k-200k">R$50 mil a R$200 mil</option>
+          <option value="acima-200k">Acima de R$200 mil</option>
+        </select>
+      </label>
+      <fieldset class="grid gap-3 rounded-2xl border border-slate-200 p-4">
+        <legend class="px-2 font-black">Situação</legend>
+        <label class="flex gap-3"><input type="checkbox" name="has_lawsuit" value="1" /> Existe processo judicial?</label>
+        <label class="flex gap-3"><input type="checkbox" name="has_vehicle_seized" value="1" /> Veículo apreendido?</label>
+        <label class="flex gap-3"><input type="checkbox" name="contract_available" value="1" /> Contrato disponível?</label>
+      </fieldset>
+      <label class="grid gap-2 font-bold text-slate-700">
+        Mensagem
+        <textarea class="min-h-32 rounded-xl border border-slate-300 px-4 py-3 font-normal" name="message" required></textarea>
+      </label>
+      <label class="flex gap-3 rounded-2xl bg-slate-50 p-4 text-sm leading-6 text-slate-700">
+        <input class="mt-1" type="checkbox" name="lgpd_consent" value="1" required />
+        <span>Autorizo o uso dos dados enviados para contato e análise inicial, conforme a política de privacidade.</span>
+      </label>
+      <div class="rounded-2xl border border-dashed border-slate-300 p-4 text-sm text-slate-500" data-turnstile-placeholder>
+        Turnstile será conectado no Worker/API slice. O segredo nunca deve ir para o frontend.
+      </div>
+      <button class="rounded-full bg-blue-700 px-6 py-4 font-black text-white hover:bg-blue-800" type="submit">Enviar dados para análise</button>
+    </form>
+
+    <div class="mt-8">
+      <Disclaimer />
+    </div>
+  </section>
+  <script is:inline>
+    (() => {
+      const form = document.querySelector('[data-diagnostic-form]');
+      if (!form) return;
+      let started = false;
+      form.addEventListener('focusin', () => {
+        if (started) return;
+        started = true;
+        window.__blogVrTrack?.('form_start', { page_type: 'diagnostic', lead_type: 'diagnostic' });
+        window.__blogVrTrack?.('diagnostic_start', { page_type: 'diagnostic', lead_type: 'diagnostic' });
+      });
+      form.addEventListener('submit', () => {
+        window.__blogVrTrack?.('form_submit', { page_type: 'diagnostic', lead_type: 'diagnostic' });
+        window.__blogVrTrack?.('diagnostic_submit', { page_type: 'diagnostic', lead_type: 'diagnostic' });
+      });
+    })();
+  </script>
+</BaseLayout>

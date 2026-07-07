@@ -1,0 +1,148 @@
+---
+import SiteHeader from '../components/SiteHeader.astro';
+import { REQUIRED_TRACKING_EVENTS } from '../lib/taxonomy';
+
+interface Props {
+  title: string;
+  description: string;
+  canonicalPath?: string;
+  pageType?: string;
+  cluster?: string;
+  intent?: string;
+  jsonLd?: Record<string, unknown> | Array<Record<string, unknown>>;
+}
+
+const {
+  title,
+  description,
+  canonicalPath = Astro.url.pathname,
+  pageType = 'page',
+  cluster,
+  intent,
+  jsonLd = [],
+} = Astro.props;
+
+const canonicalUrl = new URL(canonicalPath, Astro.site ?? 'https://blog.vradvogados.com.br').toString();
+const jsonLdItems = Array.isArray(jsonLd) ? jsonLd : [jsonLd];
+const viewEvent = pageType === 'home' ? 'page_view' : `${pageType}_view`;
+---
+
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalUrl} />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="theme-color" content="#0b5cff" />
+    <script is:inline define:vars={{ pageType, cluster, intent, viewEvent, requiredEvents: REQUIRED_TRACKING_EVENTS }}>
+      window.dataLayer = window.dataLayer || [];
+      window.__BLOG_VR_REQUIRED_EVENTS__ = requiredEvents;
+      window.dataLayer.push({ event: viewEvent, page_type: pageType, cluster, intent });
+    </script>
+    {jsonLdItems.map((item) => <script is:inline type="application/ld+json" set:html={JSON.stringify(item)} />)}
+  </head>
+  <body data-page-type={pageType} data-cluster={cluster} data-intent={intent}>
+    <SiteHeader />
+    <main id="conteudo">
+      <slot />
+    </main>
+    <footer class="border-t border-slate-200 bg-white py-10 text-sm text-slate-600">
+      <div class="mx-auto flex max-w-6xl flex-col gap-4 px-5 md:flex-row md:items-center md:justify-between">
+        <p>© {new Date().getFullYear()} VR Advogados. Conteúdo informativo.</p>
+        <nav class="flex flex-wrap gap-4" aria-label="Rodapé">
+          <a class="hover:text-blue-700" href="/sobre-o-blog/">Sobre o blog</a>
+          <a class="hover:text-blue-700" href="/privacidade/">Privacidade</a>
+          <a class="hover:text-blue-700" href="/diagnostico-inicial/">Diagnóstico inicial</a>
+        </nav>
+      </div>
+    </footer>
+    <script is:inline>
+      (() => {
+        const track = (event, payload = {}) => {
+          window.dataLayer = window.dataLayer || [];
+          window.dataLayer.push({ event, ...payload });
+        };
+        window.__blogVrTrack = track;
+
+        const bind = () => {
+          document.querySelectorAll('[data-track-cta]').forEach((element) => {
+            if (element.dataset.boundCta === 'true') return;
+            element.dataset.boundCta = 'true';
+            element.addEventListener('click', () => {
+              const payload = {
+                page_type: element.dataset.pageType || document.body.dataset.pageType,
+                cluster: element.dataset.cluster || document.body.dataset.cluster,
+                intent: element.dataset.intent || document.body.dataset.intent,
+                cta_type: element.dataset.ctaType,
+                cta_position: element.dataset.ctaPosition,
+                article_slug: element.dataset.articleSlug,
+              };
+              track('cta_click', payload);
+              if (payload.cta_type === 'whatsapp') track('whatsapp_click', payload);
+            });
+          });
+
+          const viewed = new WeakSet();
+          const emitView = (element) => {
+            if (viewed.has(element)) return;
+            viewed.add(element);
+            track('cta_view', {
+              page_type: element.dataset.pageType || document.body.dataset.pageType,
+              cluster: element.dataset.cluster || document.body.dataset.cluster,
+              intent: element.dataset.intent || document.body.dataset.intent,
+              cta_type: element.dataset.ctaType,
+              cta_position: element.dataset.ctaPosition,
+              article_slug: element.dataset.articleSlug,
+            });
+          };
+
+          const ctas = [...document.querySelectorAll('[data-track-cta]')];
+          if ('IntersectionObserver' in window) {
+            const observer = new IntersectionObserver((entries) => {
+              entries.forEach((entry) => {
+                if (entry.isIntersecting) emitView(entry.target);
+              });
+            }, { threshold: 0.4 });
+            ctas.forEach((cta) => observer.observe(cta));
+          } else {
+            ctas.forEach(emitView);
+          }
+
+          const thresholds = new Set([50, 75, 90]);
+          const sent = new Set();
+          window.addEventListener('scroll', () => {
+            const max = document.documentElement.scrollHeight - window.innerHeight;
+            if (max <= 0) return;
+            const percentage = Math.round((window.scrollY / max) * 100);
+            [...thresholds].forEach((threshold) => {
+              if (percentage >= threshold && !sent.has(threshold)) {
+                sent.add(threshold);
+                track(`scroll_${threshold}`, { page_type: document.body.dataset.pageType, cluster: document.body.dataset.cluster });
+              }
+            });
+          }, { passive: true });
+
+          document.addEventListener('click', (event) => {
+            const anchor = event.target.closest('a[href^="/"]');
+            if (!anchor || anchor.hasAttribute('data-track-cta')) return;
+            track('internal_link_click', {
+              page_type: document.body.dataset.pageType,
+              cluster: document.body.dataset.cluster,
+              target_url: anchor.getAttribute('href'),
+            });
+          });
+        };
+
+        if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', bind);
+        else bind();
+      })();
+    </script>
+  </body>
+</html>
