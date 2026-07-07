@@ -76,7 +76,7 @@ const description = article
 const canonicalPath = article ? article.route : checklist ? checklist.route : cluster.hubRoute;
 
 const cta: LeadCtaConfig = article
-  ? { ...cluster.primaryCta, type: (mdxEntry?.data.ctaType as LeadCtaConfig['type']) || article.ctaType, position: 'article_after_documents' }
+  ? { ...cluster.primaryCta, type: ((mdxEntry?.data.ctaType === 'form' ? 'diagnostic' : mdxEntry?.data.ctaType) as LeadCtaConfig['type']) || article.ctaType, position: 'article_after_documents' }
   : checklist
     ? checklist.cta
     : cluster.primaryCta;
@@ -104,6 +104,14 @@ if (mdxEntry) {
   const rendered = await render(mdxEntry);
   ArticleContent = rendered.Content;
 }
+
+const intentLabel: Record<string, string> = {
+  urgent: 'Urgente',
+  informational: 'Guia',
+  'commercial-investigation': 'Avaliação',
+  comparison: 'Comparação',
+  checklist: 'Checklist',
+};
 
 const publishDate = mdxEntry?.data.publishedAt ? new Date(mdxEntry.data.publishedAt).toLocaleDateString('pt-BR', { day: '2-digit', month: 'short', year: 'numeric' }) : null;
 const updateDate = mdxEntry?.data.updatedAt ? new Date(mdxEntry.data.updatedAt).toLocaleDateString('pt-BR', { day: '2-digit', month: 'short', year: 'numeric' }) : null;
@@ -266,7 +274,7 @@ const updateDate = mdxEntry?.data.updatedAt ? new Date(mdxEntry.data.updatedAt).
                 {clusterArticles.filter((related) => related.slug !== article.slug).slice(0, 4).map((related) => (
                   <li>
                     <a class="group block rounded-2xl border border-[rgba(201,168,108,0.10)] bg-navy-950/40 p-4 transition hover:border-bronze-500/25 hover:bg-navy-950/70" href={related.route}>
-                      <span class="text-xs font-semibold uppercase tracking-[0.14em] text-stone-500">{related.intent.replace('-', ' ')}</span>
+                      <span class="text-xs font-semibold uppercase tracking-[0.14em] text-stone-500">{intentLabel[related.intent] || related.intent}</span>
                       <span class="mt-1 block font-medium text-bronze-400 transition group-hover:text-gold-300">{related.title}</span>
                     </a>
                   </li>

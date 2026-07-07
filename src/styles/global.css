@@ -15,10 +15,13 @@
   --color-bronze-400: #c9a86c;
   --color-bronze-500: #b08d55;
   --color-bronze-600: #8f7040;
+  --color-bronze-200: #e8dcc8;
   --color-gold-300: #f3e5c8;
   --color-stone-300: #c7c3bc;
   --color-stone-400: #9b968d;
   --color-stone-500: #706b64;
+  --color-emerald-200: #a7f3d0;
+  --color-violet-200: #ddd6fe;
 }
 
 :root {
