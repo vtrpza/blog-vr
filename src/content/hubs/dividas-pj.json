@@ -1,0 +1,36 @@
+{
+  "slug": "dividas-pj",
+  "title": "Dívidas bancárias PJ",
+  "seoTitle": "Dívidas Bancárias PJ | Blog VR Advogados",
+  "metaDescription": "Defesa para empresas contra execuções, bloqueios judiciais e capital de giro abusivo. Guias práticos para negócios em dificuldade.",
+  "cluster": "dividas-pj",
+  "summary": "Sua empresa está com dívidas bancárias? Execução, bloqueio judicial, avalista ou capital de giro com juros altos? Este hub reúne guias para empresários que precisam de orientação técnica.",
+  "priorityArticles": [
+    "execucao-bancaria-empresa-o-que-fazer",
+    "bloqueio-judicial-conta-pj",
+    "renegociacao-divida-pj-com-banco"
+  ],
+  "faq": [
+    {
+      "question": "O que fazer quando o banco executa a dívida da empresa?",
+      "answer": "O primeiro passo é não ignorar a citação. Reúna o contrato, extratos e comprovantes de pagamento. Verifique se os valores cobrados estão corretos e se há abusividades nos encargos."
+    },
+    {
+      "question": "O banco pode bloquear a conta PJ sem aviso?",
+      "answer": "Sim, por determinação judicial. O bloqueio via sistema BacenJud pode ocorrer sem aviso prévio. Por isso, manter registros financeiros organizados é essencial para contestar valores abusivos."
+    },
+    {
+      "question": "Quais os riscos de ser avalista de uma empresa?",
+      "answer": "O avalista responde com seus bens pessoais pela dívida da empresa. Se a empresa não pagar, o banco pode executar o avalista. A proteção de bem de família (Súmula 364 do STJ) não se aplica a avalistas."
+    },
+    {
+      "question": "É possível renegociar dívida PJ com o banco?",
+      "answer": "Sim, mas sem a mesma proteção legal do superendividamento. A renegociação depende da disposição do banco e da sua capacidade de demonstrar fluxo de caixa. Uma proposta bem preparada aumenta as chances."
+    },
+    {
+      "question": "O que é CCB bancária e quais cuidados tomar?",
+      "answer": "CCB (Cédula de Crédito Bancário) é o documento que formaliza o empréstimo. Antes de assinar, verifique: valor, taxa de juros, CET, garantias, vencimento e multas. Uma CCB mal revisada pode virar uma execução."
+    }
+  ],
+  "ctaType": "form"
+}

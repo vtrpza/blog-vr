@@ -1,0 +1,40 @@
+{
+  "slug": "juros-abusivos",
+  "title": "Juros abusivos e revisão de contrato",
+  "seoTitle": "Juros Abusivos e Revisão de Contrato | Blog VR Advogados",
+  "metaDescription": "Identifique juros abusivos, tarifas indevidas e seguros embutidos. Guias para comparar taxas, analisar contratos e buscar revisão.",
+  "cluster": "juros-abusivos",
+  "summary": "Juros do seu financiamento estão acima da média do mercado? Tarifas que você não contratou aparecem na fatura? Este hub ajuda a identificar abusividades e comparar taxas oficiais do BACEN.",
+  "priorityArticles": [
+    "juros-abusivos-financiamento-veiculo",
+    "taxa-media-bacen-como-comparar",
+    "acao-revisional-quando-vale-a-pena"
+  ],
+  "faq": [
+    {
+      "question": "O que são juros abusivos?",
+      "answer": "São juros cobrados em valor muito acima da taxa média de mercado divulgada pelo BACEN para a mesma modalidade de crédito. Não há um percentual fixo que defina abusividade — a análise compara o contrato com a média do mercado."
+    },
+    {
+      "question": "Como comparar a taxa do meu contrato com a média do mercado?",
+      "answer": "Acesse o site do BACEN (Taxas de Juros), selecione a modalidade do seu contrato (ex: aquisição de veículos PF) e compare com a taxa do seu contrato. Se a diferença for grande, pode haver abusividade."
+    },
+    {
+      "question": "Seguro prestamista é obrigatório?",
+      "answer": "Não. O seguro prestamista é opcional. O banco não pode exigir sua contratação como condição para financiamento. Se foi embutido sem seu consentimento, a cobrança pode ser questionada."
+    },
+    {
+      "question": "O que é ação revisional e quando vale a pena?",
+      "answer": "Ação revisional é o processo judicial para questionar cláusulas abusivas do contrato. Vale a pena quando há juros acima da média, tarifas indevidas, capitalização de juros não informada ou CET divergente do contratado."
+    },
+    {
+      "question": "Quais tarifas bancárias podem ser questionadas?",
+      "answer": "Tarifa de abertura de crédito (TAC), tarifa de registro de contrato, tarifa de avaliação de bem, seguros embutidos sem solicitação e tarifas de serviços não contratados."
+    },
+    {
+      "question": "Parcela paga mas não baixada: o que fazer?",
+      "answer": "Reúna o comprovante de pagamento e reclame formalmente no banco. Se não resolverem, o caso pode gerar danos morais por negativação indevida."
+    }
+  ],
+  "ctaType": "diagnostic"
+}

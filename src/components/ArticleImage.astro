@@ -1,0 +1,29 @@
+---
+interface Props {
+  src: string;
+  alt: string;
+  caption?: string;
+  width?: number;
+  height?: number;
+  loading?: 'eager' | 'lazy';
+}
+
+const { src, alt, caption, width = 1200, height = 630, loading = 'lazy' } = Astro.props;
+---
+
+<figure class="my-8 overflow-hidden rounded-2xl border border-[rgba(201,168,108,0.10)] bg-navy-900/40">
+  <img
+    src={src}
+    alt={alt}
+    width={width}
+    height={height}
+    loading={loading}
+    class="w-full object-cover aspect-video"
+    decoding="async"
+  />
+  {caption && (
+    <figcaption class="px-5 py-3 text-sm italic text-stone-500 border-t border-[rgba(201,168,108,0.08)]">
+      {caption}
+    </figcaption>
+  )}
+</figure>

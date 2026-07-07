@@ -1,0 +1,33 @@
+{
+  "slug": "cobrancas-indevidas",
+  "title": "Cobranças indevidas e fraudes bancárias",
+  "seoTitle": "Cobranças Indevidas e Fraudes Bancárias | Blog VR Advogados",
+  "metaDescription": "Nome negativado indevidamente, empréstimo não contratado, golpe do Pix. Guias para identificar fraudes, cobrar indenização e se proteger.",
+  "cluster": "cobrancas-fraudes",
+  "summary": "Cobrança que você não reconhece, empréstimo que nunca fez, Pix que sumiu da conta. Este hub reúne guias para identificar fraudes bancárias, cobrar seus direitos e se proteger.",
+  "priorityArticles": [
+    "nome-negativado-indevidamente-o-que-fazer",
+    "cobranca-indevida-banco-como-resolver",
+    "emprestimo-nao-contratado",
+    "golpe-pix-responsabilidade-do-banco"
+  ],
+  "faq": [
+    {
+      "question": "O que fazer quando descubro uma cobrança indevida no banco?",
+      "answer": "Reúna os extratos, conteste formalmente pelo SAC e depois pela Ouvidoria. O CDC (art. 42) garante devolução em dobro. Registre todos os protocolos."
+    },
+    {
+      "question": "Como provar que um empréstimo não foi contratado por mim?",
+      "answer": "Extratos bancários que mostrem a data do depósito, ausência de assinatura no contrato digital, BO registrado e contestação formal junto ao banco."
+    },
+    {
+      "question": "O banco é obrigado a devolver dinheiro perdido em golpe do Pix?",
+      "answer": "Depende. Se houve falha na segurança do sistema, sim. O MED (Mecanismo Especial de Devolução) do BACEN pode bloquear valores se acionado em até 24h."
+    },
+    {
+      "question": "Negativação indevida dá direito a indenização?",
+      "answer": "Sim. O STJ (Súmula 385) entende que a negativação indevida causa dano moral presumido, independentemente de comprovação de prejuízo material."
+    }
+  ],
+  "ctaType": "diagnostic"
+}

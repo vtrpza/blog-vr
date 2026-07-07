@@ -1,7 +1,7 @@
 {
   "term": "Alienação fiduciária",
   "slug": "alienacao-fiduciaria",
-  "definition": "Garantia em que o bem financiado fica vinculado ao credor até a quitação, comum em financiamento de veículo.",
+  "definition": "Garantia em que o bem financiado (veículo, imóvel) fica vinculado ao credor até a quitação integral do débito. Se o devedor atrasar, o credor pode retomar o bem via busca e apreensão.",
   "cluster": "busca-e-apreensao",
-  "relatedArticles": ["busca-e-apreensao-veiculo"]
+  "relatedArticles": ["busca-e-apreensao-veiculo", "quantas-parcelas-atrasadas-busca-e-apreensao"]
 }

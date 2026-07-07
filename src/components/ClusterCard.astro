@@ -1,6 +1,6 @@
 ---
 import type { Cluster } from '../lib/taxonomy';
-import { getArticlesByCluster } from '../lib/taxonomy';
+import { getArticlesByCluster, getChecklistByRoute } from '../lib/taxonomy';
 
 interface Props {
   cluster: Cluster;
@@ -8,17 +8,24 @@ interface Props {
 
 const { cluster } = Astro.props;
 const articles = getArticlesByCluster(cluster.slug);
+const checklist = cluster.checklistRoute ? getChecklistByRoute(cluster.checklistRoute) : null;
 ---
 
-<article class="group relative overflow-hidden rounded-2xl border border-[rgba(201,168,108,0.12)] bg-navy-800/50 p-6 transition duration-300 hover:-translate-y-1 hover:border-bronze-500/30 hover:bg-navy-800 hover:shadow-xl hover:shadow-black/20">
+<article class="group relative flex flex-col overflow-hidden rounded-2xl border border-[rgba(201,168,108,0.12)] bg-navy-900/50 p-6 transition duration-300 hover:-translate-y-1 hover:border-bronze-500/30 hover:bg-navy-900 hover:shadow-xl hover:shadow-black/20">
   <div class="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-bronze-400/40 to-transparent opacity-0 transition group-hover:opacity-100" aria-hidden="true"></div>
-  <p class="mb-3 text-[11px] font-semibold uppercase tracking-[0.2em] text-stone-500">Hub</p>
+  <p class="mb-3 text-[11px] font-semibold uppercase tracking-[0.2em] text-stone-500">{cluster.shortTitle}</p>
   <h3 class="font-serif text-2xl font-semibold tracking-tight text-cream-50">
     <a class="after:absolute after:inset-0" href={cluster.hubRoute}>{cluster.title}</a>
   </h3>
-  <p class="mt-3 text-sm leading-7 text-stone-400">{cluster.summary}</p>
-  <div class="mt-6 flex items-center justify-between gap-3 text-sm">
-    <span class="font-semibold text-bronze-400 transition group-hover:text-gold-300">Ver guias essenciais</span>
-    <span class="rounded-full border border-[rgba(201,168,108,0.12)] bg-navy-900/80 px-3 py-1 text-xs font-medium text-stone-400">{articles.length} artigos</span>
+  <p class="mt-3 flex-1 text-sm leading-7 text-stone-400">{cluster.tagline}</p>
+  <div class="mt-6 flex flex-wrap items-center gap-3">
+    <span class="inline-flex items-center gap-1.5 text-sm font-semibold text-bronze-400 transition group-hover:text-gold-300">
+      Ver guias essenciais
+      <svg class="h-4 w-4 transition group-hover:translate-x-0.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M5 12h14M12 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round" />
+      </svg>
+    </span>
+    <span class="rounded-full border border-[rgba(201,168,108,0.12)] bg-navy-950/80 px-3 py-1 text-xs font-medium text-stone-400">{articles.length} artigos</span>
+    {checklist && <span class="rounded-full border border-emerald-500/20 bg-emerald-500/10 px-3 py-1 text-xs font-medium text-emerald-300">Checklist</span>}
   </div>
 </article>

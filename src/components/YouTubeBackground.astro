@@ -1,0 +1,71 @@
+---
+/**
+ * YouTubeBackground.astro
+ *
+ * Background video hero usando <video> nativo com arquivo local.
+ *
+ * Por que NÃO usar YouTube iframe embed para background:
+ *  1. O iframe do YouTube mostra chrome (botão play, título, logo) no first paint,
+ *     antes do vídeo iniciar — não há como esconder via CSS (cross-origin).
+ *  2. A IFrame Player API comunica via postMessage com targetOrigin https://www.youtube.com,
+ *     que falha em http://localhost (dev) com erro de console.
+ *  3. Cookies de tracking do YouTube em todo pageview (LGPD/GDPR).
+ *  4. Dependência de rede externa — se YouTube cai, o hero fica preto.
+ *
+ * Solução: <video autoplay muted loop playsinline> com MP4 local.
+ *  - Zero chrome, zero flash de UI, zero postMessage, zero cookies
+ *  - Controle total via CSS (filter, opacity, object-fit)
+ *  - Funciona offline, em qualquer ambiente (dev/prod)
+ *  - prefers-reduced-motion respeitado
+ *  - Poster fallback enquanto carrega
+ *
+ * O MP4 foi baixado do vídeo do YouTube via yt-dlp (720p, ~5MB).
+ * Para atualizar: yt-dlp -f "bestvideo[ext=mp4][height<=720]+bestaudio[ext=m4a]" \
+ *   --merge-output-format mp4 -o "public/assets/video/hero-bg.mp4" "YOUTUBE_URL"
+ *
+ * @prop src    - URL do vídeo MP4 (default: /assets/video/hero-bg.mp4)
+ * @prop poster - URL da imagem fallback (opcional)
+ */
+
+interface Props {
+  src?: string;
+  poster?: string;
+}
+
+const {
+  src = '/assets/video/hero-bg.mp4',
+  poster = '/assets/images/materia-vr.webp',
+} = Astro.props;
+---
+
+<div class="absolute inset-0 z-0 hero-video-container" aria-hidden="true">
+  <video
+    class="video-backdrop hero-bg-video"
+    autoplay
+    muted
+    loop
+    playsinline
+    preload="auto"
+    poster={poster}
+    tabindex="-1"
+  >
+    <source src={src} type="video/mp4" />
+  </video>
+</div>
+
+<script is:inline>
+  // Pausa o vídeo se prefers-reduced-motion (acessibilidade)
+  // Background video é decorativo — não deve causar movimento indesejado
+  (function () {
+    const prefersReducedMotion = window.matchMedia(
+      '(prefers-reduced-motion: reduce)'
+    ).matches;
+    if (prefersReducedMotion) {
+      const video = document.querySelector('.hero-bg-video');
+      if (video) {
+        video.pause();
+        video.currentTime = 0;
+      }
+    }
+  })();
+</script>

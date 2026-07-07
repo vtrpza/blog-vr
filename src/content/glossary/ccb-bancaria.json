@@ -1,0 +1,7 @@
+{
+  "term": "CCB — Cédula de Crédito Bancário",
+  "slug": "ccb-bancaria",
+  "definition": "Título de crédito que formaliza um empréstimo bancário. Contém valor, prazo, taxas, garantias e condições de pagamento. É o documento-base de execuções bancárias contra empresas.",
+  "cluster": "dividas-pj",
+  "relatedArticles": ["ccb-bancaria-empresa-cuidados", "execucao-bancaria-empresa-o-que-fazer"]
+}

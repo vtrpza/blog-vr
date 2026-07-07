@@ -1,5 +1,10 @@
 ---
+import { getCollection, render } from 'astro:content';
+import type { CollectionEntry } from 'astro:content';
+import ArticleSidebarCta from '../components/ArticleSidebarCta.astro';
+import ArticleToc from '../components/ArticleToc.astro';
 import Disclaimer from '../components/Disclaimer.astro';
+import HubLayout from '../components/HubLayout.astro';
 import LeadCtaButton from '../components/LeadCta.astro';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import {
@@ -7,6 +12,7 @@ import {
   CHECKLIST_ROUTES,
   CLUSTERS,
   getArticlesByCluster,
+  getChecklistByRoute,
   getClusterBySlug,
   type ArticleRoute,
   type ChecklistRoute,
@@ -17,19 +23,29 @@ import { articleSchema, breadcrumbSchema, collectionPageSchema } from '../lib/se
 
 type PageProps =
   | { kind: 'hub'; cluster: Cluster }
-  | { kind: 'article'; article: ArticleRoute; cluster: Cluster }
+  | { kind: 'article'; article: ArticleRoute; cluster: Cluster; mdxEntry: CollectionEntry<'articles'> | null }
   | { kind: 'checklist'; checklist: ChecklistRoute; cluster: Cluster };
 
-export function getStaticPaths() {
+export async function getStaticPaths() {
+  const publishedMdx = await getCollection('articles', (entry) => entry.data.status === 'published');
+  const draftMdx = await getCollection('articles', (entry) => entry.data.status !== 'published');
+
   const hubs = CLUSTERS.map((cluster) => ({
     params: { slug: cluster.hubRoute.slice(1, -1) },
     props: { kind: 'hub' as const, cluster },
   }));
 
-  const articles = ARTICLE_ROUTES.map((article) => ({
-    params: { slug: article.slug },
-    props: { kind: 'article' as const, article, cluster: getClusterBySlug(article.cluster)! },
-  }));
+  const articles = ARTICLE_ROUTES.map((article) => {
+    // Prefer published, fallback to draft MDX
+    const mdxEntry =
+      publishedMdx.find((entry) => entry.data.slug === article.slug) ??
+      draftMdx.find((entry) => entry.data.slug === article.slug) ??
+      null;
+    return {
+      params: { slug: article.slug },
+      props: { kind: 'article' as const, article, cluster: getClusterBySlug(article.cluster)!, mdxEntry },
+    };
+  });
 
   const checklists = CHECKLIST_ROUTES.map((checklist) => ({
     params: { slug: checklist.slug },
@@ -43,31 +59,35 @@ const props = Astro.props as PageProps;
 const cluster = props.cluster;
 const article = props.kind === 'article' ? props.article : null;
 const checklist = props.kind === 'checklist' ? props.checklist : null;
+const mdxEntry = props.kind === 'article' ? props.mdxEntry : null;
 const clusterArticles = getArticlesByCluster(cluster.slug);
+const hasPublishedContent = props.kind === 'article' ? (mdxEntry?.data.status === 'published') : true;
 
 const title = article
-  ? `${article.title} | Blog VR Advogados`
+  ? mdxEntry?.data.seoTitle || `${article.title} | Blog VR Advogados`
   : checklist
     ? `${checklist.title} | Blog VR Advogados`
     : `${cluster.title} | Blog VR Advogados`;
 const description = article
-  ? `Guia informativo sobre ${article.primaryKeyword}, com resposta curta, documentos, erros comuns e próximo passo seguro.`
+  ? mdxEntry?.data.metaDescription || `Guia informativo sobre ${article.primaryKeyword}, com resposta curta, documentos, erros comuns e próximo passo seguro.`
   : checklist
     ? `${checklist.title}: organize documentos antes de solicitar uma análise individual.`
     : cluster.summary;
 const canonicalPath = article ? article.route : checklist ? checklist.route : cluster.hubRoute;
+
 const cta: LeadCtaConfig = article
-  ? { ...cluster.primaryCta, type: article.ctaType, position: 'article_after_documents' }
+  ? { ...cluster.primaryCta, type: (mdxEntry?.data.ctaType as LeadCtaConfig['type']) || article.ctaType, position: 'article_after_documents' }
   : checklist
     ? checklist.cta
     : cluster.primaryCta;
+
 const jsonLd = article
   ? [
-      articleSchema(article, cluster),
+      articleSchema(article, cluster, mdxEntry?.data.publishedAt?.toISOString(), mdxEntry?.data.updatedAt?.toISOString(), mdxEntry?.data.heroImage),
       breadcrumbSchema([
         { name: 'Início', path: '/' },
         { name: cluster.shortTitle, path: cluster.hubRoute },
-        { name: article.title, path: article.route },
+        { name: mdxEntry?.data.title || article.title, path: article.route },
       ]),
     ]
   : [
@@ -77,6 +97,16 @@ const jsonLd = article
         { name: checklist ? checklist.title : cluster.shortTitle, path: canonicalPath },
       ]),
     ];
+
+const hubChecklist = !article && !checklist && cluster.checklistRoute ? getChecklistByRoute(cluster.checklistRoute) : null;
+let ArticleContent: any = null;
+if (mdxEntry) {
+  const rendered = await render(mdxEntry);
+  ArticleContent = rendered.Content;
+}
+
+const publishDate = mdxEntry?.data.publishedAt ? new Date(mdxEntry.data.publishedAt).toLocaleDateString('pt-BR', { day: '2-digit', month: 'short', year: 'numeric' }) : null;
+const updateDate = mdxEntry?.data.updatedAt ? new Date(mdxEntry.data.updatedAt).toLocaleDateString('pt-BR', { day: '2-digit', month: 'short', year: 'numeric' }) : null;
 ---
 
 <BaseLayout
@@ -86,108 +116,205 @@ const jsonLd = article
   pageType={article ? 'article' : checklist ? 'checklist' : 'hub'}
   cluster={cluster.slug}
   intent={article?.intent}
+  noindex={!hasPublishedContent}
   jsonLd={jsonLd}
 >
-  <section class="relative overflow-hidden border-b border-[rgba(201,168,108,0.10)] bg-navy-900/40">
-    <div class="mx-auto max-w-5xl px-5 py-20">
-      <a class="inline-flex items-center gap-1 text-sm font-medium text-stone-500 transition hover:text-cream-50" href={cluster.hubRoute}>
-        <svg class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
-          <path d="M15 19l-7-7 7-7" stroke-linecap="round" stroke-linejoin="round" />
-        </svg>
-        {cluster.shortTitle}
-      </a>
-      <p class="mt-8 text-xs font-semibold uppercase tracking-[0.2em] text-bronze-400">
-        {article ? 'Guia informativo' : checklist ? 'Checklist' : 'Hub de conteúdo'}
-      </p>
-      <h1 class="mt-4 max-w-4xl font-serif text-4xl font-semibold tracking-tight text-cream-50 md:text-6xl">
-        {article ? article.title : checklist ? checklist.title : cluster.title}
-      </h1>
-      <p class="mt-6 max-w-3xl text-lg leading-8 text-stone-400">{description}</p>
-      <div class="mt-8">
-        <LeadCtaButton cta={cta} cluster={cluster.slug} pageType={article ? 'article' : checklist ? 'checklist' : 'hub'} intent={article?.intent} articleSlug={article?.slug} />
-      </div>
-    </div>
-  </section>
-
+  <!-- ═══ ARTICLE HERO ═══ -->
   {article && (
-    <article class="prose-vr mx-auto grid max-w-5xl gap-8 px-5 py-14 lg:grid-cols-[minmax(0,1fr)_18rem]">
-      <div class="rounded-3xl border border-[rgba(201,168,108,0.10)] bg-navy-900/40 p-7 shadow-xl shadow-black/10 md:p-10">
-        <p class="rounded-2xl border border-bronze-500/15 bg-bronze-500/10 p-5 text-base font-medium leading-7 text-gold-300">
-          Resposta curta: este tema exige comparar contrato, fase da cobrança e documentos disponíveis. O caminho seguro é organizar evidências antes de qualquer decisão.
-        </p>
+    <section class="relative overflow-hidden border-b border-[rgba(201,168,108,0.10)] bg-gradient-to-b from-navy-900/60 to-navy-900/20">
+      <div class="mx-auto max-w-6xl px-5 py-14 md:py-20">
+        <div class="grid items-center gap-10 lg:grid-cols-[1.15fr_0.85fr] lg:gap-14">
+          <!-- texto -->
+          <div class="order-2 lg:order-1">
+            <a
+              class="inline-flex items-center gap-1.5 text-xs font-semibold uppercase tracking-[0.16em] text-stone-500 transition hover:text-bronze-400"
+              href={cluster.hubRoute}
+            >
+              <svg class="h-3.5 w-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M15 19l-7-7 7-7" stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+              {cluster.shortTitle}
+            </a>
+            <p class="mt-6 text-xs font-semibold uppercase tracking-[0.22em] text-bronze-400">Guia informativo</p>
+            <h1 class="mt-4 font-serif text-4xl font-semibold tracking-tight text-cream-50 md:text-5xl lg:text-6xl">
+              {mdxEntry?.data.title || article.title}
+            </h1>
+            {mdxEntry?.data.summary && (
+              <p class="mt-5 max-w-2xl text-lg leading-8 text-stone-300">{mdxEntry.data.summary}</p>
+            )}
+            <div class="mt-8 flex flex-wrap items-center gap-4">
+              <LeadCtaButton cta={cta} cluster={cluster.slug} pageType="article" intent={article.intent} articleSlug={article.slug} class="px-7 py-3.5 text-base" />
+              {mdxEntry?.data.ctaType === 'whatsapp' && (
+                <a href={cta.href} class="text-sm font-medium text-stone-500 transition hover:text-cream-50">ou preencha o diagnóstico inicial</a>
+              )}
+            </div>
+            <div class="mt-6 flex flex-wrap items-center gap-4 text-xs text-stone-500">
+              {mdxEntry?.data.reviewedBy && (
+                <span class="inline-flex items-center gap-1.5">
+                  <svg class="h-4 w-4 text-bronze-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" stroke-linecap="round" stroke-linejoin="round" />
+                  </svg>
+                  Revisado por {mdxEntry.data.reviewedBy}
+                </span>
+              )}
+              {publishDate && <span>· Publicado em {publishDate}</span>}
+              {updateDate && <span>· Atualizado em {updateDate}</span>}
+            </div>
+          </div>
 
-        <h2>Em resumo</h2>
-        <p>
-          Este guia explica o ponto central da busca por “{article.primaryKeyword}” e separa informação útil de promessa milagrosa. Direito bancário não se resolve com slogan; resolve com documento, prazo e estratégia.
-        </p>
-
-        <h2>Quando isso acontece</h2>
-        <p>
-          A situação costuma surgir quando há atraso, cobrança contestada, contrato pouco claro, pressão do banco ou dúvida sobre encargos. O detalhe muda por cluster, mas a regra operacional é a mesma: entender o contrato e preservar prova.
-        </p>
-
-        <h2>O que pode ser avaliado</h2>
-        <ul>
-          <li>Contrato, aditivos, taxa, CET, garantias e cláusulas de cobrança.</li>
-          <li>Histórico de pagamentos, renegociações e comunicações do banco.</li>
-          <li>Existência de processo, notificação, negativação ou bloqueio.</li>
-          <li>Risco de urgência e melhor canal: WhatsApp, checklist ou diagnóstico.</li>
-        </ul>
-
-        <h2>Documentos necessários</h2>
-        <ul>
-          <li>Contrato ou número do contrato.</li>
-          <li>Comprovantes, extratos e mensagens recebidas.</li>
-          <li>Dados da instituição financeira e valor aproximado da dívida.</li>
-          <li>Processo, mandado ou notificação, se existir.</li>
-        </ul>
-
-        <h2>Erros comuns</h2>
-        <ul>
-          <li>Confiar em promessa de resultado rápido.</li>
-          <li>Enviar dados sensíveis sem entender finalidade e consentimento.</li>
-          <li>Ignorar prazos, notificações ou movimentações processuais.</li>
-        </ul>
-
-        <h2>Próximo passo seguro</h2>
-        <p>
-          Organize os documentos acima e solicite uma análise inicial. O objetivo é entender cenário, urgência e possíveis caminhos — não gerar parecer automático no navegador.
-        </p>
-
-        <div class="my-8">
-          <LeadCtaButton cta={cta} cluster={cluster.slug} pageType="article" intent={article.intent} articleSlug={article.slug} />
+          <!-- imagem -->
+          <div class="order-1 lg:order-2">
+            {mdxEntry?.data.heroImage ? (
+              <div class="relative">
+                <div class="absolute -inset-1 rounded-[2rem] bg-gradient-to-br from-bronze-500/20 via-bronze-500/5 to-transparent blur-sm" aria-hidden="true" />
+                <img
+                  src={mdxEntry.data.heroImage}
+                  alt={mdxEntry.data.imageAlt || ''}
+                  class="relative w-full rounded-3xl object-cover aspect-[4/3] shadow-2xl shadow-black/25"
+                  loading="eager"
+                  width="800"
+                  height="600"
+                />
+              </div>
+            ) : (
+              <div class="relative aspect-[4/3] w-full rounded-3xl border border-[rgba(201,168,108,0.10)] bg-navy-900/60" aria-hidden="true" />
+            )}
+          </div>
         </div>
-
-        <h2>Perguntas frequentes</h2>
-        <details class="group rounded-2xl border border-[rgba(201,168,108,0.12)] bg-navy-950/50 p-4 transition open:border-bronze-500/25 open:bg-navy-950/70">
-          <summary class="flex cursor-pointer list-none items-center justify-between font-semibold text-cream-50">
-            Este conteúdo substitui consulta jurídica?
-            <svg class="h-4 w-4 text-stone-500 transition group-open:rotate-180" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
-              <path d="M19 9l-7 7-7-7" stroke-linecap="round" stroke-linejoin="round" />
-            </svg>
-          </summary>
-          <p class="mt-3 text-stone-400">Não. Ele organiza informação geral; cada caso depende de documentos, valores e fase da cobrança.</p>
-        </details>
-
-        <h2>Links internos úteis</h2>
-        <ul>
-          {clusterArticles.filter((related) => related.slug !== article.slug).slice(0, 4).map((related) => (
-            <li><a class="font-medium text-bronze-400 transition hover:text-gold-300" href={related.route}>{related.title}</a></li>
-          ))}
-        </ul>
       </div>
-      <aside class="space-y-5 lg:sticky lg:top-28 lg:self-start">
-        <Disclaimer />
-        <div class="rounded-3xl border border-[rgba(201,168,108,0.10)] bg-navy-900/40 p-6">
-          <h2 class="font-serif text-lg font-medium text-cream-50">Guias do hub</h2>
-          <ul class="mt-4 space-y-3 text-sm">
-            {clusterArticles.slice(0, 6).map((item) => <li><a class="text-stone-400 transition hover:text-cream-50" href={item.route}>{item.title}</a></li>)}
-          </ul>
-        </div>
-      </aside>
-    </article>
+    </section>
   )}
 
+  <!-- ═══ ARTICLE BODY ═══ -->
+  {article && (
+    <div class="mx-auto max-w-6xl px-5 py-12 md:py-16">
+      <div class="grid gap-10 lg:grid-cols-[minmax(0,1fr)_20rem]">
+        <article class="js-article-body prose-vr">
+          <!-- card Resposta curta -->
+          {mdxEntry?.data.summary && (
+            <div class="not-prose mb-10 rounded-2xl border border-[rgba(201,168,108,0.15)] bg-navy-900/50 p-6 md:p-8">
+              <p class="text-xs font-semibold uppercase tracking-[0.18em] text-bronze-400">Em uma frase</p>
+              <p class="mt-3 text-xl leading-8 text-cream-50 md:text-2xl">{mdxEntry.data.summary}</p>
+            </div>
+          )}
+
+          <div class="js-article-content rounded-3xl border border-[rgba(201,168,108,0.10)] bg-navy-900/40 p-7 shadow-xl shadow-black/10 md:p-10" data-cta-href={cta.href} data-cta-label={cta.label} data-cta-type={cta.type}>
+            {ArticleContent ? (
+              <ArticleContent />
+            ) : (
+              <>
+                <p class="rounded-2xl border border-bronze-500/15 bg-bronze-500/10 p-5 text-base font-medium leading-7 text-gold-300">
+                  Este artigo ainda não foi publicado. Volte em breve ou solicite análise inicial para esclarecer seu caso.
+                </p>
+                <h2>Em resumo</h2>
+                <p>
+                  Este guia explica o ponto central da busca por "{article.primaryKeyword}" e separa informação útil de promessa milagrosa. Direito bancário não se resolve com slogan; resolve com documento, prazo e estratégia.
+                </p>
+                <h2>Quando isso acontece</h2>
+                <p>
+                  A situação costuma surgir quando há atraso, cobrança contestada, contrato pouco claro, pressão do banco ou dúvida sobre encargos.
+                </p>
+                <h2>O que pode ser avaliado</h2>
+                <ul>
+                  <li>Contrato, aditivos, taxa, CET, garantias e cláusulas de cobrança.</li>
+                  <li>Histórico de pagamentos, renegociações e comunicações do banco.</li>
+                  <li>Existência de processo, notificação, negativação ou bloqueio.</li>
+                </ul>
+                <h2>Documentos necessários</h2>
+                <ul>
+                  <li>Contrato ou número do contrato.</li>
+                  <li>Comprovantes, extratos e mensagens recebidas.</li>
+                  <li>Dados da instituição financeira e valor aproximado da dívida.</li>
+                </ul>
+                <h2>Erros comuns</h2>
+                <ul>
+                  <li>Confiar em promessa de resultado rápido.</li>
+                  <li>Enviar dados sensíveis sem entender finalidade e consentimento.</li>
+                  <li>Ignorar prazos, notificações ou movimentações processuais.</li>
+                </ul>
+              </>
+            )}
+
+            <!-- CTA contextual no meio -->
+            <div class="not-prose my-10 rounded-2xl border border-[rgba(201,168,108,0.15)] bg-navy-950/60 p-6 text-center md:p-8">
+              <p class="text-sm font-semibold uppercase tracking-[0.16em] text-bronze-400">Próximo passo seguro</p>
+              <p class="mx-auto mt-2 max-w-xl text-base leading-7 text-stone-400">
+                Cada caso depende de documentos, prazo e fase da cobrança. Não confie sua situação em templates genéricos.
+              </p>
+              <div class="mt-5">
+                <LeadCtaButton cta={cta} cluster={cluster.slug} pageType="article" intent={article.intent} articleSlug={article.slug} class="px-7 py-3.5 text-base" />
+              </div>
+            </div>
+
+            <!-- FAQ a partir da pergunta padrão + links úteis -->
+            <div class="js-skip-toc">
+              <h2>Perguntas frequentes</h2>
+              <div class="space-y-3">
+                <details class="group rounded-2xl border border-[rgba(201,168,108,0.12)] bg-navy-950/50 p-4 transition open:border-bronze-500/25 open:bg-navy-950/70">
+                  <summary class="flex cursor-pointer list-none items-center justify-between font-semibold text-cream-50">
+                    Este conteúdo substitui consulta jurídica?
+                    <svg class="h-4 w-4 text-stone-500 transition group-open:rotate-180" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
+                      <path d="M19 9l-7 7-7-7" stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
+                  </summary>
+                  <p class="mt-3 text-stone-400">Não. Ele organiza informação geral; cada caso depende de documentos, valores e fase da cobrança.</p>
+                </details>
+              </div>
+
+              <h2>Leituras relacionadas</h2>
+              <ul class="not-prose grid gap-4 sm:grid-cols-2">
+                {clusterArticles.filter((related) => related.slug !== article.slug).slice(0, 4).map((related) => (
+                  <li>
+                    <a class="group block rounded-2xl border border-[rgba(201,168,108,0.10)] bg-navy-950/40 p-4 transition hover:border-bronze-500/25 hover:bg-navy-950/70" href={related.route}>
+                      <span class="text-xs font-semibold uppercase tracking-[0.14em] text-stone-500">{related.intent.replace('-', ' ')}</span>
+                      <span class="mt-1 block font-medium text-bronze-400 transition group-hover:text-gold-300">{related.title}</span>
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </article>
+
+        <!-- SIDEBAR -->
+        <aside class="space-y-5 lg:sticky lg:top-24 lg:self-start">
+          <ArticleToc />
+          <ArticleSidebarCta cta={cta} cluster={cluster.slug} intent={article.intent} articleSlug={article.slug} />
+
+          {mdxEntry?.data.requiredDocuments && mdxEntry.data.requiredDocuments.length > 0 && (
+            <div class="rounded-2xl border border-[rgba(201,168,108,0.10)] bg-navy-900/40 p-5">
+              <h2 class="font-serif text-lg font-medium text-cream-50">Documentos úteis</h2>
+              <ul class="mt-4 space-y-3 text-sm text-stone-400">
+                {mdxEntry.data.requiredDocuments.map((doc) => (
+                  <li class="flex items-start gap-2">
+                    <svg class="mt-0.5 h-4 w-4 flex-shrink-0 text-bronze-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
+                      <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
+                    {doc}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
+
+          <Disclaimer />
+
+          <div class="rounded-2xl border border-[rgba(201,168,108,0.10)] bg-navy-900/40 p-5">
+            <h2 class="font-serif text-lg font-medium text-cream-50">Guias do hub</h2>
+            <ul class="mt-4 space-y-3 text-sm">
+              {clusterArticles.slice(0, 6).map((item) => (
+                <li>
+                  <a class="text-stone-400 transition hover:text-cream-50" href={item.route}>{item.title}</a>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </aside>
+      </div>
+    </div>
+  )}
+
+  <!-- ═══ CHECKLIST ═══ -->
   {checklist && (
     <section class="mx-auto max-w-5xl px-5 py-14">
       <div class="rounded-3xl border border-[rgba(201,168,108,0.10)] bg-navy-900/40 p-7 shadow-xl shadow-black/10 md:p-10">
@@ -208,29 +335,80 @@ const jsonLd = article
     </section>
   )}
 
+  <!-- ═══ HUB ═══ -->
   {!article && !checklist && (
-    <section class="mx-auto max-w-6xl px-5 py-14">
-      <div class="grid gap-6 lg:grid-cols-[0.9fr_1.1fr]">
-        <div class="rounded-3xl border border-[rgba(201,168,108,0.10)] bg-navy-900/40 p-7 shadow-xl shadow-black/10">
-          <h2 class="font-serif text-2xl font-semibold tracking-tight text-cream-50">Comece por aqui</h2>
-          <p class="mt-4 leading-8 text-stone-400">Leia primeiro os guias de maior urgência, organize documentos e use o CTA adequado para o seu problema.</p>
-          <ul class="mt-6 space-y-3 text-sm text-stone-300">
-            <li class="flex items-start gap-2"><span class="text-bronze-400">✓</span> Resposta curta antes de enrolação.</li>
-            <li class="flex items-start gap-2"><span class="text-bronze-400">✓</span> Checklist de documentos.</li>
-            <li class="flex items-start gap-2"><span class="text-bronze-400">✓</span> CTA contextual por intenção.</li>
-            <li class="flex items-start gap-2"><span class="text-bronze-400">✓</span> Schema BreadcrumbList no hub.</li>
-          </ul>
-        </div>
-        <div class="grid gap-4">
-          {clusterArticles.map((item) => (
-            <article class="group rounded-3xl border border-[rgba(201,168,108,0.10)] bg-navy-900/40 p-5 shadow-sm transition hover:border-bronze-500/20 hover:bg-navy-900/60">
-              <p class="text-xs font-semibold uppercase tracking-[0.18em] text-stone-500">{item.intent}</p>
-              <h3 class="mt-2 font-serif text-xl font-medium text-cream-50"><a class="transition group-hover:text-gold-300" href={item.route}>{item.title}</a></h3>
-              <p class="mt-2 text-sm text-stone-500">Palavra principal: {item.primaryKeyword}</p>
-            </article>
-          ))}
-        </div>
-      </div>
-    </section>
+    <HubLayout cluster={cluster} articles={clusterArticles} checklist={hubChecklist} />
   )}
 </BaseLayout>
+
+<script>
+  (() => {
+    // Adiciona IDs aos h2 do artigo para TOC funcionar
+    const body = document.querySelector('.js-article-content');
+    if (!body) return;
+    const headings = body.querySelectorAll('h2');
+    headings.forEach((h, i) => {
+      if (!h.id) h.id = `sec-${i + 1}`;
+    });
+
+    const content = document.querySelector('.js-article-body') as HTMLElement | null;
+    if (content) {
+      // Remove a seção "Fontes oficiais" se o template já renderizou a automática
+      const heading = Array.from(content.querySelectorAll('h2')).find((h) =>
+        /fontes oficiais/i.test((h as HTMLElement).textContent || '')
+      ) as HTMLElement | undefined;
+      if (heading) {
+        let sibling = heading.nextElementSibling as HTMLElement | null;
+        heading.remove();
+        while (sibling && sibling.tagName !== 'H2') {
+          const next = sibling.nextElementSibling as HTMLElement | null;
+          sibling.remove();
+          sibling = next;
+        }
+      }
+    }
+
+    // Re-adquire h2 após remoção, para TOC refletir com ids únicos
+    const finalBody = document.querySelector('.js-article-content');
+    const finalHeadings = finalBody ? [...finalBody.querySelectorAll('h2')] : [];
+    finalHeadings.forEach((h, i) => {
+      h.id = `sec-${i + 1}`;
+    });
+
+    // Insere CTA após a seção "Quando procurar orientação"
+    const whenHeading = finalHeadings.find((h) =>
+      /quando procurar|quando buscar|próximo passo/i.test(h.textContent || '')
+    );
+    if (whenHeading) {
+      let sibling = whenHeading.nextElementSibling as HTMLElement | null;
+      let endOfSection: HTMLElement | null = null;
+      while (sibling && sibling.tagName !== 'H2') {
+        endOfSection = sibling;
+        sibling = sibling.nextElementSibling as HTMLElement | null;
+      }
+      if (endOfSection) {
+        const ctaHref = content?.dataset.ctaHref || '/diagnostico-inicial/';
+        const ctaLabel = content?.dataset.ctaLabel || 'Solicitar análise individual';
+        const ctaType = content?.dataset.ctaType || 'diagnostic';
+        const external = ctaHref.startsWith('http');
+        const target = external ? 'target="_blank" rel="noopener noreferrer"' : '';
+        const icon = ctaType === 'whatsapp'
+          ? '<svg class="h-4 w-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>'
+          : '<svg class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7V17" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+        const box = document.createElement('div');
+        box.className = 'not-prose my-10 rounded-2xl border border-bronze-500/20 bg-gradient-to-br from-bronze-500/10 to-navy-950/60 p-6 md:p-8';
+        box.innerHTML = `
+          <p class="text-sm font-semibold uppercase tracking-[0.18em] text-bronze-400">Não deixe o banco definir seu próximo passo</p>
+          <p class="mt-2 text-lg text-cream-50">A situação pode piorar se você ficar parado. Quanto antes um advogado analisar seus documentos, maiores as chances de reverter ou reduzir o problema.</p>
+          <div class="mt-5">
+            <a href="${ctaHref}" ${target} class="group inline-flex items-center gap-2 rounded-full bg-bronze-500 px-6 py-3 text-sm font-semibold text-navy-950 shadow-lg shadow-bronze-500/15 transition hover:bg-gold-300" data-track-cta data-cta-type="${ctaType}" data-cta-position="article_after_when_section" data-cluster="${document.body.dataset.cluster}" data-page-type="article" data-intent="${document.body.dataset.intent}" data-article-slug="${document.body.dataset.articleSlug}">
+              ${ctaLabel}
+              ${icon}
+            </a>
+          </div>
+        `;
+        endOfSection.insertAdjacentElement('afterend', box);
+      }
+    }
+  })();
+</script>

@@ -1,0 +1,32 @@
+---
+import { getArticlesByCluster } from '../lib/taxonomy';
+
+interface Props {
+  currentSlug: string;
+  clusterSlug: string;
+  limit?: number;
+}
+
+const { currentSlug, clusterSlug, limit = 3 } = Astro.props;
+const articles = getArticlesByCluster(clusterSlug as any)
+  .filter((a) => a.slug !== currentSlug)
+  .slice(0, limit);
+---
+
+{
+  articles.length > 0 && (
+    <div class="my-10 rounded-3xl border border-[rgba(201,168,108,0.10)] bg-navy-900/40 p-6">
+      <h2 class="font-serif text-xl font-medium text-cream-50">Leia também</h2>
+      <ul class="mt-4 space-y-3 text-sm">
+        {articles.map((item) => (
+          <li>
+            <a class="font-medium text-bronze-400 transition hover:text-gold-300" href={item.route}>
+              {item.title}
+            </a>
+            <p class="mt-1 text-xs text-stone-500">{item.intent.replace('-', ' ')}</p>
+          </li>
+        ))}
+      </ul>
+    </div>
+  )
+}

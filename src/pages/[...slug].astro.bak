@@ -1,0 +1,282 @@
+---
+import { getCollection, render } from 'astro:content';
+import type { CollectionEntry } from 'astro:content';
+import Disclaimer from '../components/Disclaimer.astro';
+import LeadCtaButton from '../components/LeadCta.astro';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import {
+  ARTICLE_ROUTES,
+  CHECKLIST_ROUTES,
+  CLUSTERS,
+  getArticlesByCluster,
+  getClusterBySlug,
+  type ArticleRoute,
+  type ChecklistRoute,
+  type Cluster,
+  type LeadCta as LeadCtaConfig,
+} from '../lib/taxonomy';
+import { articleSchema, breadcrumbSchema, collectionPageSchema } from '../lib/seo';
+
+type PageProps =
+  | { kind: 'hub'; cluster: Cluster }
+  | { kind: 'article'; article: ArticleRoute; cluster: Cluster; mdxEntry: CollectionEntry<'articles'> | null }
+  | { kind: 'checklist'; checklist: ChecklistRoute; cluster: Cluster };
+
+export async function getStaticPaths() {
+  const publishedMdx = await getCollection('articles', (entry) => entry.data.status === 'published');
+  const draftMdx = await getCollection('articles', (entry) => entry.data.status !== 'published');
+
+  const hubs = CLUSTERS.map((cluster) => ({
+    params: { slug: cluster.hubRoute.slice(1, -1) },
+    props: { kind: 'hub' as const, cluster },
+  }));
+
+  const articles = ARTICLE_ROUTES.map((article) => {
+    // Prefer published, fallback to draft MDX
+    const mdxEntry =
+      publishedMdx.find((entry) => entry.data.slug === article.slug) ??
+      draftMdx.find((entry) => entry.data.slug === article.slug) ??
+      null;
+    return {
+      params: { slug: article.slug },
+      props: { kind: 'article' as const, article, cluster: getClusterBySlug(article.cluster)!, mdxEntry },
+    };
+  });
+
+  const checklists = CHECKLIST_ROUTES.map((checklist) => ({
+    params: { slug: checklist.slug },
+    props: { kind: 'checklist' as const, checklist, cluster: getClusterBySlug(checklist.cluster)! },
+  }));
+
+  return [...hubs, ...articles, ...checklists];
+}
+
+const props = Astro.props as PageProps;
+const cluster = props.cluster;
+const article = props.kind === 'article' ? props.article : null;
+const checklist = props.kind === 'checklist' ? props.checklist : null;
+const mdxEntry = props.kind === 'article' ? props.mdxEntry : null;
+const clusterArticles = getArticlesByCluster(cluster.slug);
+const hasPublishedContent = props.kind === 'article' ? (mdxEntry?.data.status === 'published') : true;
+
+const title = article
+  ? mdxEntry?.data.seoTitle || `${article.title} | Blog VR Advogados`
+  : checklist
+    ? `${checklist.title} | Blog VR Advogados`
+    : `${cluster.title} | Blog VR Advogados`;
+const description = article
+  ? mdxEntry?.data.metaDescription || `Guia informativo sobre ${article.primaryKeyword}, com resposta curta, documentos, erros comuns e próximo passo seguro.`
+  : checklist
+    ? `${checklist.title}: organize documentos antes de solicitar uma análise individual.`
+    : cluster.summary;
+const canonicalPath = article ? article.route : checklist ? checklist.route : cluster.hubRoute;
+
+const cta: LeadCtaConfig = article
+  ? { ...cluster.primaryCta, type: (mdxEntry?.data.ctaType as LeadCtaConfig['type']) || article.ctaType, position: 'article_after_documents' }
+  : checklist
+    ? checklist.cta
+    : cluster.primaryCta;
+
+const jsonLd = article
+  ? [
+      articleSchema(article, cluster, mdxEntry?.data.publishedAt?.toISOString(), mdxEntry?.data.updatedAt?.toISOString(), mdxEntry?.data.heroImage),
+      breadcrumbSchema([
+        { name: 'Início', path: '/' },
+        { name: cluster.shortTitle, path: cluster.hubRoute },
+        { name: mdxEntry?.data.title || article.title, path: article.route },
+      ]),
+    ]
+  : [
+      collectionPageSchema(cluster),
+      breadcrumbSchema([
+        { name: 'Início', path: '/' },
+        { name: checklist ? checklist.title : cluster.shortTitle, path: canonicalPath },
+      ]),
+    ];
+
+let ArticleContent: any = null;
+if (mdxEntry) {
+  const rendered = await render(mdxEntry);
+  ArticleContent = rendered.Content;
+}
+---
+
+<BaseLayout
+  title={title}
+  description={description}
+  canonicalPath={canonicalPath}
+  pageType={article ? 'article' : checklist ? 'checklist' : 'hub'}
+  cluster={cluster.slug}
+  intent={article?.intent}
+  noindex={!hasPublishedContent}
+  jsonLd={jsonLd}
+>
+  <!-- ═══ HERO / HEADER ═══ -->
+  <section class="relative overflow-hidden border-b border-[rgba(201,168,108,0.10)] bg-navy-900/40">
+    <div class="mx-auto max-w-5xl px-5 py-20">
+      <a class="inline-flex items-center gap-1 text-sm font-medium text-stone-500 transition hover:text-cream-50" href={cluster.hubRoute}>
+        <svg class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M15 19l-7-7 7-7" stroke-linecap="round" stroke-linejoin="round" />
+        </svg>
+        {cluster.shortTitle}
+      </a>
+      {article && mdxEntry?.data.heroImage && (
+        <img
+          src={mdxEntry.data.heroImage}
+          alt={mdxEntry.data.imageAlt || ''}
+          class="mt-8 w-full rounded-2xl object-cover aspect-[2/1]"
+          loading="eager"
+        />
+      )}
+      <p class="mt-8 text-xs font-semibold uppercase tracking-[0.2em] text-bronze-400">
+        {article ? 'Guia informativo' : checklist ? 'Checklist' : 'Hub de conteúdo'}
+      </p>
+      <h1 class="mt-4 max-w-4xl font-serif text-4xl font-semibold tracking-tight text-cream-50 md:text-6xl">
+        {article ? (mdxEntry?.data.title || article.title) : checklist ? checklist.title : cluster.title}
+      </h1>
+      {article && mdxEntry?.data.summary && (
+        <p class="mt-4 max-w-3xl text-base leading-7 text-stone-400 italic">{mdxEntry.data.summary}</p>
+      )}
+      <p class="mt-6 max-w-3xl text-lg leading-8 text-stone-400">{description}</p>
+      <div class="mt-8">
+        <LeadCtaButton cta={cta} cluster={cluster.slug} pageType={article ? 'article' : checklist ? 'checklist' : 'hub'} intent={article?.intent} articleSlug={article?.slug} />
+      </div>
+      {article && mdxEntry?.data.reviewedBy && (
+        <p class="mt-4 text-xs text-stone-500">Revisado por {mdxEntry.data.reviewedBy}</p>
+      )}
+    </div>
+  </section>
+
+  <!-- ═══ ARTICLE (MDX real ou placeholder) ═══ -->
+  {article && (
+    <article class="prose-vr mx-auto grid max-w-5xl gap-8 px-5 py-14 lg:grid-cols-[minmax(0,1fr)_18rem]">
+      <div class="rounded-3xl border border-[rgba(201,168,108,0.10)] bg-navy-900/40 p-7 shadow-xl shadow-black/10 md:p-10">
+        {ArticleContent ? (
+          <ArticleContent />
+        ) : (
+          <>
+            <p class="rounded-2xl border border-bronze-500/15 bg-bronze-500/10 p-5 text-base font-medium leading-7 text-gold-300">
+              Este artigo ainda não foi publicado. Volte em breve ou solicite análise inicial para esclarecer seu caso.
+            </p>
+            <h2>Em resumo</h2>
+            <p>
+              Este guia explica o ponto central da busca por "{article.primaryKeyword}" e separa informação útil de promessa milagrosa. Direito bancário não se resolve com slogan; resolve com documento, prazo e estratégia.
+            </p>
+            <h2>Quando isso acontece</h2>
+            <p>
+              A situação costuma surgir quando há atraso, cobrança contestada, contrato pouco claro, pressão do banco ou dúvida sobre encargos.
+            </p>
+            <h2>O que pode ser avaliado</h2>
+            <ul>
+              <li>Contrato, aditivos, taxa, CET, garantias e cláusulas de cobrança.</li>
+              <li>Histórico de pagamentos, renegociações e comunicações do banco.</li>
+              <li>Existência de processo, notificação, negativação ou bloqueio.</li>
+            </ul>
+            <h2>Documentos necessários</h2>
+            <ul>
+              <li>Contrato ou número do contrato.</li>
+              <li>Comprovantes, extratos e mensagens recebidas.</li>
+              <li>Dados da instituição financeira e valor aproximado da dívida.</li>
+            </ul>
+            <h2>Erros comuns</h2>
+            <ul>
+              <li>Confiar em promessa de resultado rápido.</li>
+              <li>Enviar dados sensíveis sem entender finalidade e consentimento.</li>
+              <li>Ignorar prazos, notificações ou movimentações processuais.</li>
+            </ul>
+          </>
+        )}
+
+        <div class="my-8">
+          <LeadCtaButton cta={cta} cluster={cluster.slug} pageType="article" intent={article.intent} articleSlug={article.slug} />
+        </div>
+
+        {ArticleContent && mdxEntry?.data.sources && mdxEntry.data.sources.length > 0 && (
+          <>
+            <h2>Fontes oficiais</h2>
+            <ul>
+              {mdxEntry.data.sources.map((src) => (
+                <li><a href={src.url.toString()} target="_blank" rel="noopener noreferrer">{src.label}</a></li>
+              ))}
+            </ul>
+          </>
+        )}
+
+        <h2>Perguntas frequentes</h2>
+        <details class="group rounded-2xl border border-[rgba(201,168,108,0.12)] bg-navy-950/50 p-4 transition open:border-bronze-500/25 open:bg-navy-950/70">
+          <summary class="flex cursor-pointer list-none items-center justify-between font-semibold text-cream-50">
+            Este conteúdo substitui consulta jurídica?
+            <svg class="h-4 w-4 text-stone-500 transition group-open:rotate-180" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M19 9l-7 7-7-7" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+          </summary>
+          <p class="mt-3 text-stone-400">Não. Ele organiza informação geral; cada caso depende de documentos, valores e fase da cobrança.</p>
+        </details>
+
+        <h2>Links internos úteis</h2>
+        <ul>
+          {clusterArticles.filter((related) => related.slug !== article.slug).slice(0, 4).map((related) => (
+            <li><a class="font-medium text-bronze-400 transition hover:text-gold-300" href={related.route}>{related.title}</a></li>
+          ))}
+        </ul>
+      </div>
+      <aside class="space-y-5 lg:sticky lg:top-28 lg:self-start">
+        <Disclaimer />
+        <div class="rounded-3xl border border-[rgba(201,168,108,0.10)] bg-navy-900/40 p-6">
+          <h2 class="font-serif text-lg font-medium text-cream-50">Guias do hub</h2>
+          <ul class="mt-4 space-y-3 text-sm">
+            {clusterArticles.slice(0, 6).map((item) => <li><a class="text-stone-400 transition hover:text-cream-50" href={item.route}>{item.title}</a></li>)}
+          </ul>
+        </div>
+      </aside>
+    </article>
+  )}
+
+  <!-- ═══ CHECKLIST ═══ -->
+  {checklist && (
+    <section class="mx-auto max-w-5xl px-5 py-14">
+      <div class="rounded-3xl border border-[rgba(201,168,108,0.10)] bg-navy-900/40 p-7 shadow-xl shadow-black/10 md:p-10">
+        <h2 class="font-serif text-3xl font-semibold tracking-tight text-cream-50">Marque o que você já tem</h2>
+        <p class="mt-3 text-stone-400">Funciona sem login. O envio para análise só deve acontecer com consentimento LGPD.</p>
+        <form class="mt-8 space-y-4" data-checklist-form>
+          {checklist.items.map((item) => (
+            <label class="group flex gap-3 rounded-2xl border border-[rgba(201,168,108,0.10)] bg-navy-950/40 p-4 text-stone-300 transition hover:border-bronze-500/25 hover:bg-navy-950/60 has-[:checked]:border-bronze-500/30 has-[:checked]:bg-bronze-500/10">
+              <input class="mt-1 h-5 w-5 rounded border-stone-600 bg-navy-900 text-bronze-500" type="checkbox" name="item" value={item} />
+              <span>{item}</span>
+            </label>
+          ))}
+          <div class="pt-4">
+            <LeadCtaButton cta={checklist.cta} cluster={cluster.slug} pageType="checklist" />
+          </div>
+        </form>
+      </div>
+    </section>
+  )}
+
+  <!-- ═══ HUB (listar artigos) ═══ -->
+  {!article && !checklist && (
+    <section class="mx-auto max-w-6xl px-5 py-14">
+      <div class="grid gap-6 lg:grid-cols-[0.9fr_1.1fr]">
+        <div class="rounded-3xl border border-[rgba(201,168,108,0.10)] bg-navy-900/40 p-7 shadow-xl shadow-black/10">
+          <h2 class="font-serif text-2xl font-semibold tracking-tight text-cream-50">Comece por aqui</h2>
+          <p class="mt-4 leading-8 text-stone-400">Leia primeiro os guias de maior urgência, organize documentos e use o CTA adequado para o seu problema.</p>
+          <ul class="mt-6 space-y-3 text-sm text-stone-300">
+            <li class="flex items-start gap-2"><span class="text-bronze-400">✓</span> Resposta curta antes de enrolação.</li>
+            <li class="flex items-start gap-2"><span class="text-bronze-400">✓</span> Checklist de documentos.</li>
+            <li class="flex items-start gap-2"><span class="text-bronze-400">✓</span> CTA contextual por intenção.</li>
+            <li class="flex items-start gap-2"><span class="text-bronze-400">✓</span> Schema BreadcrumbList no hub.</li>
+          </ul>
+        </div>
+        <div class="grid gap-4">
+          {clusterArticles.map((item) => (
+            <article class="group rounded-3xl border border-[rgba(201,168,108,0.10)] bg-navy-900/40 p-5 shadow-sm transition hover:border-bronze-500/20 hover:bg-navy-900/60">
+              <p class="text-xs font-semibold uppercase tracking-[0.18em] text-stone-500">{item.intent}</p>
+              <h3 class="mt-2 font-serif text-xl font-medium text-cream-50"><a class="transition group-hover:text-gold-300" href={item.route}>{item.title}</a></h3>
+              <p class="mt-2 text-sm text-stone-500">Palavra principal: {item.primaryKeyword}</p>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+</BaseLayout>

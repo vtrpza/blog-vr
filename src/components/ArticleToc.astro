@@ -1,0 +1,56 @@
+---
+interface Props {
+  selector?: string;
+  minHeadings?: number;
+}
+
+const { selector = '.js-article-body', minHeadings = 3 } = Astro.props;
+---
+
+<nav class="js-toc rounded-2xl border border-[rgba(201,168,108,0.10)] bg-navy-900/40 p-5" aria-label="Sumário do artigo" data-selector={selector} data-min={minHeadings}>
+  <h2 class="font-serif text-lg font-medium text-cream-50">Neste artigo</h2>
+  <ol class="js-toc-list mt-4 space-y-2 text-sm">
+    <!-- populado via JS -->
+  </ol>
+</nav>
+
+<script>
+  (() => {
+    const toc = document.querySelector('.js-toc') as HTMLElement | null;
+    if (!toc) return;
+    const selector = toc.dataset.selector || '.js-article-body';
+    const min = Number(toc.dataset.min || '3');
+    const body = document.querySelector(selector);
+    const list = toc.querySelector('.js-toc-list');
+    if (!body || !list) return;
+
+    const headings = [...body.querySelectorAll('h2')]
+      .filter((h) => !h.closest('.js-skip-toc') && h.id);
+    if (headings.length < min) {
+      toc.classList.add('hidden');
+      return;
+    }
+
+    list.innerHTML = headings
+      .map((h) => `<li><a class="block text-stone-400 transition hover:text-cream-50" href="#${h.id}">${h.textContent}</a></li>`)
+      .join('');
+
+    // Scroll spy leve
+    const links = [...list.querySelectorAll('a')];
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          const id = entry.target.id;
+          const link = links.find((l) => l.getAttribute('href') === `#${id}`);
+          if (!link) return;
+          if (entry.isIntersecting) {
+            links.forEach((l) => l.classList.remove('text-bronze-400', 'font-medium'));
+            link.classList.add('text-bronze-400', 'font-medium');
+          }
+        });
+      },
+      { rootMargin: '-20% 0px -55% 0px', threshold: 0 }
+    );
+    headings.forEach((h) => observer.observe(h));
+  })();
+</script>

@@ -1,0 +1,7 @@
+{
+  "term": "Taxa média BACEN",
+  "slug": "taxa-media-bacen",
+  "definition": "Taxa de juros média praticada pelas instituições financeiras em cada modalidade de crédito, divulgada mensalmente pelo Banco Central. Serve como referência para identificar juros abusivos.",
+  "cluster": "juros-abusivos",
+  "relatedArticles": ["taxa-media-bacen-como-comparar", "juros-abusivos-financiamento-veiculo"]
+}

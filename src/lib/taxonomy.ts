@@ -6,7 +6,7 @@ export type ClusterSlug =
   | 'cobrancas-fraudes';
 
 export type Intent = 'informational' | 'urgent' | 'commercial-investigation' | 'comparison' | 'checklist';
-export type CtaType = 'whatsapp' | 'diagnostic' | 'checklist' | 'form';
+export type CtaType = 'whatsapp' | 'diagnostic' | 'checklist';
 
 export interface LeadCta {
   type: CtaType;
@@ -21,7 +21,21 @@ export interface Cluster {
   title: string;
   shortTitle: string;
   summary: string;
+  /** Tom de voz do hub: frase curta de impacto acima do H1 */
+  tagline: string;
+  /** Headline principal do hub (pode conter marcadores para text-gradient) */
+  headline: string;
+  /** Subhead de apoio, 1-2 linhas com a dor */
+  subhead: string;
+  /** 3 bullets do que o leitor vai encontrar neste hub */
+  valueProp: readonly string[];
+  /** 3-4 dores específicas do cluster */
+  painPoints: readonly string[];
+  /** Estatísticas/provas sociais usadas no hub */
+  stats: readonly { value: string; label: string }[];
   primaryCta: LeadCta;
+  /** CTA secundário opcional (ex: WhatsApp para clusters urgentes) */
+  secondaryCta?: LeadCta;
   checklistRoute?: `/${string}/`;
 }
 
@@ -35,6 +49,59 @@ export interface ArticleRoute {
   ctaType: CtaType;
 }
 
+// ── Constantes compartilhadas ──────────────────────────────────────────
+/** Número placeholder do WhatsApp (substituir pelo número real do escritório) */
+export const WHATSAPP_NUMBER = '5500000000000';
+export const WHATSAPP_URL = `https://wa.me/${WHATSAPP_NUMBER}`;
+
+export function whatsappUrl(text: string): string {
+  return `${WHATSAPP_URL}?text=${encodeURIComponent(text)}`;
+}
+
+export const SOCIAL_LINKS = {
+  facebook: 'https://www.facebook.com/people/VR-Advogados/61552954863571/',
+  instagram: 'https://www.instagram.com/vradvogados.com.br/',
+  linkedin: 'https://www.linkedin.com/company/vr-advogados/',
+  youtube: 'https://www.youtube.com/channel/UCXd8xI1yMraXq_kjRATWh-A',
+} as const;
+
+export interface Office {
+  city: string;
+  state: string;
+  address: string;
+}
+
+export const OFFICES = [
+  {
+    city: 'Rio de Janeiro',
+    state: 'RJ',
+    address: 'Av. das Américas, 3500 - Barra da Tijuca, Rio de Janeiro - RJ, 22640-102',
+  },
+  {
+    city: 'Colatina',
+    state: 'ES',
+    address: 'Rua Michel Dalla, 66 - Centro, Colatina - ES, 29700-100',
+  },
+  {
+    city: 'São Paulo',
+    state: 'SP',
+    address: 'Av. Paulista, 1842 - T Norte - 17° andar - Bela Vista, São Paulo – SP, 01310-945',
+  },
+  {
+    city: 'Vitória',
+    state: 'ES',
+    address: 'R. Ten. Mário Francisco Brito, 854-998 - Enseada do Suá, Vitória - ES, 29050-555 - sala 1704 - 17 andar',
+  },
+] as const satisfies readonly Office[];
+
+// ── Estratégia de CTAs ─────────────────────────────────────────────────
+// WhatsApp (direto): URGÊNCIA — já está com oficial, veículo apreendido,
+//   bloqueio judicial. Precisa falar AGORA com um humano.
+// Form /diagnostico-inicial/ (diagnostic): TODO O RESTO — precisa coletar
+//   dados antes do contato (investigação, informational, comparação, PJ).
+// Checklist: leva à página de checklist, que tem seu próprio CTA ao final.
+// ───────────────────────────────────────────────────────────────────────
+
 export const CLUSTERS = [
   {
     slug: 'busca-e-apreensao',
@@ -42,12 +109,38 @@ export const CLUSTERS = [
     title: 'Busca e apreensão de veículo',
     shortTitle: 'Busca e apreensão',
     summary:
-      'Orientação para quem teve o veículo apreendido ou recebeu visita de oficial de justiça. Saiba seus direitos antes de falar com o banco.',
+      'Orientação para quem teve o veículo apreendido ou recebeu visita de oficial de justiça. Descubra seus direitos antes de falar com o banco.',
+    tagline: 'Oficial na porta? Calma. Respira. Liga na VR.',
+    headline: 'Recuperar veículo apreendido é urgência. E urgência a gente trata como guerra.',
+    subhead:
+      'Se o oficial de justiça bateu, você tem poucas horas para agir. Não assine nada, não entregue documento e não aceite proposta de quitação antes de saber se a dívida está mesmo certa.',
+    valueProp: [
+      'O que fazer na hora da busca e apreensão',
+      'Como verificar se o mandado está regular',
+      'Quando o veículo de trabalho ou de família tem proteção',
+    ],
+    painPoints: [
+      "Oficial de justiça chegou sem aviso e eu não sei o que fazer",
+      "Estão ameaçando levar o carro que eu uso para trabalhar",
+      "O banco falou que entregar o veículo quita a dívida, mas eu duvido",
+      "Perdi o carro e preciso saber se ainda dá para reverter",
+    ],
+    stats: [
+      { value: '24h', label: 'Para travar a piora do caso' },
+      { value: '+11 mil', label: 'Processos ativos da VR' },
+      { value: 'R$ 500M+', label: 'Negociados contra bancos' },
+    ],
     primaryCta: {
       type: 'whatsapp',
-      label: 'Falar sobre busca e apreensão',
-      href: 'https://wa.me/5500000000000?text=Tenho%20d%C3%BAvidas%20sobre%20busca%20e%20apreens%C3%A3o',
+      label: 'Falar com advogado agora',
+      href: whatsappUrl('Oficial de justiça na porta —_preciso de orientação urgente'),
       position: 'hub_hero',
+    },
+    secondaryCta: {
+      type: 'diagnostic',
+      label: 'Solicitar análise por e-mail',
+      href: '/diagnostico-inicial/?problema=busca-e-apreensao',
+      position: 'hub_hero_secondary',
     },
     checklistRoute: '/checklist-busca-e-apreensao/',
   },
@@ -57,12 +150,38 @@ export const CLUSTERS = [
     title: 'Juros abusivos e revisão de contrato',
     shortTitle: 'Juros abusivos',
     summary:
-      'Identifique juros abusivos, tarifas indevidas e seguros embutidos no seu financiamento. Proteja seu patrimônio com informação.',
+      'Identifique juros abusivos, tarifas indevidas e seguros embutidos no seu financiamento. Recupere o que o banco cobrou a mais com estratégia.',
+    tagline: 'O banco cobrou caro. A gente cobra certo.',
+    headline: 'Seu contrato pode estar sangrando dinheiro. Vamos achando essa brecha.',
+    subhead:
+      'CET acima da realidade, tarifas fantasmas, seguro empurrado e parcela que nunca baixa. Tudo isso é passível de revisão. Antes de processar, a gente mapeia o quanto você pagou a mais.',
+    valueProp: [
+      'Como comparar seu contrato com a taxa média do Bacen',
+      'Quando uma ação revisional compensa financeiramente',
+      'Tarifas e seguros que não deveriam estar ali',
+    ],
+    painPoints: [
+      "Pago financiamento há anos e a dívida não diminui",
+      "O banco incluiu seguro e eu não sabia",
+      "A taxa que me venderam é muito maior do que o mercado cobra",
+      "Quero saber se vale a pena entrar com ação revisional",
+    ],
+    stats: [
+      { value: '30%+', label: 'Dos contratos analisados têm erros visíveis' },
+      { value: 'R$ 500M+', label: 'Em negociações e revisões forçadas' },
+      { value: '14 anos', label: 'Só no Direito Bancário' },
+    ],
     primaryCta: {
       type: 'diagnostic',
-      label: 'Solicitar análise inicial do contrato',
+      label: 'Solicitar análise do contrato',
       href: '/diagnostico-inicial/?problema=juros-abusivos',
       position: 'hub_hero',
+    },
+    secondaryCta: {
+      type: 'whatsapp',
+      label: 'Enviar contrato no WhatsApp',
+      href: whatsappUrl('Quero analisar meu contrato para juros abusivos'),
+      position: 'hub_hero_secondary',
     },
     checklistRoute: '/checklist-juros-abusivos/',
   },
@@ -72,12 +191,38 @@ export const CLUSTERS = [
     title: 'Dívidas bancárias PJ',
     shortTitle: 'Dívidas PJ',
     summary:
-      'Defesa para empresas contra execuções bancárias, bloqueios judiciais e capital de giro abusivo. Recupere o controle financeiro do seu negócio.',
+      'Defesa para empresas contra execuções bancárias, bloqueios judiciais e capital de giro abusivo. Recupere o controle financeiro do seu negócio antes que ele pare.',
+    tagline: 'Sua empresa não para porque o banco resolveu apertar.',
+    headline: 'Bloqueio em conta PJ? Execução bancária? A defesa começa agora.',
+    subhead:
+      'Capital de giro com juros estratosféricos, CCB assinada sem leitura, avalista sendo cobrado junto. Empresa tem prazos menores e riscos maiores — a estratégia tem que ser cirúrgica.',
+    valueProp: [
+      'Como reagir a bloqueio judicial imediato',
+      'Análise de CCB, capital de giro e garantias',
+      'Negociação e defesa sem paralisar o negócio',
+    ],
+    painPoints: [
+      "Bloquearam a conta da empresa e não posso pagar folha",
+      "O banco executa uma dívida que não reconheço",
+      "Capital de giro comeu o fluxo de caixa",
+      "Sou avalista e agora querem cobrar de mim",
+    ],
+    stats: [
+      { value: '+1.500', label: 'Empresas atendidas' },
+      { value: 'R$ 150M+', label: 'Em dívidas PJ contestadas' },
+      { value: '48h', label: 'Para primeira resposta estratégica' },
+    ],
     primaryCta: {
-      type: 'form',
-      label: 'Organizar caso PJ',
+      type: 'diagnostic',
+      label: 'Solicitar análise do caso PJ',
       href: '/diagnostico-inicial/?problema=dividas-pj',
       position: 'hub_hero',
+    },
+    secondaryCta: {
+      type: 'whatsapp',
+      label: 'Falar com advogado PJ',
+      href: whatsappUrl('Preciso de advogado para dívida bancária PJ'),
+      position: 'hub_hero_secondary',
     },
     checklistRoute: '/checklist-divida-pj/',
   },
@@ -87,12 +232,38 @@ export const CLUSTERS = [
     title: 'Superendividamento',
     shortTitle: 'Superendividamento',
     summary:
-      'Mínimo existencial, renegociação e quais dívidas entram na lei do superendividamento. Recupere o controle financeiro com orientação especializada.',
+      'Mínimo existencial, renegociação e quais dívidas entram na Lei do Superendividamento. Veja se você tem saída legal sem vender dignidade.',
+    tagline: 'Nenhuma dívida vale sua sobrevivência.',
+    headline: 'Compro metade do salário em dívida? A Lei pode te proteger.',
+    subhead:
+      'Superendividamento não é sinônimo de dívida alta. É quando o que você deve consome a sua capacidade de viver com dignidade. A Lei 14.597/23 criou ferramentas; aqui você entende quais cabem no seu caso.',
+    valueProp: [
+      'Quais dívidas entram no superendividamento',
+      'Como funciona o mínimo existencial',
+      'Quando o banco é obrigado a negociar de verdade',
+    ],
+    painPoints: [
+      "Pago metade do salário só em parcelas",
+      "Já renegociei e a dívida continua crescendo",
+      "O banco não aceita negociar de forma justa",
+      "Preciso saber o que a nova lei muda no meu caso",
+    ],
+    stats: [
+      { value: '40%+', label: 'Da renda comprometida = alerta vermelho' },
+      { value: '9K+', label: 'Famílias orientadas' },
+      { value: '2023', label: 'Lei que mudou a regra do jogo' },
+    ],
     primaryCta: {
       type: 'diagnostic',
-      label: 'Entender documentos necessários',
+      label: 'Ver se meu caso se encaixa',
       href: '/diagnostico-inicial/?problema=superendividamento',
       position: 'hub_hero',
+    },
+    secondaryCta: {
+      type: 'whatsapp',
+      label: 'Conversar sobre minha dívida',
+      href: whatsappUrl('Preciso entender se estou superendividado'),
+      position: 'hub_hero_secondary',
     },
   },
   {
@@ -101,12 +272,38 @@ export const CLUSTERS = [
     title: 'Cobranças indevidas e fraudes bancárias',
     shortTitle: 'Cobranças e fraudes',
     summary:
-      'Negativação indevida, cobrança bancária questionável, empréstimo não contratado e golpes do Pix. Defesa contra abusividades e fraudes bancárias.',
+      'Negativação indevida, cobrança sem contrato, empréstimo não autorizado e golpe do Pix. Defenda seu nome, seu dinheiro e seus direitos.',
+    tagline: 'Se não foi você, não é sua.',
+    headline: 'Cobrança errada e nome sujo? A gente limpa essa zona.',
+    subhead:
+      'Emprestimo que você não fez, assinatura forjada, cobrança de tarifa não contratada ou Pix feito por golpe. O banco tem responsabilidade e você não precisa aceitar o prejuízo sozinho.',
+    valueProp: [
+      'Como provar que a cobrança é indevida',
+      'Responsabilidade do banco em golpes do Pix',
+      'Procedimento para limpar nome nos órgãos',
+    ],
+    painPoints: [
+      "Meu nome foi negativado por dívida que não reconheço",
+      "Cai no golpe do Pix e o banco não quer reembolsar",
+      "Apareceu empréstimo no meu nome que eu não contratei",
+      "Cobrança autônoma ou tarifa não combinada",
+    ],
+    stats: [
+      { value: '+1.075', label: 'Avaliações 5 estrelas' },
+      { value: '95%', label: 'Dos casos indevidos são documentáveis' },
+      { value: '7 dias', label: 'Prazo médio para iniciar defesa' },
+    ],
     primaryCta: {
       type: 'diagnostic',
       label: 'Relatar cobrança ou fraude',
       href: '/diagnostico-inicial/?problema=cobrancas-fraudes',
       position: 'hub_hero',
+    },
+    secondaryCta: {
+      type: 'whatsapp',
+      label: 'Falar sobre golpe/cobrança',
+      href: whatsappUrl('Tenho cobrança indevida ou fraude no meu nome'),
+      position: 'hub_hero_secondary',
     },
   },
 ] as const satisfies readonly Cluster[];
@@ -229,7 +426,7 @@ export const ARTICLE_ROUTES = [
     cluster: 'dividas-pj',
     intent: 'urgent',
     primaryKeyword: 'execução bancária empresa o que fazer',
-    ctaType: 'form',
+    ctaType: 'diagnostic',
   },
   {
     route: '/capital-de-giro-juros-abusivos/',
@@ -238,7 +435,7 @@ export const ARTICLE_ROUTES = [
     cluster: 'dividas-pj',
     intent: 'commercial-investigation',
     primaryKeyword: 'capital de giro juros abusivos',
-    ctaType: 'form',
+    ctaType: 'diagnostic',
   },
   {
     route: '/bloqueio-judicial-conta-pj/',
@@ -247,7 +444,7 @@ export const ARTICLE_ROUTES = [
     cluster: 'dividas-pj',
     intent: 'urgent',
     primaryKeyword: 'bloqueio judicial conta PJ',
-    ctaType: 'form',
+    ctaType: 'diagnostic',
   },
   {
     route: '/avalista-divida-empresa-riscos/',
@@ -265,7 +462,7 @@ export const ARTICLE_ROUTES = [
     cluster: 'dividas-pj',
     intent: 'commercial-investigation',
     primaryKeyword: 'renegociação dívida PJ banco',
-    ctaType: 'form',
+    ctaType: 'diagnostic',
   },
   {
     route: '/ccb-bancaria-empresa-cuidados/',
@@ -375,7 +572,7 @@ export const CHECKLIST_ROUTES = [
     cta: {
       type: 'whatsapp',
       label: 'Enviar contexto da busca e apreensão',
-      href: 'https://wa.me/5500000000000?text=Tenho%20documentos%20sobre%20busca%20e%20apreens%C3%A3o',
+      href: whatsappUrl('Tenho documentos sobre busca e apreensão'),
       position: 'checklist_complete',
     },
   },
@@ -411,8 +608,8 @@ export const CHECKLIST_ROUTES = [
       'Propostas anteriores de renegociação',
     ],
     cta: {
-      type: 'form',
-      label: 'Organizar caso PJ para análise',
+      type: 'diagnostic',
+      label: 'Solicitar análise do caso PJ',
       href: '/diagnostico-inicial/?problema=dividas-pj',
       position: 'checklist_complete',
     },
@@ -464,3 +661,4 @@ export function getChecklistByRoute(route: string): ChecklistRoute | undefined {
   const canonical = normalized.endsWith('/') ? normalized : `${normalized}/`;
   return CHECKLIST_ROUTES.find((checklist) => checklist.route === canonical);
 }
+

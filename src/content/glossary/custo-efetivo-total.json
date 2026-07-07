@@ -1,0 +1,7 @@
+{
+  "term": "CET — Custo Efetivo Total",
+  "slug": "custo-efetivo-total",
+  "definition": "Indicador que reúne todos os encargos de uma operação de crédito: juros, tarifas, seguros e impostos. O CET deve ser informado no contrato e é o número real para comparar ofertas.",
+  "cluster": "juros-abusivos",
+  "relatedArticles": ["juros-abusivos-financiamento-veiculo", "taxa-media-bacen-como-comparar"]
+}

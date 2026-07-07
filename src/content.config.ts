@@ -7,8 +7,7 @@ const cluster = z.enum([
   'juros-abusivos',
   'dividas-pj',
   'superendividamento',
-  'cobrancas-indevidas',
-  'fraudes-bancarias',
+  'cobrancas-fraudes',
 ]);
 
 const ctaType = z.enum(['whatsapp', 'diagnostic', 'checklist', 'form']);

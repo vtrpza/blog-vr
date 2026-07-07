@@ -1,0 +1,7 @@
+{
+  "term": "MED — Mecanismo Especial de Devolução",
+  "slug": "med-devolucao-pix",
+  "definition": "Procedimento criado pelo Banco Central (Resolução BCB 141/2021) para bloquear e devolver valores transferidos via Pix em casos de fraude ou falha operacional. Deve ser acionado em até 24h.",
+  "cluster": "cobrancas-fraudes",
+  "relatedArticles": ["golpe-pix-responsabilidade-do-banco", "emprestimo-nao-contratado"]
+}

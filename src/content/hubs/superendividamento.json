@@ -1,0 +1,32 @@
+{
+  "slug": "superendividamento",
+  "title": "Superendividamento",
+  "seoTitle": "Superendividamento | Blog VR Advogados",
+  "metaDescription": "Mínimo existencial, Lei 14.181/2021, repactuação de dívidas e quais débitos entram no processo. Guias para recuperar o controle financeiro.",
+  "cluster": "superendividamento",
+  "summary": "As contas não fecham mais? A Lei do Superendividamento (14.181/2021) criou um caminho legal para reorganizar suas dívidas sem perder o mínimo para viver. Entenda como funciona.",
+  "priorityArticles": [
+    "lei-do-superendividamento-como-funciona",
+    "minimo-existencial-dividas",
+    "quais-dividas-entram-no-superendividamento"
+  ],
+  "faq": [
+    {
+      "question": "O que é a Lei do Superendividamento?",
+      "answer": "É a Lei 14.181/2021, que atualizou o CDC para criar um processo de repactuação judicial de dívidas para pessoas físicas de boa-fé. Permite reorganizar as dívidas garantindo o mínimo existencial."
+    },
+    {
+      "question": "Quem pode pedir a repactuação?",
+      "answer": "Qualquer pessoa física de boa-fé que não consiga pagar suas dívidas sem comprometer o mínimo para viver. Empresas (PJ) não podem usar a lei."
+    },
+    {
+      "question": "O que é mínimo existencial?",
+      "answer": "É o valor necessário para suas despesas básicas: moradia, alimentação, transporte, saúde e educação. A lei garante que esse valor não seja comprometido pelo plano de pagamento."
+    },
+    {
+      "question": "Banco é obrigado a renegociar?",
+      "answer": "Dentro do processo de superendividamento, sim. O banco é obrigado a comparecer à audiência de conciliação e apresentar proposta. Fora do processo, não há obrigação legal genérica."
+    }
+  ],
+  "ctaType": "diagnostic"
+}

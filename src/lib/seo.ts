@@ -55,15 +55,22 @@ export function collectionPageSchema(cluster: Cluster) {
   };
 }
 
-export function articleSchema(article: ArticleRoute, cluster: Cluster) {
+export function articleSchema(article: ArticleRoute, cluster: Cluster, publishedAt?: string, updatedAt?: string, heroImage?: string) {
   return {
     '@context': 'https://schema.org',
     '@type': 'BlogPosting',
     headline: article.title,
     description: `Guia informativo sobre ${article.primaryKeyword}, com documentos, erros comuns e próximos passos seguros.`,
     url: absoluteUrl(article.route),
+    datePublished: publishedAt ?? new Date().toISOString().split('T')[0],
+    ...(updatedAt ? { dateModified: updatedAt } : {}),
+    ...(heroImage ? { image: absoluteUrl(heroImage) } : {}),
     articleSection: cluster.shortTitle,
-    author: { '@type': 'Organization', name: 'VR Advogados' },
+    author: {
+      '@type': 'Person',
+      name: 'VR Advogados',
+      url: 'https://vradvogados.com.br',
+    },
     publisher: { '@type': 'Organization', name: 'VR Advogados' },
     mainEntityOfPage: absoluteUrl(article.route),
   };

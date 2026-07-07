@@ -2,17 +2,38 @@
   "slug": "busca-e-apreensao",
   "title": "Busca e apreensão de veículo",
   "seoTitle": "Busca e apreensão de veículo | Blog VR Advogados",
-  "metaDescription": "Guias informativos sobre busca e apreensão, parcelas atrasadas, oficial de justiça e documentos necessários.",
+  "metaDescription": "Guias informativos sobre busca e apreensão: documentos, prazos, oficial de justiça e como agir antes de perder o veículo.",
   "cluster": "busca-e-apreensao",
-  "summary": "Conteúdo para quem precisa entender urgência, documentos e próximos passos diante de busca e apreensão.",
+  "summary": "Você recebeu notificação de busca e apreensão? O banco quer o veículo de volta? Este hub reúne guias práticos sobre documentos, prazos legais e o que fazer antes de entregar o carro.",
   "priorityArticles": [
     "busca-e-apreensao-veiculo",
-    "oficial-de-justica-busca-e-apreensao-o-que-fazer"
+    "oficial-de-justica-busca-e-apreensao-o-que-fazer",
+    "como-recuperar-veiculo-apreendido"
   ],
   "faq": [
     {
-      "question": "O hub substitui consulta jurídica?",
-      "answer": "Não. Ele organiza informação geral e encaminha para análise individual quando necessário."
+      "question": "O banco pode tomar meu veículo sem processo judicial?",
+      "answer": "Não. A busca e apreensão depende de processo judicial. O banco precisa te notificar, ajuizar ação e conseguir uma liminar ou mandado de busca. Antes disso, o veículo não pode ser retirado."
+    },
+    {
+      "question": "Quantas parcelas preciso atrasar para o banco pedir busca e apreensão?",
+      "answer": "Não há um número fixo na lei. O banco pode pedir a busca e apreensão a partir da primeira parcela não paga, desde que comprove a mora (notificação extrajudicial). Na prática, a maioria dos bancos age entre 3 e 6 parcelas em atraso."
+    },
+    {
+      "question": "Entrega amigável quita a dívida?",
+      "answer": "Não necessariamente. Se o veículo for leiloado por valor inferior ao débito, você ainda pode ser cobrado pela diferença (saldo residual). Antes de entregar, analise o contrato e as condições."
+    },
+    {
+      "question": "O que fazer quando o oficial de justiça bater na porta?",
+      "answer": "Mantenha a calma, não resista, verifique o mandado. Você tem direitos mesmo durante a apreensão. Reúna os documentos e procure orientação."
+    },
+    {
+      "question": "Meu veículo de trabalho pode ser apreendido?",
+      "answer": "Sim, a lei não exclui veículos de trabalho da busca e apreensão. Mas existem argumentos legais que podem ser usados na defesa, especialmente se o veículo for essencial para sua subsistência."
+    },
+    {
+      "question": "Posso recuperar o veículo depois de apreendido?",
+      "answer": "Sim. A purgação da mora (pagamento do débito integral) dentro do prazo legal extingue o processo. Fora do prazo, é possível discutir o valor devido ou as condições do contrato."
     }
   ],
   "ctaType": "whatsapp"
