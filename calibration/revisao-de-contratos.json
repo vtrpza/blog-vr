@@ -1,0 +1,142 @@
+[
+  {
+    "topicId": 35,
+    "article": {
+      "title": "Como comparar a taxa do contrato com a média do Banco Central",
+      "slug": "como-comparar-taxa-contrato-media-banco-central",
+      "metaDescription": "Entenda como localizar a taxa contratada, escolher a série correta do Banco Central e interpretar a comparação sem conclusões automáticas.",
+      "excerpt": "A taxa média do Banco Central ajuda a contextualizar o contrato, mas a comparação exige modalidade, período e unidade equivalentes.",
+      "blocks": [
+        { "type": "heading", "text": "O que essa comparação pode esclarecer", "sourceIds": [] },
+        { "type": "paragraph", "text": "Comparar a taxa de um contrato com dados do Banco Central é uma etapa de organização, não um veredito isolado. A referência pública permite situar a operação dentro das taxas observadas para determinado tipo de crédito e período. Para que o resultado tenha utilidade, contrato e série estatística precisam descrever operações comparáveis. Diferenças relevantes podem indicar pontos a investigar, mas não explicam sozinhas sua origem nem definem uma consequência jurídica.", "sourceIds": ["bcb-taxas"] },
+        { "type": "heading", "text": "Identifique a modalidade antes de procurar a média", "sourceIds": [] },
+        { "type": "paragraph", "text": "O primeiro passo é identificar com precisão o produto contratado. Crédito pessoal, financiamento de veículo, consignado, capital de giro, cheque especial e cartão possuem estruturas e riscos distintos. A denominação comercial impressa na proposta pode ser insuficiente; confira o contrato, o destino do crédito, a existência de garantia e o perfil do tomador. Escolher uma modalidade apenas porque o nome parece semelhante compromete toda a comparação.", "sourceIds": ["bcb-taxas", "bcb-cet"] },
+        { "type": "heading", "text": "Localize as taxas e a periodicidade no contrato", "sourceIds": [] },
+        { "type": "paragraph", "text": "Procure no quadro-resumo e nas cláusulas financeiras a taxa mensal, a taxa anual e o Custo Efetivo Total. Registre também a data da contratação, o número de parcelas, a forma de amortização e eventuais períodos de carência. Não compare uma taxa mensal com uma referência anual sem conversão adequada. Percentuais apresentados em períodos diferentes não se tornam equivalentes por uma multiplicação simples, porque a forma de acumulação interfere no resultado.", "sourceIds": ["bcb-cet", "cdc"] },
+        { "type": "heading", "text": "Escolha a série e o período correspondentes", "sourceIds": [] },
+        { "type": "paragraph", "text": "Na página de taxas de juros do Banco Central, selecione a modalidade que corresponda à operação e observe o período da contratação. A referência contemporânea ao contrato costuma ser mais informativa do que um dado atual aplicado retroativamente. Registre o nome exato da série, a data consultada e a unidade exibida. Esse cuidado torna a comparação reproduzível e evita que uma atualização futura da página elimine o contexto usado na análise.", "sourceIds": ["bcb-taxas"] },
+        { "type": "heading", "text": "Taxa de juros e CET não são a mesma medida", "sourceIds": [] },
+        { "type": "paragraph", "text": "A taxa de juros remunera o capital conforme a estrutura contratual. O CET agrega juros e outros custos vinculados à operação, como tarifas, tributos e despesas previstas na contratação. Uma taxa de juros próxima da referência pública pode coexistir com um custo total diferente por causa dessas rubricas. Por isso, compare taxa com taxa e CET com CET; misturar os indicadores pode atribuir aos juros um custo que surgiu em outro componente.", "sourceIds": ["bcb-cet"] },
+        { "type": "heading", "text": "Por que a média não funciona como teto automático", "sourceIds": [] },
+        { "type": "paragraph", "text": "Uma média estatística descreve um conjunto de operações e pode incluir valores acima e abaixo do ponto central. Prazo, garantia, histórico de crédito, valor financiado e condições de mercado podem influenciar as taxas praticadas. A distância em relação à média merece contexto e documentação. Ela não autoriza concluir, sem outras informações, que a cobrança está correta ou incorreta, nem permite prever o resultado de uma negociação ou discussão judicial.", "sourceIds": ["bcb-taxas", "cdc"] },
+        { "type": "heading", "text": "Monte um registro verificável da comparação", "sourceIds": [] },
+        { "type": "list", "items": ["Guarde o contrato integral e destaque a cláusula que informa as taxas.", "Anote modalidade, data, prazo, garantia e perfil do tomador descritos na operação.", "Salve a identificação da série do Banco Central e a data em que ela foi consultada.", "Converta periodicidades com método adequado e registre a memória do cálculo.", "Separe taxa de juros, CET, tarifas, seguros, tributos e encargos de atraso.", "Liste divergências como perguntas a esclarecer, sem transformá-las imediatamente em conclusões."], "sourceIds": ["bcb-taxas", "bcb-cet", "cdc"] },
+        { "type": "callout", "text": "Uma comparação útil preserva o contexto. Usar outra modalidade, outro período ou outra unidade pode produzir uma diferença aparente que não pertence ao contrato analisado.", "sourceIds": ["bcb-taxas"] },
+        { "type": "heading", "text": "Quando a conferência precisa avançar", "sourceIds": [] },
+        { "type": "paragraph", "text": "Se a taxa do instrumento não coincide com a planilha, se a modalidade não está clara ou se o saldo não pode ser reproduzido, organize os documentos antes de buscar uma explicação individual. A etapa seguinte pode exigir reconstrução financeira e leitura jurídica conjunta. O conteúdo geral ajuda a formular as perguntas corretas, mas não substitui a análise do contrato, dos pagamentos e dos fatos que alteraram a operação.", "sourceIds": ["bcb-cet", "cdc"] }
+      ],
+      "sources": [
+        { "id": "bcb-taxas", "title": "Banco Central do Brasil — Taxas de juros", "url": "https://www.bcb.gov.br/estatisticas/txjuros" },
+        { "id": "bcb-cet", "title": "Banco Central do Brasil — Custo Efetivo Total (CET)", "url": "https://www.bcb.gov.br/meubc/faqs/p/custo-efetivo-total-cet" },
+        { "id": "cdc", "title": "Código de Defesa do Consumidor — Lei nº 8.078/1990", "url": "https://www.planalto.gov.br/ccivil_03/leis/l8078compilado.htm" }
+      ]
+    }
+  },
+  {
+    "topicId": 36,
+    "article": {
+      "title": "O que compõe o Custo Efetivo Total de um empréstimo",
+      "slug": "o-que-compoe-custo-efetivo-total-emprestimo",
+      "metaDescription": "Veja quais custos podem integrar o CET, como localizar o demonstrativo no contrato e por que ele deve ser lido junto com cada rubrica.",
+      "excerpt": "O CET reúne em uma taxa os custos vinculados ao crédito e facilita comparações, mas não substitui a leitura detalhada do contrato.",
+      "blocks": [
+        { "type": "heading", "text": "Para que serve o CET", "sourceIds": [] },
+        { "type": "paragraph", "text": "O Custo Efetivo Total foi criado para apresentar de forma consolidada o custo de uma operação de crédito. Em vez de olhar apenas para os juros anunciados, o consumidor consegue considerar despesas que influenciam o fluxo de pagamentos. O indicador é especialmente útil para comparar propostas da mesma modalidade, desde que prazo, valor liberado e demais condições também sejam observados.", "sourceIds": ["bcb-cet", "cdc"] },
+        { "type": "heading", "text": "Quais componentes podem aparecer", "sourceIds": [] },
+        { "type": "paragraph", "text": "O CET pode refletir juros, tarifas, tributos, seguros e outras despesas vinculadas à concessão do crédito. A composição concreta depende da operação. Nem toda cobrança encontrada em um extrato pertence necessariamente ao CET inicial, e nem toda despesa possui a mesma natureza jurídica. Por isso, o valor consolidado deve vir acompanhado da identificação das rubricas consideradas no cálculo.", "sourceIds": ["bcb-cet"] },
+        { "type": "heading", "text": "Juros contratados", "sourceIds": [] },
+        { "type": "paragraph", "text": "Os juros representam um componente central do custo e aparecem vinculados à taxa, à periodicidade e ao sistema de amortização. Taxa mensal e anual devem ser lidas de acordo com a forma informada no contrato. O CET não substitui essas taxas: ele oferece outra perspectiva, incorporando despesas adicionais ao fluxo. Para reconstruir uma parcela, ainda é necessário conhecer principal, prazo, juros e cronograma de pagamentos.", "sourceIds": ["bcb-cet", "bcb-taxas"] },
+        { "type": "heading", "text": "Tarifas, tributos e seguros", "sourceIds": [] },
+        { "type": "paragraph", "text": "Tarifas de serviços, tributos incidentes e seguros vinculados podem alterar o custo consolidado. A análise deve localizar cada item no instrumento, verificar seu valor e identificar se foi pago no início, financiado ou distribuído nas prestações. Quando uma despesa é incorporada ao saldo financiado, ela também participa do fluxo sobre o qual os pagamentos serão calculados. A simples presença da rubrica não permite concluir sua regularidade.", "sourceIds": ["bcb-cet", "cdc"] },
+        { "type": "heading", "text": "Valor liberado e valor financiado", "sourceIds": [] },
+        { "type": "paragraph", "text": "Um ponto frequente de confusão é a diferença entre o valor nominal da operação e o montante efetivamente disponibilizado ao tomador. Despesas financiadas podem elevar a base contratual sem aumentar o dinheiro recebido. Para compreender o CET, registre quanto foi solicitado, quanto entrou na conta ou foi pago ao fornecedor e quais valores foram destinados a despesas da contratação. Essa conciliação também ajuda a interpretar o saldo inicial.", "sourceIds": ["bcb-cet", "cdc"] },
+        { "type": "heading", "text": "Onde localizar o demonstrativo", "sourceIds": [] },
+        { "type": "paragraph", "text": "Procure o CET no quadro-resumo, na proposta e no contrato definitivo. Ele deve ser apresentado com condições suficientes para compreender a operação. Em contratação digital, preserve o arquivo entregue no momento da aceite, pois a tela atual do aplicativo pode não reproduzir o documento original. Se proposta e contrato exibirem números diferentes, registre a divergência e confirme qual instrumento formalizou a liberação.", "sourceIds": ["bcb-cet", "cdc"] },
+        { "type": "heading", "text": "Como comparar duas propostas", "sourceIds": [] },
+        { "type": "list", "items": ["Compare operações da mesma modalidade e com finalidade equivalente.", "Use o mesmo valor líquido desejado e observe o que será efetivamente liberado.", "Mantenha prazos e datas próximos para evitar distorções de contexto.", "Confira se seguros, tarifas e tributos foram incluídos nas duas propostas.", "Observe o total do fluxo e não apenas o tamanho da primeira parcela.", "Guarde os demonstrativos utilizados para tornar a decisão auditável."], "sourceIds": ["bcb-cet", "cdc"] },
+        { "type": "callout", "text": "Uma parcela menor pode decorrer de prazo mais longo e não significa, isoladamente, custo total inferior. O CET ajuda na comparação, mas prazo e fluxo completo continuam relevantes.", "sourceIds": ["bcb-cet"] },
+        { "type": "heading", "text": "O que o CET não responde sozinho", "sourceIds": [] },
+        { "type": "paragraph", "text": "O indicador não demonstra por conta própria se cada cláusula foi aplicada corretamente, se um seguro foi validamente contratado ou se a evolução posterior do saldo corresponde ao instrumento. Também não incorpora automaticamente eventos ocorridos depois da contratação, como atrasos, renegociações ou pagamentos extraordinários. Para essas questões, é necessário confrontar contrato, extratos, comprovantes e aditivos em uma linha do tempo.", "sourceIds": ["bcb-cet", "cdc"] },
+        { "type": "heading", "text": "Documentos para uma conferência responsável", "sourceIds": [] },
+        { "type": "paragraph", "text": "Separe proposta, contrato, demonstrativo do CET, comprovante da liberação, extratos, boletos e eventuais apólices. Marque cada valor que entrou no cálculo e registre a data do documento. Se não for possível conciliar o valor liberado com o saldo inicial, a dúvida deve ser descrita objetivamente. A resposta para um contrato específico depende dessa documentação e não pode ser obtida apenas a partir de uma taxa divulgada em publicidade.", "sourceIds": ["bcb-cet", "cdc"] }
+      ],
+      "sources": [
+        { "id": "bcb-cet", "title": "Banco Central do Brasil — Custo Efetivo Total (CET)", "url": "https://www.bcb.gov.br/meubc/faqs/p/custo-efetivo-total-cet" },
+        { "id": "bcb-taxas", "title": "Banco Central do Brasil — Taxas de juros", "url": "https://www.bcb.gov.br/estatisticas/txjuros" },
+        { "id": "cdc", "title": "Código de Defesa do Consumidor — Lei nº 8.078/1990", "url": "https://www.planalto.gov.br/ccivil_03/leis/l8078compilado.htm" }
+      ]
+    }
+  },
+  {
+    "topicId": 37,
+    "article": {
+      "title": "Diferença entre taxa nominal e taxa efetiva no contrato",
+      "slug": "diferenca-taxa-nominal-taxa-efetiva-contrato",
+      "metaDescription": "Compreenda taxa nominal, taxa efetiva e periodicidade para ler contratos bancários e evitar comparações entre percentuais incompatíveis.",
+      "excerpt": "Taxa nominal e taxa efetiva descrevem aspectos diferentes do custo; periodicidade e método de acumulação são essenciais para compará-las.",
+      "blocks": [
+        { "type": "heading", "text": "Por que dois percentuais podem parecer contraditórios", "sourceIds": [] },
+        { "type": "paragraph", "text": "Um contrato pode exibir taxas mensais e anuais que não correspondem a uma multiplicação direta. Isso ocorre porque periodicidade e forma de acumulação influenciam o resultado. Também pode haver taxa nominal, taxa efetiva e CET no mesmo quadro, cada qual com finalidade distinta. Antes de apontar divergência, identifique o rótulo de cada percentual, o período a que ele se refere e a parte do fluxo que pretende representar.", "sourceIds": ["bcb-cet", "cdc"] },
+        { "type": "heading", "text": "O papel da taxa nominal", "sourceIds": [] },
+        { "type": "paragraph", "text": "A taxa nominal é uma forma de expressar juros com referência a determinado período, mas pode depender de uma periodicidade de capitalização diferente. Lê-la fora do contexto pode criar uma comparação enganosa. O contrato deve informar as condições financeiras de modo compreensível, permitindo relacionar a taxa ao cronograma de pagamentos. O nome do indicador, sozinho, não revela quanto será pago em toda a operação.", "sourceIds": ["bcb-cet", "cdc"] },
+        { "type": "heading", "text": "O papel da taxa efetiva", "sourceIds": [] },
+        { "type": "paragraph", "text": "A taxa efetiva procura refletir o efeito da incidência dos juros dentro do período considerado. Quando existem períodos sucessivos, a acumulação pode fazer com que a taxa anual efetiva não seja igual à taxa mensal multiplicada pelo número de meses. A conversão correta deve preservar a equivalência financeira. Uma planilha que apenas multiplica percentuais pode apresentar diferença sem reproduzir o fluxo do contrato.", "sourceIds": ["bcb-taxas", "bcb-cet"] },
+        { "type": "heading", "text": "Periodicidade é parte do dado", "sourceIds": [] },
+        { "type": "paragraph", "text": "Nenhuma taxa deve ser copiada sem sua unidade temporal. Ao registrar um percentual, anote se ele é diário, mensal ou anual, além da data e da cláusula de origem. Isso vale para contrato, extrato e série estatística do Banco Central. Comparações úteis mantêm a mesma periodicidade ou usam uma conversão documentada. Arredondamentos também devem ser preservados, pois pequenas diferenças podem se acumular em fluxos extensos.", "sourceIds": ["bcb-taxas", "bcb-cet"] },
+        { "type": "heading", "text": "Onde entra o Custo Efetivo Total", "sourceIds": [] },
+        { "type": "paragraph", "text": "O CET não é outro nome para taxa efetiva de juros. Ele incorpora despesas vinculadas à concessão do crédito e traduz o custo do fluxo em um indicador consolidado. Por isso, pode ser superior à taxa de juros mesmo quando ambas estão corretas. Para entender a diferença, identifique tarifas, tributos, seguros e valores financiados. Comparar a taxa de juros de uma proposta com o CET de outra mistura medidas diferentes.", "sourceIds": ["bcb-cet"] },
+        { "type": "heading", "text": "Como ler o quadro financeiro do contrato", "sourceIds": [] },
+        { "type": "list", "items": ["Localize a taxa mensal e a anual e copie seus rótulos completos.", "Identifique a periodicidade de capitalização descrita no instrumento.", "Separe taxa de juros, CET e encargos aplicáveis ao atraso.", "Registre valor liberado, saldo financiado, prazo e datas das parcelas.", "Confira se aditivos ou renegociações alteraram as taxas originais.", "Preserve a memória de qualquer conversão ou simulação utilizada."], "sourceIds": ["bcb-cet", "cdc"] },
+        { "type": "heading", "text": "Comparação com dados públicos", "sourceIds": [] },
+        { "type": "paragraph", "text": "Ao consultar taxas do Banco Central, escolha a modalidade e o período correspondentes ao contrato. Verifique em qual unidade a referência foi divulgada e converta apenas quando necessário. A taxa média contextualiza o mercado; ela não substitui o cálculo da operação nem funciona como limite automático. Prazo, garantia, perfil do tomador e características do produto podem contribuir para diferenças entre contratos.", "sourceIds": ["bcb-taxas"] },
+        { "type": "callout", "text": "Taxas só são comparáveis quando modalidade, período e unidade são compatíveis. A diferença entre números pode ser apenas uma diferença entre indicadores.", "sourceIds": ["bcb-taxas", "bcb-cet"] },
+        { "type": "heading", "text": "Sinais de que a reconstrução precisa ser aprofundada", "sourceIds": [] },
+        { "type": "paragraph", "text": "A conferência merece avançar quando o contrato não informa claramente a periodicidade, quando a parcela não pode ser reproduzida com os dados fornecidos ou quando extratos aplicam taxa diferente da documentada. Também é importante preservar contratos anteriores em caso de renegociação. Uma conclusão responsável depende de confrontar cláusulas, fluxo, pagamentos e aditivos, e não apenas de escolher o percentual que parece mais favorável.", "sourceIds": ["bcb-cet", "cdc"] },
+        { "type": "heading", "text": "Organize antes de concluir", "sourceIds": [] },
+        { "type": "paragraph", "text": "Monte uma tabela com fonte, nome da taxa, percentual, período e data. Em seguida, associe cada taxa à cláusula ou série pública correspondente. Esse registro reduz erros de transcrição e permite revisar o raciocínio. Se ainda houver inconsistência, a documentação oferece uma base concreta para análise financeira e jurídica individual. Conteúdo informativo não determina, por si só, a regularidade de uma cobrança específica.", "sourceIds": ["bcb-taxas", "bcb-cet", "cdc"] }
+      ],
+      "sources": [
+        { "id": "bcb-cet", "title": "Banco Central do Brasil — Custo Efetivo Total (CET)", "url": "https://www.bcb.gov.br/meubc/faqs/p/custo-efetivo-total-cet" },
+        { "id": "bcb-taxas", "title": "Banco Central do Brasil — Taxas de juros", "url": "https://www.bcb.gov.br/estatisticas/txjuros" },
+        { "id": "cdc", "title": "Código de Defesa do Consumidor — Lei nº 8.078/1990", "url": "https://www.planalto.gov.br/ccivil_03/leis/l8078compilado.htm" }
+      ]
+    }
+  },
+  {
+    "topicId": 38,
+    "article": {
+      "title": "Capitalização de juros em contratos bancários: como analisar",
+      "slug": "capitalizacao-juros-contratos-bancarios-como-analisar",
+      "metaDescription": "Entenda o que é capitalização de juros, como identificar periodicidade e por que sistema de amortização e abusividade não são sinônimos.",
+      "excerpt": "A análise da capitalização exige contrato, taxas, periodicidade e memória do cálculo; juros compostos não definem sozinhos uma irregularidade.",
+      "blocks": [
+        { "type": "heading", "text": "O que significa capitalização", "sourceIds": [] },
+        { "type": "paragraph", "text": "Capitalização descreve a incorporação de juros ao saldo que servirá de base para períodos seguintes. O tema costuma ser chamado de juros sobre juros, mas essa expressão não resolve a análise jurídica ou matemática. É necessário saber qual periodicidade foi contratada, como as taxas foram informadas e qual fluxo de amortização foi aplicado. Sem esses elementos, uma simulação pode atribuir ao contrato um método que ele não utiliza.", "sourceIds": ["mp-capitalizacao", "bcb-cet"] },
+        { "type": "heading", "text": "Capitalização e amortização são conceitos distintos", "sourceIds": [] },
+        { "type": "paragraph", "text": "O sistema de amortização define como principal e juros são distribuídos ao longo das parcelas. A capitalização trata da forma de acumulação dos juros. Price, SAC e outros fluxos podem produzir parcelas e saldos diferentes, mas o nome do sistema não demonstra automaticamente a existência de cobrança indevida. A conferência precisa reproduzir o fluxo com os dados do contrato e comparar o resultado com os extratos efetivamente apresentados.", "sourceIds": ["bcb-cet", "cdc"] },
+        { "type": "heading", "text": "Periodicidade contratada", "sourceIds": [] },
+        { "type": "paragraph", "text": "Procure cláusulas que indiquem taxas mensais e anuais, periodicidade de capitalização, vencimentos e método de cálculo. A legislação aplicável a determinadas operações admite disciplina própria para capitalização, mas sua incidência depende do enquadramento e do instrumento. Não basta localizar a palavra capitalização; é necessário relacioná-la à data, ao produto, à taxa e ao fluxo previsto para a operação concreta.", "sourceIds": ["mp-capitalizacao", "codigo-civil"] },
+        { "type": "heading", "text": "Taxa anual e taxa mensal", "sourceIds": [] },
+        { "type": "paragraph", "text": "A taxa anual efetiva pode diferir da taxa mensal multiplicada pelo número de meses porque a equivalência financeira considera acumulação entre períodos. Essa diferença não comprova, isoladamente, duplicidade de juros. Anote as taxas exatamente como aparecem e use conversão adequada antes de compará-las. Se o contrato apresenta apenas um dos indicadores ou usa redação ambígua, registre a ausência como ponto documental a esclarecer.", "sourceIds": ["bcb-taxas", "bcb-cet"] },
+        { "type": "heading", "text": "Como reconstruir o cálculo", "sourceIds": [] },
+        { "type": "list", "items": ["Identifique valor líquido liberado e despesas incorporadas ao financiamento.", "Registre taxas, periodicidades, datas e número de parcelas.", "Separe juros remuneratórios de encargos aplicados após atraso.", "Reproduza o fluxo sem misturar taxas mensais e anuais.", "Compare o saldo calculado com extratos e planilhas da instituição.", "Guarde fórmulas, arredondamentos e premissas usados na simulação."], "sourceIds": ["bcb-cet", "bcb-taxas", "cdc"] },
+        { "type": "heading", "text": "Renegociação pode mudar a base da análise", "sourceIds": [] },
+        { "type": "paragraph", "text": "Aditivos, refinanciamentos e confissões de dívida podem consolidar saldos e estabelecer um novo fluxo. Uma planilha que considera somente o contrato inicial pode deixar de fora pagamentos, encargos ou mudanças posteriores. Preserve cada versão e construa uma linha do tempo. Também diferencie a discussão sobre a formação do saldo anterior da leitura das condições assumidas no novo instrumento.", "sourceIds": ["codigo-civil", "cdc"] },
+        { "type": "heading", "text": "Juros compostos não significam abusividade automática", "sourceIds": [] },
+        { "type": "paragraph", "text": "A conclusão sobre validade ou abusividade depende do regime jurídico, da contratação, da informação oferecida e da aplicação concreta das cláusulas. O simples uso de juros compostos ou a existência de taxa anual diferente da multiplicação linear não encerra a questão. Da mesma forma, uma cláusula formal não prova que o cálculo executado corresponde ao pactuado. Documento e execução financeira precisam ser confrontados.", "sourceIds": ["mp-capitalizacao", "codigo-civil", "cdc"] },
+        { "type": "callout", "text": "Calculadoras genéricas são úteis para formular perguntas, mas podem gerar falsos indícios quando ignoram tarifas, datas, carência, pagamentos extraordinários ou aditivos.", "sourceIds": ["bcb-cet"] },
+        { "type": "heading", "text": "Documentos necessários", "sourceIds": [] },
+        { "type": "paragraph", "text": "Reúna contrato, cédula, quadro-resumo, demonstrativo do CET, planilha de evolução, extratos, comprovantes e aditivos. Em arquivo separado, anote a origem de cada número usado na reconstrução. Se a instituição forneceu mais de uma planilha, preserve todas com suas datas. A rastreabilidade permite distinguir erro de entrada, divergência de método e possível diferença entre cláusula e cobrança.", "sourceIds": ["bcb-cet", "cdc"] },
+        { "type": "heading", "text": "Limites de uma conclusão geral", "sourceIds": [] },
+        { "type": "paragraph", "text": "Sem conhecer produto, data, contrato e histórico de pagamentos, não é possível afirmar qual regime se aplica ou se o saldo está correto. O caminho responsável é organizar as informações, reproduzir o fluxo e identificar perguntas documentais precisas. Quando a divergência permanecer, a avaliação específica pode exigir leitura jurídica e cálculo financeiro integrados, sem promessa prévia de redução ou de resultado.", "sourceIds": ["mp-capitalizacao", "bcb-cet", "cdc"] }
+      ],
+      "sources": [
+        { "id": "mp-capitalizacao", "title": "Medida Provisória nº 2.170-36/2001", "url": "https://www.planalto.gov.br/ccivil_03/mpv/2170-36.htm" },
+        { "id": "codigo-civil", "title": "Código Civil — Lei nº 10.406/2002", "url": "https://www.planalto.gov.br/ccivil_03/leis/2002/l10406compilada.htm" },
+        { "id": "bcb-taxas", "title": "Banco Central do Brasil — Taxas de juros", "url": "https://www.bcb.gov.br/estatisticas/txjuros" },
+        { "id": "bcb-cet", "title": "Banco Central do Brasil — Custo Efetivo Total (CET)", "url": "https://www.bcb.gov.br/meubc/faqs/p/custo-efetivo-total-cet" },
+        { "id": "cdc", "title": "Código de Defesa do Consumidor — Lei nº 8.078/1990", "url": "https://www.planalto.gov.br/ccivil_03/leis/l8078compilado.htm" }
+      ]
+    }
+  }
+]

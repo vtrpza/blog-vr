@@ -1,0 +1,482 @@
+[
+  {
+    "topicId": 1,
+    "article": {
+      "title": "Como a mora é constituída na alienação fiduciária de veículo",
+      "slug": "como-mora-constituida-alienacao-fiduciaria-veiculo",
+      "metaDescription": "Entenda quando surge a mora no financiamento de veículo, como ela é comprovada e qual é o papel da notificação na busca e apreensão.",
+      "excerpt": "Na alienação fiduciária, o atraso e a prova necessária para a busca e apreensão são questões relacionadas, mas não idênticas. Veja como a lei e o STJ tratam cada etapa.",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "Nos financiamentos de veículos com alienação fiduciária, o bem permanece como garantia do pagamento. O devedor usa o automóvel, mas a propriedade fiduciária pertence ao credor até o cumprimento da obrigação. Quando uma prestação vence e não é paga, surge a mora. Para pedir judicialmente a busca e apreensão, porém, o credor precisa demonstrar essa situação na forma exigida pelo Decreto-Lei nº 911/1969. A distinção entre o surgimento da mora e sua comprovação ajuda a entender por que a notificação aparece com tanta frequência nesses processos.",
+          "sourceIds": ["dl911", "cc"]
+        },
+        {
+          "type": "heading",
+          "text": "O atraso constitui a mora",
+          "sourceIds": []
+        },
+        {
+          "type": "paragraph",
+          "text": "A regra especial da alienação fiduciária estabelece que a mora decorre do simples vencimento do prazo para pagamento. Em outras palavras, se a prestação tem data certa, o não pagamento nessa data coloca o devedor em mora sem que uma cobrança posterior seja necessária para criar o atraso. O Código Civil adota lógica compatível: a obrigação positiva, líquida e com termo constitui o devedor em mora de pleno direito quando não é cumprida no vencimento. Por isso, a carta não é o fato que origina a mora nessa modalidade contratual.",
+          "sourceIds": ["dl911", "cc", "stj782"]
+        },
+        {
+          "type": "paragraph",
+          "text": "Essa mora automática costuma ser chamada de mora ex re. A expressão indica que o efeito decorre do próprio fato objetivo do vencimento não atendido. Isso não elimina a necessidade de examinar o contrato, o vencimento, o pagamento eventualmente realizado e situações em que o atraso não possa ser imputado ao devedor. O Código Civil dispõe que não há mora quando inexiste fato ou omissão imputável ao devedor, enquanto o Decreto-Lei disciplina a forma específica de comprovação usada na garantia fiduciária.",
+          "sourceIds": ["cc", "dl911"]
+        },
+        {
+          "type": "heading",
+          "text": "Constituição e comprovação não são a mesma coisa",
+          "sourceIds": []
+        },
+        {
+          "type": "paragraph",
+          "text": "Embora a mora surja com o vencimento, a ação de busca e apreensão exige que o credor a comprove. O artigo 3º do Decreto-Lei nº 911/1969 condiciona a concessão da liminar à comprovação da mora na forma do artigo 2º, parágrafo 2º, ou do inadimplemento. A exigência funciona como requisito documental do procedimento: o processo deve vir acompanhado de elementos que mostrem tanto a obrigação vencida quanto a adoção da forma legal de comunicação. A simples afirmação de que existe uma parcela em aberto não substitui os documentos pertinentes.",
+          "sourceIds": ["dl911", "stj782"]
+        },
+        {
+          "type": "paragraph",
+          "text": "O STJ, ao julgar o Tema Repetitivo 1132, reforçou essa separação. A decisão registra que a mora decorre automaticamente do vencimento e que a notificação serve à sua comprovação para o ajuizamento da ação. Essa leitura evita dois equívocos opostos: imaginar que não existe mora antes de o devedor receber pessoalmente uma carta ou, no outro extremo, concluir que o credor pode obter a liminar sem apresentar a prova documental prevista na legislação especial.",
+          "sourceIds": ["stj782", "dl911"]
+        },
+        {
+          "type": "heading",
+          "text": "Como a notificação pode comprovar a mora",
+          "sourceIds": []
+        },
+        {
+          "type": "paragraph",
+          "text": "O texto atual do Decreto-Lei nº 911/1969 prevê carta registrada com aviso de recebimento e dispensa que a assinatura no aviso seja a do próprio destinatário. A lei também trata do protesto e de regras próprias para o procedimento extrajudicial. Na ação judicial, o ponto central consolidado pelo STJ é o envio da notificação extrajudicial ao endereço do devedor indicado no instrumento contratual. Não é indispensável provar que o próprio devedor ou um terceiro recebeu materialmente a correspondência.",
+          "sourceIds": ["dl911", "stj782"]
+        },
+        {
+          "type": "paragraph",
+          "text": "A tese do Tema 1132 considera suficiente o envio ao endereço contratual. O informativo do julgamento explica que o comprovante pode atender ao requisito mesmo quando a correspondência retorna com registros como ausente, mudou-se, endereço insuficiente ou extravio do aviso. Isso não transforma qualquer tentativa de envio em prova válida: a correspondência e o respectivo comprovante precisam guardar relação com o devedor, com o contrato e com o endereço que consta do instrumento contratual.",
+          "sourceIds": ["stj782"]
+        },
+        {
+          "type": "list",
+          "items": [
+            "O contrato permite identificar o endereço indicado pelo devedor e as datas de vencimento.",
+            "O demonstrativo do débito mostra quais prestações foram consideradas em aberto.",
+            "A cópia da notificação revela seu conteúdo e sua vinculação ao contrato.",
+            "O comprovante postal permite verificar data, modalidade de envio e endereço utilizado.",
+            "O aviso de recebimento ou o registro de devolução documenta o desfecho da remessa, sem exigir assinatura pessoal do devedor."
+          ],
+          "sourceIds": ["dl911", "stj782"]
+        },
+        {
+          "type": "heading",
+          "text": "O que a notificação não significa",
+          "sourceIds": []
+        },
+        {
+          "type": "paragraph",
+          "text": "A notificação para comprovar a mora não é, por si só, sentença, ordem de apreensão ou transferência definitiva do veículo. A busca e apreensão judicial depende de pedido do credor e decisão judicial. Também não se deve confundir a carta com uma renegociação obrigatória: a legislação especial descreve sua função probatória, mas não cria nessa etapa um dever geral de oferecer novo parcelamento. Pagamento, acordo, erro de cobrança e outras ocorrências precisam ser avaliados a partir dos documentos correspondentes.",
+          "sourceIds": ["dl911", "stj782"]
+        },
+        {
+          "type": "callout",
+          "text": "Desde a Lei nº 14.711/2023, o Decreto-Lei nº 911/1969 também prevê uma via extrajudicial quando houver cláusula contratual expressa e destacada. Nela, o cartório notifica o devedor para pagamento voluntário ou apresentação de documentos antes da consolidação, com regras próprias de prazo e comunicação. Esse procedimento não deve ser confundido com a notificação usada para instruir a ação judicial de busca e apreensão.",
+          "sourceIds": ["dl911"]
+        },
+        {
+          "type": "heading",
+          "text": "Pontos que dependem dos documentos",
+          "sourceIds": []
+        },
+        {
+          "type": "paragraph",
+          "text": "A regra geral é objetiva, mas sua aplicação exige correspondência entre contrato, débito e prova de envio. Datas incompatíveis, pagamento anterior, identificação incompleta do contrato, endereço diferente daquele pactuado ou ausência do comprovante podem produzir uma discussão distinta daquela resolvida pelo Tema 1132. A análise informativa do procedimento começa, portanto, por separar três perguntas: qual obrigação venceu, se o atraso é imputável ao devedor e qual documento foi apresentado para comprovar a mora perante o juízo. O resultado não depende apenas do rótulo atribuído à correspondência devolvida.",
+          "sourceIds": ["dl911", "cc", "stj782"]
+        }
+      ],
+      "sources": [
+        {
+          "id": "dl911",
+          "title": "Decreto-Lei nº 911, de 1º de outubro de 1969 — texto compilado",
+          "url": "https://www.planalto.gov.br/ccivil_03/decreto-lei/1965-1988/del0911.htm"
+        },
+        {
+          "id": "cc",
+          "title": "Código Civil — Lei nº 10.406, de 10 de janeiro de 2002",
+          "url": "https://www.planalto.gov.br/ccivil_03/leis/2002/l10406compilada.htm"
+        },
+        {
+          "id": "stj782",
+          "title": "STJ, Informativo de Jurisprudência nº 782 — Tema Repetitivo 1132",
+          "url": "https://processo.stj.jus.br/docs_internet/informativos/PDF/Inf0782.pdf"
+        }
+      ]
+    }
+  },
+  {
+    "topicId": 2,
+    "article": {
+      "title": "Notificação enviada a endereço antigo e busca e apreensão",
+      "slug": "notificacao-endereco-antigo-busca-apreensao-veiculo",
+      "metaDescription": "Saiba como o endereço indicado no contrato influencia a notificação da mora e a busca e apreensão de veículo alienado fiduciariamente.",
+      "excerpt": "Uma correspondência devolvida porque o devedor mudou de endereço pode comprovar a mora? A resposta passa pelo endereço contratual e pelo Tema 1132 do STJ.",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "A expressão “endereço antigo” pode descrever situações diferentes. O devedor pode ter mudado depois de assinar o financiamento; o credor pode possuir um endereço novo em seus cadastros; ou a correspondência pode ter sido enviada a um local que nunca constou do contrato. Essa diferença é decisiva na busca e apreensão de veículo alienado fiduciariamente. A legislação e o STJ atribuem relevância específica ao endereço indicado no instrumento contratual, e não apenas ao lugar onde a pessoa reside na data da remessa.",
+          "sourceIds": ["dl911_end", "stj782_end"]
+        },
+        {
+          "type": "heading",
+          "text": "A referência é o endereço do contrato",
+          "sourceIds": []
+        },
+        {
+          "type": "paragraph",
+          "text": "No Tema Repetitivo 1132, o STJ fixou que, para comprovar a mora em contratos garantidos por alienação fiduciária, é suficiente enviar a notificação extrajudicial ao endereço do devedor indicado no contrato. A prova de recebimento pelo próprio destinatário ou por terceiro foi dispensada. Assim, se o local parece antigo porque houve mudança posterior, mas continua sendo exatamente o endereço contratual, a falta de entrega pessoal não invalida automaticamente a comprovação da mora.",
+          "sourceIds": ["stj782_end", "dl911_end"]
+        },
+        {
+          "type": "paragraph",
+          "text": "O informativo do julgamento enfrentou expressamente devoluções com anotações como mudou-se, ausente, endereço insuficiente e extravio do aviso de recebimento. Nessas hipóteses, a tese concentra a exigência na demonstração do envio, com aviso de recebimento, ao endereço constante do instrumento. A razão apresentada pelo STJ é que a mora já decorre do vencimento e a remessa cumpre uma formalidade probatória; a lei não exige ciência pessoal e efetiva como condição para o atraso existir.",
+          "sourceIds": ["stj782_end", "cc_end"]
+        },
+        {
+          "type": "heading",
+          "text": "Quando o fato de o endereço ser antigo muda a análise",
+          "sourceIds": []
+        },
+        {
+          "type": "paragraph",
+          "text": "A tese repetitiva não declara válida uma carta enviada a qualquer endereço antigo. Ela fala no endereço indicado no instrumento contratual. Se a remessa foi dirigida a local diferente, se o contrato juntado ao processo contém outro endereço ou se não é possível relacionar o comprovante postal àquela contratação, surge uma questão documental que não é resolvida apenas pela dispensa do recebimento. O mesmo vale quando há dúvida sobre qual versão do contrato foi apresentada ou sobre a legibilidade dos dados da correspondência.",
+          "sourceIds": ["stj782_end", "dl911_end"]
+        },
+        {
+          "type": "paragraph",
+          "text": "Também é importante distinguir endereço contratual de cadastro atualizado. A tese do STJ usa o primeiro como parâmetro objetivo para a ação judicial. Informações posteriores podem ter relevância no conjunto do processo, mas não alteram por si mesmas o enunciado do Tema 1132. A conclusão sobre uma remessa concreta depende da sequência documental: contrato, eventuais comunicações de alteração, carta, etiqueta postal, aviso de recebimento e motivo da devolução.",
+          "sourceIds": ["stj782_end", "dl911_end"]
+        },
+        {
+          "type": "callout",
+          "text": "“Não recebido” e “não enviado ao endereço contratual” são problemas distintos. O Tema 1132 dispensa a prova do recebimento quando o credor demonstra o envio ao endereço indicado no contrato. Ele não elimina a necessidade de provar qual era esse endereço e para onde a carta foi efetivamente remetida.",
+          "sourceIds": ["stj782_end"]
+        },
+        {
+          "type": "heading",
+          "text": "Quais documentos esclarecem a controvérsia",
+          "sourceIds": []
+        },
+        {
+          "type": "list",
+          "items": [
+            "Instrumento contratual completo, especialmente a qualificação e o endereço informado pelo devedor.",
+            "Cópia da notificação, para verificar destinatário, referência do contrato e conteúdo da cobrança.",
+            "Comprovante de postagem, código de rastreamento e aviso de recebimento ou registro de devolução.",
+            "Comunicações documentadas sobre mudança de endereço e confirmação de recebimento pelo credor, quando existirem.",
+            "Petição inicial e documentos do débito, pois a busca e apreensão exige comprovação da mora e identificação da obrigação inadimplida."
+          ],
+          "sourceIds": ["dl911_end", "stj782_end"]
+        },
+        {
+          "type": "paragraph",
+          "text": "A leitura conjunta desses itens evita conclusões baseadas apenas em uma etiqueta de devolução. Por exemplo, a anotação mudou-se pode ser compatível com a suficiência reconhecida pelo STJ, desde que o destino seja o endereço contratual. Já um comprovante sem destinatário identificável ou com endereço alheio ao instrumento apresenta outra questão. O que importa é a cadeia de correspondência entre a contratação, o vencimento e o envio invocado para comprovar a mora.",
+          "sourceIds": ["stj782_end", "dl911_end"]
+        },
+        {
+          "type": "heading",
+          "text": "A notificação não encerra as demais questões do processo",
+          "sourceIds": []
+        },
+        {
+          "type": "paragraph",
+          "text": "Mesmo quando a remessa atende ao Tema 1132, isso resolve apenas o requisito específico da comprovação da mora. A ação ainda envolve a existência do contrato, a identificação do veículo, o demonstrativo da dívida, o cumprimento da liminar e as manifestações das partes. O Decreto-Lei nº 911/1969 prevê resposta do devedor no prazo legal contado da execução da liminar e admite que essa resposta seja apresentada até quando houve pagamento integral, caso exista alegação de excesso no pagamento.",
+          "sourceIds": ["dl911_end"]
+        },
+        {
+          "type": "paragraph",
+          "text": "A mora automática tampouco impede a discussão de fatos incompatíveis com a cobrança, como quitação comprovada, inexigibilidade demonstrável ou ausência de imputabilidade pelo atraso. O Código Civil estabelece que o devedor não incorre em mora quando não há fato ou omissão que lhe seja imputável. Essa regra geral não substitui o rito especial, mas mostra por que a validade formal da correspondência não equivale a uma decisão sobre toda e qualquer matéria defensiva.",
+          "sourceIds": ["cc_end", "dl911_end"]
+        },
+        {
+          "type": "heading",
+          "text": "A via extrajudicial tem comunicação própria",
+          "sourceIds": []
+        },
+        {
+          "type": "paragraph",
+          "text": "O regime extrajudicial incluído no Decreto-Lei nº 911/1969 pela Lei nº 14.711/2023 possui etapas próprias. Quando existe cláusula expressa e destacada, o oficial pode iniciar a notificação por meio eletrônico indicado no contrato e, sem confirmação, realizar notificação postal ao endereço contratual, sem exigir a assinatura do destinatário. Como há prazos e efeitos específicos antes e depois da consolidação, documentos de uma execução extrajudicial não devem ser confundidos com a carta usada para instruir a ação judicial.",
+          "sourceIds": ["dl911_end"]
+        },
+        {
+          "type": "paragraph",
+          "text": "Para compreender uma alegação de endereço antigo, a pergunta útil não é apenas onde o devedor morava quando a carta chegou. É necessário identificar o endereço assumido no contrato, verificar se houve alteração documentada, comparar esse dado com o comprovante de envio e distinguir o procedimento judicial do extrajudicial. A tese do STJ oferece um parâmetro objetivo, mas a conformidade da prova continua dependente dos documentos efetivamente apresentados.",
+          "sourceIds": ["stj782_end", "dl911_end"]
+        }
+      ],
+      "sources": [
+        {
+          "id": "dl911_end",
+          "title": "Decreto-Lei nº 911, de 1º de outubro de 1969 — texto compilado",
+          "url": "https://www.planalto.gov.br/ccivil_03/decreto-lei/1965-1988/del0911.htm"
+        },
+        {
+          "id": "cc_end",
+          "title": "Código Civil — Lei nº 10.406, de 10 de janeiro de 2002",
+          "url": "https://www.planalto.gov.br/ccivil_03/leis/2002/l10406compilada.htm"
+        },
+        {
+          "id": "stj782_end",
+          "title": "STJ, Informativo de Jurisprudência nº 782 — Tema Repetitivo 1132",
+          "url": "https://processo.stj.jus.br/docs_internet/informativos/PDF/Inf0782.pdf"
+        }
+      ]
+    }
+  },
+  {
+    "topicId": 3,
+    "article": {
+      "title": "O que acontece depois da apreensão do veículo",
+      "slug": "o-que-acontece-depois-apreensao-veiculo",
+      "metaDescription": "Entenda os efeitos da apreensão do veículo, os prazos para pagamento e resposta, a consolidação da propriedade e a venda do bem.",
+      "excerpt": "A execução da liminar inicia uma sequência de efeitos materiais e processuais. Conheça as etapas previstas para o veículo alienado fiduciariamente.",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "A apreensão do veículo não encerra imediatamente a ação. Ela dá início a uma fase curta em que convivem efeitos sobre a posse e a propriedade, prazo para pagamento integral e prazo para resposta. Depois, conforme o que ocorrer nos autos, o bem pode ser restituído ao devedor ou permanecer com o credor, que poderá vendê-lo e prestar contas. O Decreto-Lei nº 911/1969 disciplina essa sequência e o STJ definiu pontos relevantes sobre o início dos prazos e o alcance do pagamento.",
+          "sourceIds": ["dl911_pos", "stj860_pos", "stj540_pos"]
+        },
+        {
+          "type": "heading",
+          "text": "A execução da liminar é o marco inicial",
+          "sourceIds": []
+        },
+        {
+          "type": "paragraph",
+          "text": "O primeiro dado relevante é a data em que a liminar foi efetivamente executada, isto é, quando ocorreu a apreensão. No Tema Repetitivo 1279, o STJ fixou que o prazo de cinco dias para pagamento da integralidade da dívida começa nessa data. O tribunal afastou a adoção de marcos gerais do processo civil, como a juntada posterior do mandado, porque o Decreto-Lei nº 911/1969 contém regra especial diretamente ligada à execução da medida.",
+          "sourceIds": ["stj860_pos", "dl911_pos"]
+        },
+        {
+          "type": "paragraph",
+          "text": "No cumprimento, o devedor deve entregar o veículo e seus documentos. A apreensão é comunicada ao juízo, que intima a instituição financeira para retirar o bem do local de depósito no prazo máximo previsto em lei. A legislação também autoriza a inserção de restrição judicial no Renavam quando a busca e apreensão é decretada e determina a retirada dessa restrição após a apreensão. Esses atos servem para localizar, preservar e regularizar a situação registral do veículo durante o procedimento.",
+          "sourceIds": ["dl911_pos"]
+        },
+        {
+          "type": "heading",
+          "text": "Pagamento integral e resposta seguem trilhas diferentes",
+          "sourceIds": []
+        },
+        {
+          "type": "list",
+          "items": [
+            "O prazo para pagar a integralidade da dívida pendente é de cinco dias após a execução da liminar.",
+            "O prazo legal para apresentar resposta é de quinze dias, também contado da execução da liminar.",
+            "O pagamento integral dentro do primeiro prazo produz a restituição do bem livre do ônus fiduciário.",
+            "A resposta pode ser apresentada mesmo depois do pagamento, se houver alegação de excesso no pagamento e pedido de restituição."
+          ],
+          "sourceIds": ["dl911_pos", "stj860_pos"]
+        },
+        {
+          "type": "paragraph",
+          "text": "Esses caminhos não se confundem. A faculdade de pagamento busca extinguir a dívida pendente segundo os valores apresentados pelo credor na petição inicial e recuperar o veículo sem o gravame. A resposta, por sua vez, é o instrumento processual para apresentar as matérias admitidas no caso. Por isso, o prazo mais longo de defesa não amplia o prazo especial de pagamento. Também não é correto presumir que a entrega de uma contestação, sozinha, suspenda os efeitos materiais previstos para o fim do período de cinco dias.",
+          "sourceIds": ["dl911_pos", "stj860_pos", "stj540_pos"]
+        },
+        {
+          "type": "heading",
+          "text": "Consolidação da propriedade",
+          "sourceIds": []
+        },
+        {
+          "type": "paragraph",
+          "text": "Cinco dias após a execução da liminar, sem o pagamento integral previsto na lei, consolidam-se a propriedade e a posse plena e exclusiva do bem no patrimônio do credor fiduciário. As repartições competentes podem então expedir novo certificado de registro em nome do credor ou de terceiro indicado por ele, livre do ônus da propriedade fiduciária. A consolidação é um efeito central do rito e explica por que a data exata da apreensão tem importância prática.",
+          "sourceIds": ["dl911_pos", "stj860_pos"]
+        },
+        {
+          "type": "paragraph",
+          "text": "O Tema 722 do STJ, reproduzido no Informativo nº 540, esclareceu que não basta pagar somente as parcelas vencidas nos contratos submetidos à redação dada pela Lei nº 10.931/2004. Para evitar a consolidação e obter a restituição legal do bem, o pagamento deve abranger a integralidade da dívida, entendida como os valores apresentados e comprovados pelo credor na inicial. Essa regra não impede a conferência da composição do débito nem eventual discussão processual sobre cobrança superior ao devido.",
+          "sourceIds": ["stj540_pos", "dl911_pos", "stj860_pos"]
+        },
+        {
+          "type": "heading",
+          "text": "Venda do veículo e prestação de contas",
+          "sourceIds": []
+        },
+        {
+          "type": "paragraph",
+          "text": "Consolidada a propriedade, o credor pode vender o veículo a terceiro. Em regra, o Decreto-Lei nº 911/1969 dispensa leilão, hasta pública e avaliação prévia, salvo disposição contratual expressa em sentido contrário. O preço deve ser aplicado no pagamento do crédito e das despesas decorrentes, com prestação de contas. Se a operação gerar saldo depois dessas deduções, esse valor deve ser entregue ao devedor. A apreensão, portanto, não autoriza simplesmente ignorar o valor econômico do bem.",
+          "sourceIds": ["dl911_pos"]
+        },
+        {
+          "type": "paragraph",
+          "text": "Também é possível que o preço obtido não cubra o crédito e as despesas. Nessa hipótese, a legislação mantém a obrigação pessoal do devedor quanto ao saldo remanescente apurado. A venda do veículo não equivale automaticamente à quitação de todo o financiamento. Para compreender o resultado econômico, são relevantes a composição da dívida, o valor da alienação, as despesas descontadas e a prestação de contas apresentada pelo credor.",
+          "sourceIds": ["dl911_pos"]
+        },
+        {
+          "type": "heading",
+          "text": "Se o veículo não for encontrado",
+          "sourceIds": []
+        },
+        {
+          "type": "paragraph",
+          "text": "Quando o bem não é localizado ou não está na posse do devedor, o credor pode pedir, nos mesmos autos, a conversão da busca e apreensão em ação executiva. Nessa modalidade, a cobrança passa a alcançar bens suficientes para assegurar a execução, conforme a disciplina aplicável. Essa hipótese é diferente daquela em que a apreensão já ocorreu: sem a localização do automóvel, ainda não existe o marco material que o Tema 1279 associa ao início do prazo especial de pagamento.",
+          "sourceIds": ["dl911_pos", "stj860_pos"]
+        },
+        {
+          "type": "callout",
+          "text": "O Decreto-Lei nº 911/1969 também contém um procedimento extrajudicial, condicionado a cláusula contratual expressa e destacada. Nessa via há notificação cartorária, consolidação, busca e apreensão extrajudicial e um prazo próprio de cinco dias úteis após a apreensão para pagamento integral. Esses atos não devem ser misturados com os marcos da liminar executada em processo judicial.",
+          "sourceIds": ["dl911_pos"]
+        },
+        {
+          "type": "heading",
+          "text": "Registros que ajudam a reconstruir a sequência",
+          "sourceIds": []
+        },
+        {
+          "type": "paragraph",
+          "text": "Para identificar o estágio do procedimento, os registros mais informativos são a decisão liminar, o mandado, o auto ou certidão de apreensão, a data de comunicação ao juízo, a petição inicial com a planilha do débito, os comprovantes de eventual pagamento, a resposta apresentada e os documentos posteriores de venda e prestação de contas. A ordem cronológica desses elementos permite distinguir apreensão, consolidação, alienação do bem e apuração de saldo, que são eventos relacionados, mas juridicamente separados.",
+          "sourceIds": ["dl911_pos", "stj860_pos", "stj540_pos"]
+        }
+      ],
+      "sources": [
+        {
+          "id": "dl911_pos",
+          "title": "Decreto-Lei nº 911, de 1º de outubro de 1969 — texto compilado",
+          "url": "https://www.planalto.gov.br/ccivil_03/decreto-lei/1965-1988/del0911.htm"
+        },
+        {
+          "id": "stj860_pos",
+          "title": "STJ, Informativo de Jurisprudência nº 860 — Tema Repetitivo 1279",
+          "url": "https://processo.stj.jus.br/docs_internet/informativos/PDF/Inf0860.pdf"
+        },
+        {
+          "id": "stj540_pos",
+          "title": "STJ, Informativo de Jurisprudência nº 540 — Tema Repetitivo 722",
+          "url": "https://processo.stj.jus.br/docs_internet/informativos/PDF/Inf0540.pdf"
+        }
+      ]
+    }
+  },
+  {
+    "topicId": 4,
+    "article": {
+      "title": "Pagamento integral da dívida após a apreensão do veículo",
+      "slug": "pagamento-integral-divida-apos-apreensao-veiculo",
+      "metaDescription": "Entenda o que é pagamento integral após a apreensão, quando começa o prazo e quais efeitos a quitação produz sobre o veículo.",
+      "excerpt": "Depois da apreensão, a lei permite pagar a dívida integral em prazo específico. Saiba o que integra o valor, qual é o marco inicial e o efeito do pagamento.",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "Após a apreensão judicial de veículo alienado fiduciariamente, o Decreto-Lei nº 911/1969 abre uma possibilidade específica: o devedor pode pagar a integralidade da dívida pendente no prazo legal e receber o bem livre do ônus. A regra não corresponde ao simples pagamento das prestações atrasadas. Ela envolve o montante apresentado pelo credor na petição inicial, o marco temporal da execução da liminar e os efeitos processuais da quitação. O STJ uniformizou esses pontos em recursos repetitivos.",
+          "sourceIds": ["dl911_pag", "stj540_pag", "stj860_pag"]
+        },
+        {
+          "type": "heading",
+          "text": "Integralidade não significa apenas parcelas vencidas",
+          "sourceIds": []
+        },
+        {
+          "type": "paragraph",
+          "text": "No Tema Repetitivo 722, o STJ decidiu que, nos contratos firmados sob a redação introduzida pela Lei nº 10.931/2004, o devedor deve pagar a integralidade da dívida para obter a restituição do bem. O Informativo nº 540 define essa integralidade como os valores apresentados e comprovados pelo credor na inicial. A tese afastou a ideia de purgação da mora apenas com as prestações vencidas, mecanismo existente na redação anterior da legislação.",
+          "sourceIds": ["stj540_pag", "dl911_pag"]
+        },
+        {
+          "type": "paragraph",
+          "text": "A consequência prática é que o valor necessário pode reunir parcelas vencidas e vincendas, além dos encargos que componham a dívida contratual e estejam demonstrados. O artigo 2º do Decreto-Lei nº 911/1969 menciona principal, juros, comissões, taxas, cláusula penal e correção monetária quando expressamente convencionados. Isso não torna toda quantia indicada imune a conferência: a própria tese do STJ exige valores apresentados e comprovados, e a lei admite resposta até depois do pagamento para discutir eventual excesso.",
+          "sourceIds": ["dl911_pag", "stj540_pag", "stj860_pag"]
+        },
+        {
+          "type": "heading",
+          "text": "O prazo começa com a apreensão efetiva",
+          "sourceIds": []
+        },
+        {
+          "type": "paragraph",
+          "text": "O Tema Repetitivo 1279 definiu que os cinco dias para o pagamento integral começam na data da execução da medida liminar. O marco é a apreensão efetiva do bem, e não a posterior juntada do mandado aos autos. Segundo o STJ, a regra do Decreto-Lei nº 911/1969 é especial em relação às normas gerais do processo civil. Por isso, identificar a data registrada no auto ou na certidão de cumprimento é essencial para reconstruir a contagem prevista no rito.",
+          "sourceIds": ["stj860_pag", "dl911_pag"]
+        },
+        {
+          "type": "paragraph",
+          "text": "O prazo de quinze dias para apresentar resposta não prorroga os cinco dias destinados ao pagamento. Ambos são contados da execução da liminar, mas servem a finalidades diferentes. O primeiro permite extinguir a dívida pendente e recuperar o bem nos termos legais; o segundo permite formular a defesa processual. O STJ destacou essa arquitetura ao fixar o termo inicial do prazo de quitação, preservando o marco especial diretamente indicado no Decreto-Lei.",
+          "sourceIds": ["dl911_pag", "stj860_pag"]
+        },
+        {
+          "type": "callout",
+          "text": "A expressão “após a apreensão” exige atenção à data do cumprimento da liminar. A ciência posterior do processo não é o marco escolhido pelo Tema 1279 para iniciar o prazo de pagamento integral na ação judicial.",
+          "sourceIds": ["stj860_pag"]
+        },
+        {
+          "type": "heading",
+          "text": "Como compreender o valor apresentado na inicial",
+          "sourceIds": []
+        },
+        {
+          "type": "list",
+          "items": [
+            "A petição inicial mostra o total que o credor afirma ser necessário para a quitação integral.",
+            "A planilha permite identificar principal, prestações vencidas e vincendas e encargos incluídos.",
+            "O contrato revela quais juros, taxas, comissões, penalidades e critérios de atualização foram convencionados.",
+            "Comprovantes de pagamentos anteriores ajudam a verificar se foram considerados na evolução do saldo.",
+            "A decisão, o mandado e o auto de apreensão permitem relacionar o cálculo ao momento processual e ao início do prazo."
+          ],
+          "sourceIds": ["dl911_pag", "stj540_pag", "stj860_pag"]
+        },
+        {
+          "type": "paragraph",
+          "text": "Essa conferência documental não altera a exigência de integralidade firmada pelo STJ. Ela serve para entender qual obrigação está sendo quitada e como o credor chegou ao valor informado. Se houver divergência, a lei prevê resposta do devedor e admite que ela seja apresentada mesmo quando o pagamento integral já ocorreu, caso se alegue pagamento superior ao devido e se pretenda restituição. Pagamento e discussão do excesso podem, portanto, coexistir no desenho legal.",
+          "sourceIds": ["dl911_pag", "stj540_pag"]
+        },
+        {
+          "type": "heading",
+          "text": "Efeito do pagamento tempestivo",
+          "sourceIds": []
+        },
+        {
+          "type": "paragraph",
+          "text": "Quando a integralidade da dívida é paga dentro do prazo previsto, o Decreto-Lei determina que o veículo seja restituído ao devedor livre do ônus. O efeito é mais amplo do que colocar apenas as parcelas vencidas em dia: a obrigação pendente é quitada segundo a sistemática especial, e o gravame fiduciário deixa de recair sobre o bem. O reconhecimento do pagamento nos autos permite documentar o cumprimento e viabilizar as providências de restituição e regularização correspondentes.",
+          "sourceIds": ["dl911_pag", "stj540_pag", "stj860_pag"]
+        },
+        {
+          "type": "paragraph",
+          "text": "O pagamento integral não elimina automaticamente uma controvérsia sobre excesso. O parágrafo 4º do artigo 3º autoriza a apresentação de resposta mesmo depois do uso da faculdade de pagar, se o devedor entender que houve excesso no pagamento e buscar a restituição. A norma preserva a rapidez do mecanismo de recuperação do bem sem exigir que a pessoa abandone, por esse motivo, a discussão sobre a correção do valor cobrado.",
+          "sourceIds": ["dl911_pag"]
+        },
+        {
+          "type": "paragraph",
+          "text": "Decorridos cinco dias da execução da liminar sem o pagamento integral, consolidam-se a propriedade e a posse plena e exclusiva no patrimônio do credor fiduciário. O pagamento posterior não produz automaticamente o mesmo efeito restitutório previsto para o período do parágrafo 2º. Uma eventual composição entre as partes é situação distinta da faculdade legal. No curso normal do rito, a consolidação permite que o credor providencie o registro e avance para a venda do veículo.",
+          "sourceIds": ["dl911_pag", "stj540_pag", "stj860_pag"]
+        },
+        {
+          "type": "paragraph",
+          "text": "Se houver venda, o preço deve ser aplicado no crédito e nas despesas, com a devida prestação de contas. Um saldo positivo deve ser entregue ao devedor; se o preço não for suficiente, permanece a obrigação pessoal pelo saldo devedor apurado. Assim, a ausência de pagamento integral no prazo pode levar à alienação do veículo, mas o valor da venda ainda precisa ser contabilizado na relação de débito e crédito entre as partes.",
+          "sourceIds": ["dl911_pag"]
+        },
+        {
+          "type": "paragraph",
+          "text": "A Lei nº 14.711/2023 acrescentou uma execução extrajudicial ao Decreto-Lei nº 911/1969 quando o contrato contém cláusula expressa e destacada. Nessa via, há prazo para pagamento voluntário durante a etapa cartorária e, se o bem vier a ser apreendido extrajudicialmente, um prazo de cinco dias úteis para pagar a integralidade segundo os valores do requerimento. A origem do ato, o documento que registra a apreensão e a autoridade responsável permitem saber qual regime está em curso.",
+          "sourceIds": ["dl911_pag"]
+        },
+        {
+          "type": "paragraph",
+          "text": "A leitura do caso documental deve separar quatro dados: data da apreensão, total indicado e comprovado na inicial, eventual pagamento realizado e manifestação apresentada no processo. Esses elementos mostram se houve quitação dentro da janela legal, se a restituição livre do ônus é o efeito previsto e se permanece alguma controvérsia sobre excesso. Sem essa sequência, expressões genéricas como “pagar o atraso” ou “quitar depois da apreensão” podem ocultar diferenças jurídicas relevantes.",
+          "sourceIds": ["dl911_pag", "stj540_pag", "stj860_pag"]
+        }
+      ],
+      "sources": [
+        {
+          "id": "dl911_pag",
+          "title": "Decreto-Lei nº 911, de 1º de outubro de 1969 — texto compilado",
+          "url": "https://www.planalto.gov.br/ccivil_03/decreto-lei/1965-1988/del0911.htm"
+        },
+        {
+          "id": "stj540_pag",
+          "title": "STJ, Informativo de Jurisprudência nº 540 — Tema Repetitivo 722",
+          "url": "https://processo.stj.jus.br/docs_internet/informativos/PDF/Inf0540.pdf"
+        },
+        {
+          "id": "stj860_pag",
+          "title": "STJ, Informativo de Jurisprudência nº 860 — Tema Repetitivo 1279",
+          "url": "https://processo.stj.jus.br/docs_internet/informativos/PDF/Inf0860.pdf"
+        }
+      ]
+    }
+  }
+]

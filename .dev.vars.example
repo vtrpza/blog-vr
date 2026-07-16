@@ -1,0 +1,6 @@
+# Copie para .dev.vars apenas em ambiente local.
+# As chaves de teste do Turnstile são públicas; use secrets reais somente via Wrangler.
+TURNSTILE_SECRET=1x0000000000000000000000000000000AA
+IDEMPOTENCY_SECRET=
+OPENAI_API_KEY=
+PIPEDRIVE_API_TOKEN=

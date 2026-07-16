@@ -1,0 +1,506 @@
+[
+  {
+    "topicId": 68,
+    "article": {
+      "title": "Como montar um mapa das dívidas bancárias da empresa",
+      "slug": "como-montar-mapa-dividas-bancarias-empresa",
+      "metaDescription": "Aprenda a organizar contratos, saldos, parcelas, garantias e riscos em um mapa das dívidas bancárias da empresa, com método e fontes oficiais.",
+      "excerpt": "Um mapa de dívidas reúne contratos, saldos, vencimentos, encargos, garantias e responsáveis em uma visão única, conciliada com documentos bancários.",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "Mapear dívidas bancárias não é apenas somar saldos. A empresa precisa saber quem é o credor, qual documento sustenta cada operação, como o saldo evolui, quando há vencimentos, quais bens ou pessoas garantem o pagamento e que eventos podem antecipar a cobrança. O resultado deve ser um inventário rastreável, capaz de ligar cada linha da planilha ao contrato, ao extrato e aos registros internos. O Relatório de Empréstimos e Financiamentos do Banco Central e o Sistema de Informações de Créditos ajudam na conferência externa, enquanto os instrumentos assinados continuam essenciais para compreender cláusulas e garantias.",
+          "sourceIds": ["scr_report", "scr_system", "ccb_law"]
+        },
+        {
+          "type": "heading",
+          "text": "Defina o que entra no mapa",
+          "sourceIds": []
+        },
+        {
+          "type": "paragraph",
+          "text": "O perímetro deve abranger as obrigações da própria pessoa jurídica e também exposições relacionadas que possam afetá-la. Isso inclui empréstimos, financiamentos, limites utilizados, capital de giro, antecipações e títulos emitidos em operações de crédito. Convém separar dívida contratada pela empresa de obrigações em que ela aparece apenas como garantidora ou coobrigada. Essa distinção evita tratar como saldo operacional aquilo que é risco contingente e permite identificar garantias cruzadas entre contratos diferentes.",
+          "sourceIds": ["scr_system", "ccb_law", "civil_code"]
+        },
+        {
+          "type": "list",
+          "items": [
+            "Identificação da instituição credora, número interno da operação e unidade da empresa que contratou o crédito.",
+            "Tipo do instrumento, data de emissão ou assinatura, finalidade declarada e moeda da obrigação.",
+            "Valor originalmente liberado, saldo informado pelo banco, saldo reconhecido na contabilidade e data-base de cada valor.",
+            "Cronograma de principal, juros, encargos, tarifas contratuais e vencimento final.",
+            "Taxa, indexador, periodicidade de capitalização prevista e regra aplicável em caso de mora.",
+            "Hipóteses de vencimento antecipado, obrigações de informação e outros compromissos contratuais.",
+            "Garantias reais, garantias pessoais, terceiros garantidores, registros e documentos correspondentes.",
+            "Situação atual, divergências encontradas, responsável interno e próxima data de revisão."
+          ],
+          "sourceIds": ["ccb_law", "civil_code"]
+        },
+        {
+          "type": "heading",
+          "text": "Comece pelos documentos, não pela memória",
+          "sourceIds": []
+        },
+        {
+          "type": "paragraph",
+          "text": "Para cada operação, reúna a via assinada, aditivos, planilhas de evolução, extratos, comprovantes de liberação e pagamento, notificações, instrumentos de garantia e certidões de registro. Em uma Cédula de Crédito Bancário, por exemplo, a lei prevê requisitos essenciais e admite que garantias sejam constituídas no próprio título ou em documento separado mencionado nele. A planilha deve apontar o local do arquivo e a versão vigente, em vez de substituir o documento. Se um aditivo alterou taxa, prazo ou garantia, a linha precisa refletir a alteração e preservar o histórico anterior.",
+          "sourceIds": ["ccb_law"]
+        },
+        {
+          "type": "paragraph",
+          "text": "O relatório do Banco Central funciona como fonte de conferência, não como cópia completa de todos os contratos. Compare instituições, modalidades e exposições que aparecem no relatório com o cadastro interno. Uma operação presente apenas em um dos lados deve gerar uma pendência de conciliação: pode haver diferença de data-base, baixa ainda não processada, obrigação não cadastrada internamente ou necessidade de esclarecimento com a instituição. Registre a divergência sem apagar nenhuma das informações originais.",
+          "sourceIds": ["scr_report", "scr_system"]
+        },
+        {
+          "type": "heading",
+          "text": "Separe saldo, fluxo e custo",
+          "sourceIds": []
+        },
+        {
+          "type": "paragraph",
+          "text": "Uma única coluna de saldo não mostra o impacto financeiro da dívida. O mapa deve distinguir principal ainda não pago, encargos apropriados, parcelas vencidas, parcelas a vencer e custo projetado conforme os critérios contratuais. Use sempre uma data-base explícita. Na Cédula de Crédito Bancário, a lei admite a apuração do saldo por planilha de cálculo ou extratos e exige que esses demonstrativos evidenciem componentes como principal, encargos, atualização, multas e despesas. A empresa pode espelhar essa decomposição para tornar a conciliação compreensível.",
+          "sourceIds": ["ccb_law"]
+        },
+        {
+          "type": "list",
+          "items": [
+            "Total de principal por instituição e por modalidade, sem misturar valores de datas-base diferentes.",
+            "Parcelas previstas por período, para visualizar concentração de desembolsos e vencimentos próximos.",
+            "Valores vencidos separados dos vincendos, com a origem documental da classificação.",
+            "Diferença entre o saldo bancário, o saldo contratual calculado e o saldo contábil, acompanhada de justificativa.",
+            "Exposição condicionada por garantias prestadas a terceiros, mantida fora do total da dívida própria, mas visível no painel de riscos."
+          ],
+          "sourceIds": ["scr_report", "ccb_law", "civil_code"]
+        },
+        {
+          "type": "heading",
+          "text": "Faça um inventário específico das garantias",
+          "sourceIds": []
+        },
+        {
+          "type": "paragraph",
+          "text": "A aba de garantias deve responder qual obrigação está coberta, até que limite, por quanto tempo e por qual ativo ou garantidor. O Código Civil disciplina a fiança e as garantias reais de penhor e hipoteca, entre outras. A legislação da Cédula de Crédito Bancário permite garantia fidejussória ou real e exige descrição que permita identificar o bem. Portanto, expressões genéricas como “garantia dos sócios” ou “máquinas” são insuficientes para gestão: registre quem assinou, em que qualidade, qual bem foi individualizado, onde houve registro e se a garantia alcança acessórios ou obrigações adicionais.",
+          "sourceIds": ["civil_code", "ccb_law"]
+        },
+        {
+          "type": "paragraph",
+          "text": "Também é útil marcar cláusulas que podem alterar rapidamente o risco: vencimento antecipado, obrigação de reforçar ou substituir garantia, restrição à alienação de ativos, dever de manter seguro e vinculação do mesmo bem a mais de uma operação. Nem toda cláusula produzirá o mesmo efeito em qualquer contexto, e o mapa não deve antecipar uma conclusão jurídica. Sua função é localizar o texto, indicar o fato relevante e encaminhar a questão para revisão técnica quando necessário.",
+          "sourceIds": ["ccb_law", "civil_code"]
+        },
+        {
+          "type": "callout",
+          "text": "Trate o mapa como registro de evidências. Cada valor deve ter data-base e documento de origem; cada garantia deve apontar o instrumento e o registro correspondente; cada divergência deve ter responsável e estado de apuração. O painel resume a informação, mas não altera o contrato nem substitui a análise contábil, financeira ou jurídica do documento completo.",
+          "sourceIds": ["scr_system", "ccb_law", "civil_code"]
+        },
+        {
+          "type": "heading",
+          "text": "Mantenha o mapa vivo e controlado",
+          "sourceIds": []
+        },
+        {
+          "type": "paragraph",
+          "text": "Estabeleça uma rotina de atualização ligada ao fechamento financeiro e a eventos relevantes, como nova contratação, aditivo, atraso, quitação, substituição de garantia ou recebimento de notificação. Preserve versões para que seja possível explicar mudanças entre períodos. O acesso deve ser limitado a quem precisa dos dados, porque contratos, extratos e informações de garantidores podem ser sensíveis. Ao final de cada revisão, confira se todas as operações possuem documento, saldo conciliado, cronograma, garantia classificada e pendências atribuídas. Essa disciplina transforma uma lista estática em ferramenta de controle e reduz decisões baseadas em informação fragmentada.",
+          "sourceIds": ["scr_report", "scr_system", "ccb_law"]
+        }
+      ],
+      "sources": [
+        {
+          "id": "scr_report",
+          "title": "Banco Central do Brasil — Relatório de Empréstimos e Financiamentos (SCR)",
+          "url": "https://www.bcb.gov.br/meubc/relatorioemprestimosfinanciamentos"
+        },
+        {
+          "id": "scr_system",
+          "title": "Banco Central do Brasil — Sistema de Informações de Créditos (SCR)",
+          "url": "https://www.bcb.gov.br/estabilidadefinanceira/scr"
+        },
+        {
+          "id": "ccb_law",
+          "title": "Lei nº 10.931/2004 — Cédula de Crédito Bancário",
+          "url": "https://www.planalto.gov.br/ccivil_03/_ato2004-2006/2004/lei/l10.931.htm"
+        },
+        {
+          "id": "civil_code",
+          "title": "Lei nº 10.406/2002 — Código Civil",
+          "url": "https://www.planalto.gov.br/ccivil_03/leis/2002/l10406compilada.htm"
+        }
+      ]
+    }
+  },
+  {
+    "topicId": 69,
+    "article": {
+      "title": "Garantias mais comuns em contratos bancários empresariais",
+      "slug": "garantias-comuns-contratos-bancarios-empresariais",
+      "metaDescription": "Entenda fiança, aval, penhor, hipoteca e alienação fiduciária em contratos bancários empresariais, com efeitos e pontos de conferência.",
+      "excerpt": "Garantias pessoais e reais distribuem riscos de formas diferentes. Conhecer sua estrutura ajuda a empresa a ler contratos e organizar obrigações.",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "Garantias em operações bancárias empresariais podem vincular o patrimônio de um terceiro, um título de crédito ou um bem específico ao pagamento. A nomenclatura, sozinha, não revela toda a extensão do risco: é necessário ler o instrumento, identificar a dívida garantida, verificar limites, prazo, registros e consequências do inadimplemento. Este panorama apresenta figuras previstas na legislação e recorrentes na estrutura jurídica do crédito, sem propor uma classificação estatística de uso pelo mercado.",
+          "sourceIds": ["civil_code_g", "ccb_law_g"]
+        },
+        {
+          "type": "heading",
+          "text": "Garantias pessoais e garantias reais",
+          "sourceIds": []
+        },
+        {
+          "type": "paragraph",
+          "text": "Na garantia pessoal, também chamada fidejussória, uma pessoa assume responsabilidade relacionada à obrigação de outra. Fiança e aval pertencem a esse grupo, embora tenham regimes distintos. Na garantia real, um bem ou direito fica juridicamente vinculado ao cumprimento da obrigação. O Código Civil trata de penhor e hipoteca, e leis especiais disciplinam alienações fiduciárias. A Cédula de Crédito Bancário pode ser emitida com ou sem garantia, real ou fidejussória, que deve ser especificada no título.",
+          "sourceIds": ["civil_code_g", "ccb_law_g", "fiduciary_mobile", "fiduciary_real_estate"]
+        },
+        {
+          "type": "heading",
+          "text": "Fiança: obrigação assumida pelo fiador",
+          "sourceIds": []
+        },
+        {
+          "type": "paragraph",
+          "text": "Pelo contrato de fiança, o fiador garante ao credor a satisfação da obrigação assumida pelo devedor caso ela não seja cumprida. O Código Civil exige forma escrita e impede interpretação extensiva. A fiança pode ser limitada, e a lei disciplina seus efeitos sobre acessórios da dívida, benefício de ordem, pluralidade de fiadores e direito de regresso de quem paga. Contratos bancários podem conter renúncia ao benefício de ordem ou qualificar o fiador como principal pagador ou devedor solidário; essas expressões merecem leitura destacada porque alteram a dinâmica de responsabilização prevista no regime geral.",
+          "sourceIds": ["civil_code_g"]
+        },
+        {
+          "type": "heading",
+          "text": "Aval: garantia ligada a um título de crédito",
+          "sourceIds": []
+        },
+        {
+          "type": "paragraph",
+          "text": "O aval garante o pagamento de obrigação incorporada a título de crédito. No regime geral do Código Civil, ele deve constar do próprio título, e o avalista equipara-se à pessoa indicada como avalizada; se pagar, pode exercer regresso contra o avalizado e coobrigados anteriores. A autonomia cambiária diferencia o aval da fiança. Em operações documentadas por Cédula de Crédito Bancário, é importante verificar onde está a assinatura, quem foi indicado como avalizado e se a pessoa assinou também em outra qualidade, como emitente ou garantidor de obrigação contratual.",
+          "sourceIds": ["civil_code_g", "ccb_law_g"]
+        },
+        {
+          "type": "heading",
+          "text": "Penhor e hipoteca",
+          "sourceIds": []
+        },
+        {
+          "type": "paragraph",
+          "text": "O penhor recai, em regra, sobre coisa móvel suscetível de alienação. O Código Civil prevê modalidades em que os bens permanecem com o devedor, como no penhor industrial, mercantil e de veículos, além de regras próprias de constituição e registro. A hipoteca recai sobre bens e direitos admitidos em lei, com destaque prático para imóveis. Em ambos os casos, o contrato deve individualizar o crédito e o bem, indicando valor, prazo e juros quando houver. A prioridade e a eficácia perante terceiros dependem das formalidades e registros aplicáveis.",
+          "sourceIds": ["civil_code_g"]
+        },
+        {
+          "type": "heading",
+          "text": "Alienação fiduciária de bens móveis e imóveis",
+          "sourceIds": []
+        },
+        {
+          "type": "paragraph",
+          "text": "Na alienação fiduciária, o bem é vinculado ao credor sob um regime de propriedade resolúvel, enquanto o devedor normalmente conserva a posse direta e utiliza o ativo. Para bens móveis, o Decreto-Lei nº 911 disciplina efeitos do inadimplemento, venda do bem e busca e apreensão. Para imóveis, a Lei nº 9.514 define o negócio fiduciário, a constituição mediante registro imobiliário e o procedimento de consolidação da propriedade diante de dívida vencida e mora constituída. Os procedimentos não são intercambiáveis; a natureza do bem e a lei aplicável mudam a análise.",
+          "sourceIds": ["fiduciary_mobile", "fiduciary_real_estate"]
+        },
+        {
+          "type": "paragraph",
+          "text": "Em uma Cédula de Crédito Bancário, a garantia real pode abranger bem patrimonial disponível e alienável, móvel ou imóvel, material ou imaterial, presente ou futuro, pertencente ao emitente ou a terceiro garantidor. A lei exige descrição e individualização que permitam a identificação. Também prevê que a garantia pode constar da própria cédula ou de documento separado nela mencionado. Isso torna indispensável ler os anexos: a página de assinaturas pode não conter todos os ativos, limites e obrigações de conservação.",
+          "sourceIds": ["ccb_law_g"]
+        },
+        {
+          "type": "heading",
+          "text": "O que conferir antes de classificar uma garantia",
+          "sourceIds": []
+        },
+        {
+          "type": "list",
+          "items": [
+            "Qual dívida é garantida e se a cobertura alcança saldo principal, acessórios, despesas e obrigações futuras.",
+            "Quem presta a garantia, com quais poderes de representação e em qual qualidade aparece na assinatura.",
+            "Se há valor máximo, prazo, condição de liberação ou previsão de continuidade após aditivos e prorrogações.",
+            "Qual bem ou direito foi vinculado, como foi descrito e onde deve ser registrado ou averbado.",
+            "Quem mantém a posse, o uso, a guarda, o seguro e a obrigação de conservar ou substituir o bem.",
+            "Quais fatos autorizam vencimento antecipado, reforço da garantia, execução, consolidação ou busca e apreensão.",
+            "Se o mesmo ativo ou garantidor aparece em outras operações e quais prioridades constam dos registros."
+          ],
+          "sourceIds": ["civil_code_g", "ccb_law_g", "fiduciary_mobile", "fiduciary_real_estate"]
+        },
+        {
+          "type": "heading",
+          "text": "Garantia não equivale a quitação automática",
+          "sourceIds": []
+        },
+        {
+          "type": "paragraph",
+          "text": "A realização de uma garantia não significa necessariamente que todo o saldo foi satisfeito. Na alienação fiduciária de bem móvel, a legislação prevê aplicação do preço da venda ao crédito e às despesas, com entrega do saldo positivo ao devedor, se houver. O resultado econômico depende do valor obtido, dos encargos admitidos e da prestação de contas. Nas demais garantias, regras próprias determinam preferência, excussão, liberação e eventual saldo remanescente. Por isso, o controle financeiro deve acompanhar tanto a dívida quanto o procedimento relativo ao bem.",
+          "sourceIds": ["fiduciary_mobile", "civil_code_g"]
+        },
+        {
+          "type": "callout",
+          "text": "Uma mesma operação pode combinar aval, fiança e garantias reais. O risco não deve ser avaliado isolando cada assinatura: é preciso montar uma matriz que ligue devedor, coobrigados, ativos, registros, limites e contratos alcançados. A descrição organizada não substitui a interpretação do instrumento completo nem resolve, por si, questões de validade ou exigibilidade.",
+          "sourceIds": ["civil_code_g", "ccb_law_g"]
+        },
+        {
+          "type": "paragraph",
+          "text": "Mantenha um cadastro por garantia com referência ao contrato, documento constitutivo, bem ou garantidor, valor atribuído, registro, data de vigência, obrigações de seguro e eventos de liberação. Anexe certidões e comprovantes sem sobrescrever versões anteriores. Quando houver quitação, obtenha e arquive os documentos necessários à baixa conforme a espécie de garantia. Em revisões periódicas, confronte o cadastro com matrículas, registros e aditivos. Essa organização permite saber quais ativos estão comprometidos e quais pessoas assumiram obrigações, sem depender de descrições genéricas em planilhas financeiras.",
+          "sourceIds": ["civil_code_g", "ccb_law_g", "fiduciary_real_estate"]
+        }
+      ],
+      "sources": [
+        {
+          "id": "civil_code_g",
+          "title": "Lei nº 10.406/2002 — Código Civil",
+          "url": "https://www.planalto.gov.br/ccivil_03/leis/2002/l10406compilada.htm"
+        },
+        {
+          "id": "ccb_law_g",
+          "title": "Lei nº 10.931/2004 — Cédula de Crédito Bancário",
+          "url": "https://www.planalto.gov.br/ccivil_03/_ato2004-2006/2004/lei/l10.931.htm"
+        },
+        {
+          "id": "fiduciary_mobile",
+          "title": "Decreto-Lei nº 911/1969 — Alienação fiduciária de bens móveis",
+          "url": "https://www.planalto.gov.br/ccivil_03/decreto-lei/1965-1988/del0911.htm"
+        },
+        {
+          "id": "fiduciary_real_estate",
+          "title": "Lei nº 9.514/1997 — Alienação fiduciária de coisa imóvel",
+          "url": "https://www.planalto.gov.br/ccivil_03/leis/l9514.htm"
+        }
+      ]
+    }
+  },
+  {
+    "topicId": 70,
+    "article": {
+      "title": "Diferença entre aval e fiança em dívida empresarial",
+      "slug": "diferenca-aval-fianca-divida-empresarial",
+      "metaDescription": "Entenda as diferenças entre aval e fiança em dívidas empresariais: documento, autonomia, cobrança, limites, benefício de ordem e regresso.",
+      "excerpt": "Aval e fiança são garantias pessoais, mas seguem regimes distintos. O documento assinado e a qualidade do garantidor mudam os efeitos jurídicos.",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "Aval e fiança permitem que outra pessoa responda por obrigação ligada à dívida de uma empresa, mas não são sinônimos. A fiança nasce de contrato e segue o regime das garantias pessoais do Código Civil. O aval é garantia cambiária prestada em título de crédito e obedece às regras do título correspondente. Confundir as figuras pode distorcer a leitura sobre limites, ordem de cobrança, autonomia da obrigação e direitos de quem paga.",
+          "sourceIds": ["civil_code_af", "lug_af", "ccb_af"]
+        },
+        {
+          "type": "heading",
+          "text": "O que caracteriza a fiança",
+          "sourceIds": []
+        },
+        {
+          "type": "paragraph",
+          "text": "O Código Civil define a fiança como contrato pelo qual alguém garante ao credor que satisfará obrigação assumida pelo devedor se este não a cumprir. Ela deve ser escrita e não admite interpretação extensiva. Pode alcançar dívida futura, mas, nessa hipótese, o fiador só pode ser demandado depois que a obrigação principal se tornar certa e líquida. Como a fiança se relaciona com a obrigação garantida, o contrato precisa deixar claro o devedor, a dívida, o prazo, o valor ou critério de limitação e os acessórios abrangidos.",
+          "sourceIds": ["civil_code_af"]
+        },
+        {
+          "type": "heading",
+          "text": "O que caracteriza o aval",
+          "sourceIds": []
+        },
+        {
+          "type": "paragraph",
+          "text": "O aval garante o pagamento de título de crédito. Pelo regime geral do Código Civil, deve ser lançado no verso ou no anverso do próprio título; no anverso, a simples assinatura pode bastar para caracterizá-lo. O avalista se equipara à pessoa indicada e, na falta de indicação, ao emitente ou devedor final. A Lei Uniforme aplicável a letras de câmbio e notas promissórias também prevê que o aval seja dado no próprio título ou em folha anexa, mediante forma cambiária própria. O tipo de título deve ser identificado antes de aplicar qualquer regra.",
+          "sourceIds": ["civil_code_af", "lug_af"]
+        },
+        {
+          "type": "heading",
+          "text": "Acessoriedade e autonomia",
+          "sourceIds": []
+        },
+        {
+          "type": "paragraph",
+          "text": "A fiança é acessória: sua existência e extensão se conectam à obrigação principal, e o Código Civil estabelece que obrigações nulas, em regra, não são suscetíveis de fiança. O aval possui autonomia cambiária mais intensa. O Código dispõe que a responsabilidade do avalista subsiste ainda que seja nula a obrigação da pessoa avalizada, salvo quando a nulidade decorrer de vício de forma. A Lei Uniforme adota lógica equivalente para os títulos que disciplina. Essa diferença interfere nas defesas possíveis e impede transportar automaticamente uma regra da fiança para o aval.",
+          "sourceIds": ["civil_code_af", "lug_af"]
+        },
+        {
+          "type": "heading",
+          "text": "Benefício de ordem na fiança",
+          "sourceIds": []
+        },
+        {
+          "type": "paragraph",
+          "text": "O fiador demandado pode, nas condições do Código Civil, exigir que primeiro sejam executados bens do devedor, indicando bens livres e suficientes no local previsto pela lei. Esse benefício de ordem não se aplica quando houve renúncia expressa, quando o fiador se obrigou como principal pagador ou devedor solidário, ou quando o devedor é insolvente ou falido. O aval não possui benefício de ordem equivalente no regime cambiário: o avalista responde da mesma maneira que a pessoa avalizada, conforme as regras do título.",
+          "sourceIds": ["civil_code_af", "lug_af"]
+        },
+        {
+          "type": "heading",
+          "text": "Limites e extensão da garantia",
+          "sourceIds": []
+        },
+        {
+          "type": "paragraph",
+          "text": "A fiança pode ser prestada em valor inferior ao da obrigação principal e em condições menos onerosas. Se não for limitada, o Código Civil prevê que alcance os acessórios da dívida principal, inclusive despesas judiciais a partir da citação do fiador. No aval, a extensão depende do regime do título. O Código Civil veda aval parcial como regra geral, mas preserva leis especiais; a Lei Uniforme admite aval sobre a totalidade ou parte da importância em letras de câmbio e notas promissórias. Por isso, não se deve usar uma fórmula única sem identificar o título e a legislação específica.",
+          "sourceIds": ["civil_code_af", "lug_af"]
+        },
+        {
+          "type": "heading",
+          "text": "Forma e local da assinatura",
+          "sourceIds": []
+        },
+        {
+          "type": "paragraph",
+          "text": "A fiança pode integrar o contrato bancário ou instrumento separado, desde que escrita e vinculada à obrigação garantida. O aval precisa observar a forma cambiária do título. Em uma Cédula de Crédito Bancário, a lei exige assinatura do emitente e, se houver, do terceiro garantidor; também manda aplicar, no que couber e sem conflito, a legislação cambial, mencionando endossantes e avalistas. A mesma pessoa pode aparecer em campos diferentes. A conferência deve registrar a qualidade indicada ao lado de cada assinatura, e não apenas o nome do signatário.",
+          "sourceIds": ["civil_code_af", "lug_af", "ccb_af"]
+        },
+        {
+          "type": "heading",
+          "text": "Consentimento do devedor, outorga e representação",
+          "sourceIds": []
+        },
+        {
+          "type": "paragraph",
+          "text": "A fiança pode ser estipulada sem consentimento do devedor ou até contra a vontade dele, segundo o Código Civil. Questão diferente é saber se o próprio garantidor possuía capacidade, poderes de representação e autorizações exigidas. O Código também prevê autorização do outro cônjuge para prestar fiança ou aval, ressalvado o regime de separação absoluta, além de regras sobre suprimento e efeitos da falta de outorga. Em dívida empresarial, esses dados devem ser conferidos para cada pessoa física que assinou, sem conclusões automáticas baseadas apenas no estado civil informado no cadastro.",
+          "sourceIds": ["civil_code_af"]
+        },
+        {
+          "type": "paragraph",
+          "text": "O fiador que paga integralmente fica sub-rogado nos direitos do credor e pode buscar do devedor os valores que a lei e o contrato permitam. O avalista que paga o título tem ação de regresso contra o avalizado e os coobrigados anteriores, conforme o Código Civil e a Lei Uniforme. Assim, o pagamento pelo garantidor não apaga a relação econômica interna entre ele e o devedor. Para a gestão empresarial, recibos, demonstrativos, comunicações e documentos de quitação precisam ser preservados para registrar quem pagou, qual obrigação foi satisfeita e que direitos podem ter surgido.",
+          "sourceIds": ["civil_code_af", "lug_af"]
+        },
+        {
+          "type": "list",
+          "items": [
+            "Documento: a fiança é contratual; o aval deve observar a forma do título de crédito.",
+            "Relação com a dívida: a fiança é acessória; o aval tem autonomia cambiária.",
+            "Ordem de cobrança: a fiança pode ter benefício de ordem, sujeito a condições e exceções; o aval não possui equivalente geral.",
+            "Extensão: a fiança pode ser limitada por escrito; no aval, a regra varia conforme o título e a lei aplicável.",
+            "Pagamento: fiador e avalista podem adquirir direitos de regresso, cada qual segundo seu regime.",
+            "Conferência: qualidade da assinatura, poderes, outorga, aditivos e identificação da obrigação devem ser verificados no conjunto documental."
+          ],
+          "sourceIds": ["civil_code_af", "lug_af", "ccb_af"]
+        },
+        {
+          "type": "callout",
+          "text": "O nome dado pelo banco ou pelas partes ajuda, mas não encerra a classificação. É necessário observar o conteúdo da declaração, sua posição no título, a obrigação garantida e a lei específica. Este quadro oferece informação geral e não determina os efeitos de uma assinatura em caso concreto.",
+          "sourceIds": ["civil_code_af", "lug_af", "ccb_af"]
+        }
+      ],
+      "sources": [
+        {
+          "id": "civil_code_af",
+          "title": "Lei nº 10.406/2002 — Código Civil",
+          "url": "https://www.planalto.gov.br/ccivil_03/leis/2002/l10406compilada.htm"
+        },
+        {
+          "id": "lug_af",
+          "title": "Decreto nº 57.663/1966 — Anexo da Lei Uniforme sobre letras de câmbio e notas promissórias",
+          "url": "https://www.planalto.gov.br/ccivil_03/decreto/1950-1969/anexo/an57663-66.pdf"
+        },
+        {
+          "id": "ccb_af",
+          "title": "Lei nº 10.931/2004 — Cédula de Crédito Bancário",
+          "url": "https://www.planalto.gov.br/ccivil_03/_ato2004-2006/2004/lei/l10.931.htm"
+        }
+      ]
+    }
+  },
+  {
+    "topicId": 71,
+    "article": {
+      "title": "Cédula de Crédito Bancário para empresas: como funciona",
+      "slug": "cedula-credito-bancario-empresas-como-funciona",
+      "metaDescription": "Saiba o que é a Cédula de Crédito Bancário, quais requisitos deve conter e como funcionam saldo, encargos, garantias, registro e execução.",
+      "excerpt": "A Cédula de Crédito Bancário documenta operações de crédito e possui regras próprias sobre conteúdo, saldo, garantias, circulação e força executiva.",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "A Cédula de Crédito Bancário, conhecida pela sigla CCB, é um título de crédito usado para representar promessa de pagamento em dinheiro decorrente de operação de crédito. Ela pode ser emitida por pessoa física ou jurídica em favor de instituição financeira ou entidade equiparada, nos termos da Lei nº 10.931. Para empresas, a CCB pode documentar modalidades diversas de crédito e concentrar regras sobre liberação, pagamento, encargos, mora, garantias e obrigações adicionais. Ler apenas o cronograma de parcelas não revela toda a estrutura do título.",
+          "sourceIds": ["ccb_main"]
+        },
+        {
+          "type": "heading",
+          "text": "Natureza e formas de emissão",
+          "sourceIds": []
+        },
+        {
+          "type": "paragraph",
+          "text": "A lei admite CCB com ou sem garantia, real ou fidejussória. O título pode existir na forma cartular ou escritural. Na forma escritural, o lançamento ocorre em sistema eletrônico mantido por instituição financeira ou entidade autorizada pelo Banco Central, e a entidade escrituradora pode expedir certidão de inteiro teor correspondente a título executivo extrajudicial. A forma utilizada muda os documentos que a empresa deve solicitar e arquivar, mas não elimina a necessidade de conferir conteúdo, assinaturas, registros e alterações.",
+          "sourceIds": ["ccb_main"]
+        },
+        {
+          "type": "heading",
+          "text": "Requisitos essenciais da CCB",
+          "sourceIds": []
+        },
+        {
+          "type": "paragraph",
+          "text": "A CCB deve conter sua denominação, a promessa do emitente de pagar dívida em dinheiro certa, líquida e exigível, a data e o lugar de pagamento, o nome da instituição credora, a data e o lugar de emissão e a assinatura do emitente e, quando houver, do terceiro garantidor ou de seus mandatários. No pagamento parcelado, devem constar datas e valores das prestações ou critérios para determiná-los. Na abertura de crédito, a promessa corresponde ao crédito efetivamente utilizado. A ausência ou inconsistência de informações exige exame do documento e de eventuais aditamentos.",
+          "sourceIds": ["ccb_main"]
+        },
+        {
+          "type": "list",
+          "items": [
+            "Identifique emitente, credor, garantidores, mandatários e a qualidade atribuída a cada assinatura.",
+            "Localize valor ou limite, forma de liberação, finalidade, vencimentos e critérios do cronograma.",
+            "Separe taxa de juros, capitalização, atualização, tarifas, despesas, multa e encargos de mora.",
+            "Marque hipóteses de vencimento antecipado e obrigações adicionais da empresa ou do terceiro garantidor.",
+            "Relacione todas as garantias, anexos, registros, seguros e documentos mencionados pela cédula.",
+            "Confira aditamentos, retificações, ratificações, endossos e comprovantes de pagamentos já realizados."
+          ],
+          "sourceIds": ["ccb_main"]
+        },
+        {
+          "type": "heading",
+          "text": "Força executiva e demonstração do saldo",
+          "sourceIds": []
+        },
+        {
+          "type": "paragraph",
+          "text": "A Lei nº 10.931 atribui à CCB natureza de título executivo extrajudicial e declara que ela representa dívida em dinheiro certa, líquida e exigível, pela soma indicada ou pelo saldo devedor demonstrado conforme a própria lei. O Código de Processo Civil reconhece como executivos os demais títulos aos quais a lei atribua expressamente essa força e determina que a execução se funde em obrigação certa, líquida e exigível. Isso permite uma via executiva, mas não dispensa a apresentação do título e da documentação exigida para o valor cobrado.",
+          "sourceIds": ["ccb_main", "cpc_ccb"]
+        },
+        {
+          "type": "paragraph",
+          "text": "Quando o valor exato depende de apuração, a lei da CCB prevê planilha de cálculo e, quando cabível, extrato da instituição financeira. Os demonstrativos devem evidenciar de modo claro os componentes do débito, incluindo principal, encargos, juros e critérios de incidência, atualização, multas, despesas de cobrança e honorários extrajudiciais. O Código de Processo Civil também exige demonstrativo atualizado na execução por quantia certa, com índice, taxa, períodos de incidência, eventual capitalização e descontos obrigatórios. A memória de cálculo é, portanto, parte central da conferência.",
+          "sourceIds": ["ccb_main", "cpc_ccb"]
+        },
+        {
+          "type": "heading",
+          "text": "Encargos e cláusulas permitidas",
+          "sourceIds": []
+        },
+        {
+          "type": "paragraph",
+          "text": "A CCB pode prever juros capitalizados ou não, critérios e periodicidade de capitalização, atualização monetária ou variação cambial quando admitida em lei, hipóteses de mora, multas, penalidades, vencimento antecipado, despesas de cobrança e obrigações do credor. A lei também permite estipular critérios de ressarcimento de honorários extrajudiciais, limitados a dez por cento do valor total devido. O fato de uma matéria poder constar do título não substitui a verificação da redação efetivamente pactuada nem da forma como o cálculo foi aplicado.",
+          "sourceIds": ["ccb_main"]
+        },
+        {
+          "type": "heading",
+          "text": "Garantias na Cédula de Crédito Bancário",
+          "sourceIds": []
+        },
+        {
+          "type": "paragraph",
+          "text": "A garantia pode ser fidejussória ou real. Na garantia real, a lei admite bem patrimonial disponível e alienável de diversas espécies, pertencente ao emitente ou a terceiro garantidor. Ela pode ser constituída na própria CCB ou em documento separado, desde que o título faça menção a essa circunstância. O bem deve ser descrito e individualizado de maneira que permita sua identificação. A legislação ainda disciplina acessórios, conservação, seguro e substituição em situações previstas, de modo que a leitura deve alcançar anexos e registros, não apenas a cláusula-resumo.",
+          "sourceIds": ["ccb_main"]
+        },
+        {
+          "type": "paragraph",
+          "text": "A validade e a eficácia da CCB não dependem de registro, segundo a lei. Já as garantias reais constituídas por ela ficam sujeitas aos registros ou averbações previstos na legislação aplicável para produzir efeitos perante terceiros. São questões diferentes: a existência do título não comprova, por si, que todas as formalidades da garantia foram realizadas. A empresa deve manter o instrumento e também certidões, matrículas, comprovantes de registro e documentos de baixa quando houver liberação.",
+          "sourceIds": ["ccb_main"]
+        },
+        {
+          "type": "heading",
+          "text": "Circulação, aditamentos e histórico",
+          "sourceIds": []
+        },
+        {
+          "type": "paragraph",
+          "text": "A CCB pode ser transferida por endosso em preto, com identificação do endossatário, e a lei permite que o novo titular exerça os direitos conferidos pelo título nas condições legais. A cédula também pode ser aditada, retificada e ratificada por documento escrito e datado que passa a integrá-la. Na forma escritural, o sistema deve registrar eventos previstos em lei, inclusive emissão, forma de pagamento, cadeia de endossos, alterações e ocorrências de pagamento. Para evitar leitura de versão superada, o arquivo empresarial deve preservar a sequência completa desses eventos.",
+          "sourceIds": ["ccb_main"]
+        },
+        {
+          "type": "callout",
+          "text": "Força executiva não significa que qualquer número apresentado seja automaticamente suficiente. A própria legislação exige obrigação certa, líquida e exigível, além de demonstrativos capazes de explicar a composição do saldo. Conferir título, extratos, planilhas, pagamentos e aditivos é uma etapa documental, sem antecipar a conclusão que caberia em eventual controvérsia concreta.",
+          "sourceIds": ["ccb_main", "cpc_ccb"]
+        },
+        {
+          "type": "paragraph",
+          "text": "Cadastre cada CCB com número, credor atual, data de emissão, modalidade, limite ou principal, saldo por data-base, cronograma, encargos, garantias e localização dos documentos. Concilie as parcelas pagas com extratos e comprovantes e registre divergências sem alterar o dado original. Guarde a via recebida, a certidão de inteiro teor quando aplicável e todos os aditamentos. Em caso de quitação, acompanhe o encerramento do saldo e a liberação formal das garantias. O controle organizado não modifica direitos das partes, mas permite compreender o título e localizar rapidamente as evidências de sua evolução.",
+          "sourceIds": ["ccb_main", "cpc_ccb"]
+        }
+      ],
+      "sources": [
+        {
+          "id": "ccb_main",
+          "title": "Lei nº 10.931/2004 — Cédula de Crédito Bancário",
+          "url": "https://www.planalto.gov.br/ccivil_03/_ato2004-2006/2004/lei/l10.931.htm"
+        },
+        {
+          "id": "cpc_ccb",
+          "title": "Lei nº 13.105/2015 — Código de Processo Civil",
+          "url": "https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2015/lei/l13105.htm"
+        }
+      ]
+    }
+  }
+]

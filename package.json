@@ -1,0 +1,23 @@
+{
+  "name": "vr-blog",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "node --experimental-strip-types --test test/*.test.ts",
+    "typecheck": "tsc --noEmit",
+    "types:check": "wrangler types --check",
+    "dev": "wrangler dev --local --test-scheduled",
+    "db:local": "wrangler d1 migrations apply DB --local",
+    "seed:local": "wrangler d1 execute DB --local --file seeds/topics.sql",
+    "smoke": "node scripts/check.mjs",
+    "deploy:staging": "node scripts/predeploy.mjs staging && wrangler deploy --env staging",
+    "deploy:production": "node scripts/predeploy.mjs production && wrangler deploy --env production",
+    "check": "npm test && npm run typecheck && npm run types:check && npm run smoke && wrangler deploy --dry-run --env=\"\""
+  },
+  "devDependencies": {
+    "@types/node": "^26.1.1",
+    "typescript": "latest",
+    "wrangler": "^4.110.0"
+  }
+}
